@@ -6,6 +6,19 @@
 <title>Evingo — An AI receptionist that runs on a unit in your office</title>
 <meta name="description" content="Evingo answers your clinic's phone and books, moves and cancels appointments, from a dedicated unit that sits in your office. Built in Regina, Saskatchewan. Join the early-access waitlist.">
 <meta name="theme-color" content="#0b0c10">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src https://docs.google.com; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<link rel="canonical" href="https://siddharthmnandy.github.io/evingo-site/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Evingo">
+<meta property="og:title" content="Evingo — An AI receptionist that runs on a unit in your office">
+<meta property="og:description" content="Evingo answers your clinic's phone and handles appointments from a dedicated unit in your office. Built in Regina, Saskatchewan. Join the early-access waitlist.">
+<meta property="og:url" content="https://siddharthmnandy.github.io/evingo-site/">
+<meta property="og:image" content="https://siddharthmnandy.github.io/evingo-site/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Evingo logo with the line: Your front desk, powered by AI.">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add("js")</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
@@ -31,8 +44,8 @@ section{position:relative;scroll-margin-top:var(--nav)}
 :focus-visible{outline:2px solid var(--teal);outline-offset:3px}
 
 /* Themes */
-.ink{background:var(--ink);color:var(--paper);--fg:#f2f3f5;--fg2:#8d929b;--fg3:#5c616b;--line:#1f232b;--line2:#2c313b;--chip:#14171d}
-.paper{background:var(--paper);color:var(--ink);--fg:#0b0c10;--fg2:#5a5f69;--fg3:#8a8f99;--line:#d9dce2;--line2:#c6cad2;--chip:#e9ebef}
+.ink{background:var(--ink);color:var(--paper);--fg:#f2f3f5;--fg2:#8d929b;--fg3:#80858f;--line:#1f232b;--line2:#2c313b;--chip:#14171d}
+.paper{background:var(--paper);color:var(--ink);--fg:#0b0c10;--fg2:#5a5f69;--fg3:#6a6f79;--line:#d9dce2;--line2:#c6cad2;--chip:#e9ebef}
 .paper.grain::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* Type */
@@ -45,11 +58,11 @@ h3{font-weight:650;font-stretch:112%}
 .lead{font-size:clamp(17px,1.45vw,20px);color:var(--fg2);max-width:44ch;font-weight:400;line-height:1.5}
 .dim{color:var(--fg2)}
 .split .wm{display:inline-block;overflow:hidden;vertical-align:top;padding:.04em .02em .08em;margin:-.04em -.02em -.08em}
-.split .w{display:inline-block;transform:translateY(108%);transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.js .split .w{display:inline-block;transform:translateY(108%);transition:transform .9s cubic-bezier(.22,1,.36,1);will-change:transform}
 .split.in .w{transform:none}
-.wipe{clip-path:inset(0 0 100% 0);transition:clip-path 1.3s cubic-bezier(.16,1,.3,1)}
+.js .wipe{clip-path:inset(0 0 100% 0);transition:clip-path 1.3s cubic-bezier(.16,1,.3,1)}
 .wipe.in{clip-path:inset(0 0 0 0)}
-.fade{opacity:0;transform:translateY(24px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+.js .fade{opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
 .fade.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.split .w,.fade{opacity:1!important;transform:none!important;transition:none!important}.wipe{clip-path:none!important;transition:none!important}}
 html.lenis,html.lenis body{height:auto}
@@ -57,7 +70,7 @@ html.lenis,html.lenis body{height:auto}
 .lenis.lenis-stopped{overflow:hidden}
 
 /* Chips (spec-tag style) */
-.chip{display:inline-flex;align-items:stretch;height:28px;border:1px solid var(--line2);font-size:11.5px;font-stretch:78%;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--fg2);background:color-mix(in srgb,var(--chip) 70%,transparent);white-space:nowrap}
+.chip{display:inline-flex;align-items:stretch;height:28px;border:1px solid var(--line2);font-size:11.5px;font-stretch:78%;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--fg2);background:var(--chip);background:color-mix(in srgb,var(--chip) 70%,transparent);white-space:nowrap}
 .chip > *{display:flex;align-items:center;padding:0 10px}
 .chip .tag{background:var(--teal);color:var(--ink);border-right:1px solid var(--teal)}
 .chip.warn .tag{background:#f0b54a;border-color:#f0b54a}
@@ -121,7 +134,7 @@ html.lenis,html.lenis body{height:auto}
 .hero-right{max-width:400px;display:grid;gap:22px}
 .hero-right p{font-size:17px;color:#a9aeb7;line-height:1.5}
 .hero-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.hero-cta span{font-size:13px;color:#5c616b}
+.hero-cta span{font-size:13px;color:#80858f}
 
 main{position:relative;z-index:1}
 
@@ -226,6 +239,7 @@ main{position:relative;z-index:1}
 .clock{height:clamp(96px,11vw,170px);overflow:hidden;position:relative}
 .clock .t{position:absolute;left:0;top:0;font-size:clamp(84px,10vw,160px);font-weight:820;font-stretch:122%;letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums;transition:transform .55s cubic-bezier(.2,.7,.2,1),opacity .55s;white-space:nowrap}
 .clock .t small{font-size:.24em;letter-spacing:0;font-weight:500;margin-left:.2em;color:var(--fg2)}
+#dayTitle{transition:opacity .18s,transform .18s}#dayTitle.swap{opacity:0;transform:translateY(6px)}
 .clock .t.out{transform:translateY(-100%);opacity:0}
 .clock .t.wait{transform:translateY(100%);opacity:0}
 .day-title{font-size:clamp(22px,2.2vw,30px);margin-top:14px;font-weight:750;font-stretch:120%;text-transform:uppercase;letter-spacing:-.005em;min-height:1.3em;color:#3cc5d6}
@@ -256,7 +270,7 @@ dialog::backdrop{background:rgba(5,6,8,.72)}
 .line.eva{background:#0d1b20;border-left:2px solid var(--teal)}
 .line.caller{justify-self:end;background:#191c22}
 @keyframes lin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.dlg-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-top:1px solid #1f232b;font-size:13px;color:#5c616b}
+.dlg-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-top:1px solid #1f232b;font-size:13px;color:#80858f}
 .dlg-foot .btn{height:40px;font-size:13px}
 
 /* PRIVACY */
@@ -277,7 +291,7 @@ dialog::backdrop{background:rgba(5,6,8,.72)}
 .setup{padding:0 0 130px}
 .setup-box{border-top:1px solid var(--line);padding-top:60px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:60px;align-items:end}
 .tabs{display:flex;gap:6px;margin:26px 0 0}
-.tab-panel{display:grid;grid-template-columns:1fr 120px;gap:30px;align-items:center;border:1px solid var(--line);padding:34px;min-height:220px;background:color-mix(in srgb,var(--paper2) 45%,transparent)}
+.tab-panel{display:grid;grid-template-columns:1fr 120px;gap:30px;align-items:center;border:1px solid var(--line);padding:34px;min-height:220px;background:var(--paper2);background:color-mix(in srgb,var(--paper2) 45%,transparent)}
 .tab-panel .n{font-size:13px;font-stretch:85%;color:var(--fg3);letter-spacing:.06em}
 .tab-panel h3{font-size:clamp(30px,3vw,42px);margin:6px 0 12px}
 .tab-panel p{color:var(--fg2);max-width:42ch}
@@ -323,6 +337,7 @@ fieldset{border:0}
 .consent input{appearance:none;-webkit-appearance:none;flex:none;width:18px;height:18px;border:1.5px solid #4c515b;margin-top:2px;display:grid;place-items:center;cursor:pointer}
 .consent input:checked{background:var(--teal);border-color:var(--teal)}
 .consent input:checked::after{content:"";width:9px;height:5px;border-left:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(-45deg) translate(1px,-1px)}
+.skip{position:fixed;left:12px;top:-60px;z-index:200;background:var(--teal);color:var(--ink);padding:10px 16px;font-weight:600;transition:top .2s}.skip:focus{top:12px}
 .hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
 .submit{width:100%;height:54px}
 .submit[disabled]{opacity:.7;cursor:progress}
@@ -362,7 +377,14 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
 .lockup{display:block;width:220px;height:auto}
 .foot .tagline{margin-top:18px;color:var(--fg2);font-size:15px}
 .foot ul{list-style:none;display:grid;align-content:start;gap:9px;font-size:13px;font-stretch:85%;text-transform:uppercase;letter-spacing:.05em;color:var(--fg2)}
-.foot ul a:hover{color:var(--fg)}
+.foot ul a:hover,.foot ul .linkbtn:hover{color:var(--fg)}
+.linkbtn{background:none;border:0;padding:0;cursor:pointer;font:inherit;color:inherit;text-transform:inherit;letter-spacing:inherit;text-decoration:underline;text-underline-offset:3px}
+.foot ul .linkbtn{text-decoration:none}
+.priv{padding:22px 24px 8px;overflow:auto;max-height:calc(86vh - 150px);font-size:14.5px;line-height:1.6;color:#c4c8cf}
+.priv h4{font-size:12px;font-stretch:85%;text-transform:uppercase;letter-spacing:.06em;color:#f2f3f5;margin:18px 0 6px;font-weight:600}
+.priv h4:first-child{margin-top:0}
+.priv ul{padding-left:18px}
+.priv a{color:var(--teal-lt);text-decoration:underline}
 .foot-bottom{margin-top:56px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12.5px;color:var(--fg3)}
 
 /* Responsive */
@@ -443,6 +465,7 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
 </style>
 </head>
 <body>
+<a class="skip" href="#receptionist">Skip to content</a>
 
 <header class="nav" id="nav">
   <div class="wrap">
@@ -472,7 +495,7 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
 <a href="#waitlist" class="float-cta" id="floatCta" aria-label="Join the waitlist"><svg viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M1 1h4l5 5-5 5H1l5-5z"/></svg></a>
 
 <!-- HERO -->
-<section class="hero ink" id="top" data-theme="ink">
+<section class="hero ink" id="top" data-theme="ink" aria-label="Introduction">
   <div class="hero-word" id="heroWord" aria-hidden="true"><svg viewBox="691 1404 903 103" aria-hidden="true"><g transform="translate(691 1407) scale(0.20625) translate(-912 -693)"><path fill="currentColor" d="M948.2 1136.7L912.0 1100.5L912.0 933.0L912.0 765.6L948.2 729.3L984.5 693.0L1176.2 693.0L1368.0 693.0L1368.0 693.5L1368.0 694.0L1344.3 729.5L1320.7 765.0L1164.6 765.2L1008.5 765.5L1008.2 831.2L1008.0 897.0L1104.3 897.0L1200.5 897.0L1218.5 915.0L1236.5 933.0L1218.5 951.0L1200.5 969.0L1104.5 969.2L1008.5 969.5L1008.2 1035.2L1008.0 1101.0L1164.2 1101.2L1320.5 1101.5L1343.3 1135.5L1366.1 1169.5L1367.1 1171.2L1368.1 1173.0L1176.3 1173.0L984.5 1173.0L948.2 1136.7Z"/><path fill="#01a3b8" d="M1275.0 991.8L1275.0 990.5L1303.7 961.8L1332.5 933.0L1303.7 904.2L1275.0 875.5L1275.0 874.2L1275.0 873.0L1297.7 873.0L1320.4 873.0L1350.2 902.7L1380.0 932.5L1379.7 933.3L1379.5 934.0L1350.0 963.5L1320.5 993.0L1297.8 993.0L1275.0 993.0L1275.0 991.8Z"/></g><path fill="currentColor" d="M1322.0 1505.9C1298.6 1503.0 1292.1 1494.3 1290.5 1463.5C1289.7 1449.7 1291.2 1430.7 1293.7 1423.0C1296.3 1415.0 1301.8 1409.5 1309.8 1406.8L1316.5 1404.6L1345.9 1404.2C1387.6 1403.6 1398.9 1405.3 1405.3 1412.9C1408.3 1416.5 1409.7 1421.1 1410.2 1429.0L1410.5 1434.5L1404.5 1434.5L1398.5 1434.5L1397.9 1428.5C1397.2 1421.4 1395.7 1418.5 1391.2 1416.4C1388.4 1415.1 1382.9 1414.9 1352.2 1415.2L1316.5 1415.5L1312.5 1417.6C1306.4 1420.7 1304.2 1426.0 1302.9 1440.6C1301.6 1454.6 1302.5 1474.2 1304.6 1481.9C1306.5 1488.6 1311.0 1493.3 1317.1 1495.1C1323.4 1497.0 1380.7 1497.0 1386.9 1495.2C1395.8 1492.5 1398.7 1487.0 1399.2 1472.0L1399.5 1463.5L1375.8 1463.2L1352.0 1463.0L1352.0 1458.0L1352.0 1453.0L1382.0 1453.0L1412.0 1453.0L1412.0 1461.9C1412.0 1473.6 1410.3 1485.4 1407.9 1491.0C1404.4 1498.8 1400.1 1502.2 1390.0 1504.8C1383.3 1506.5 1333.5 1507.4 1322.0 1505.9ZM1505.0 1506.0C1486.2 1503.7 1478.4 1497.3 1474.9 1481.5C1473.0 1473.5 1473.0 1435.7 1474.8 1427.9C1476.9 1418.8 1481.5 1412.0 1488.0 1408.8C1496.3 1404.6 1505.7 1403.7 1539.3 1404.2C1562.7 1404.6 1569.5 1405.0 1573.6 1406.3C1583.6 1409.6 1588.6 1414.7 1591.8 1424.9C1594.3 1433.1 1594.3 1476.9 1591.8 1485.1C1588.4 1496.0 1582.2 1501.6 1570.0 1504.8C1563.6 1506.4 1515.5 1507.4 1505.0 1506.0ZM894.4 1505.2C893.9 1504.8 883.1 1485.4 870.5 1462.0C858.0 1438.6 846.1 1416.7 844.3 1413.2L840.8 1407.0L847.8 1407.0L854.8 1407.0L878.1 1451.5C891.0 1476.0 901.8 1495.9 902.3 1495.7C903.0 1495.5 947.9 1411.2 949.2 1407.7C949.4 1407.3 952.6 1407.0 956.3 1407.2L963.0 1407.5L939.9 1450.5C927.2 1474.2 915.3 1496.3 913.4 1499.8L909.9 1506.0L902.7 1506.0C898.7 1506.0 895.0 1505.6 894.4 1505.2ZM1023.7 1505.4C1023.3 1505.0 1023.0 1482.7 1023.0 1455.8L1023.0 1407.0L1029.0 1407.0L1035.0 1407.0L1034.8 1456.2L1034.5 1505.5L1029.5 1505.8C1026.7 1506.0 1024.1 1505.8 1023.7 1505.4ZM1102.7 1505.3C1102.3 1505.0 1102.0 1482.7 1102.0 1455.8L1102.0 1407.0L1108.8 1407.0L1115.5 1407.1L1164.5 1448.5C1191.5 1471.3 1213.8 1490.0 1214.2 1490.0C1214.7 1490.0 1215.0 1471.3 1215.0 1448.5L1215.0 1407.0L1221.0 1407.0L1227.0 1407.0L1226.8 1456.2L1226.5 1505.5L1220.3 1505.5L1214.2 1505.5L1165.4 1464.5C1138.5 1442.0 1116.0 1423.3 1115.2 1423.2C1114.5 1423.0 1114.0 1423.4 1114.1 1424.2C1114.2 1424.9 1114.2 1443.6 1114.1 1465.8L1114.0 1506.0L1108.7 1506.0C1105.7 1506.0 1103.0 1505.7 1102.7 1505.3ZM1567.8 1494.9C1570.2 1494.3 1573.7 1492.3 1575.5 1490.6C1580.8 1485.5 1581.5 1481.6 1581.5 1454.0L1581.5 1429.5L1579.0 1424.5C1577.0 1420.5 1575.5 1419.0 1571.5 1417.0L1566.5 1414.5L1533.5 1414.5L1500.5 1414.5L1495.8 1416.7C1487.4 1420.5 1485.0 1429.1 1485.0 1455.0C1485.0 1486.8 1488.8 1494.0 1506.3 1496.0C1516.7 1497.2 1562.6 1496.4 1567.8 1494.9Z"/></svg></div>
   <div class="hero-horizon" aria-hidden="true"></div>
   <div class="stage" id="heroStage" role="img" aria-label="3D render of the Evingo Unit concept: a compact graphite box with angled corners and a waveform display on the front"><div class="fallback" aria-hidden="true"></div></div>
@@ -605,6 +628,22 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
   </div>
 </section>
 
+<dialog id="privDialog" aria-labelledby="privTitle">
+  <div class="dlg-head"><div><b id="privTitle">How we handle your waitlist details</b><small>Plain-language notice · November 2026</small></div><button type="button" class="dlg-close" data-close aria-label="Close">×</button></div>
+  <div class="priv">
+    <h4>What we collect</h4>
+    <p>What you type into the waitlist form: your name, business name, business email, business type, city, phone number if you give one, your interest level, and your consent to be emailed. We also note which website the form was sent from.</p>
+    <h4>Why</h4>
+    <p>Only to contact you about Evingo: product updates, pilot opportunities and pre-orders. We don't sell, rent or trade your details, and we don't add you to anyone else's list.</p>
+    <h4>Where it's kept</h4>
+    <p>Submissions go to a Google Form and are stored in a Google Sheet in the Evingo founders' Google account, on Google's servers, which may be outside Canada. Only the Evingo team can open it.</p>
+    <h4>On your device</h4>
+    <p>Your browser keeps a scrambled (hashed) copy of the email you signed up with, so the form can tell you if you've already joined. There are no tracking cookies or analytics on this site. Fonts and code libraries load from Google Fonts and jsDelivr, which see your IP address like any website you visit.</p>
+    <h4>Getting your details removed</h4>
+    <p id="privContact">Reply to any email from Evingo and ask, and we'll delete your details from the list. You can also unsubscribe at any time.</p>
+  </div>
+  <div class="dlg-foot"><span>Waitlist only. Evingo collects no patient data here.</span><button type="button" class="btn btn-teal" data-close>Close</button></div>
+</dialog>
 <dialog id="callDialog" aria-labelledby="dlgTitle">
   <div class="dlg-head"><span class="ava" id="dlgAva"></span><div><b id="dlgTitle">Eva · example call</b><small>Lakeview Dental is a fictional clinic.</small></div><button type="button" class="dlg-close" id="closeCall" aria-label="Close">×</button></div>
   <div class="lines" id="lines" aria-live="polite"></div>
@@ -680,7 +719,8 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
     </div>
 
     <div class="form-wrap fade" id="formWrap">
-      <form id="waitlistForm" novalidate>
+      <form id="waitlistForm" method="post" novalidate>
+        <noscript><p class="alert error show" style="display:block">The waitlist form needs JavaScript turned on. Please enable it and reload the page.</p></noscript>
         <div class="alert info" id="previewNote" role="status"></div>
         <div class="fgrid">
           <div class="field" data-field="name"><label for="f-name">Full name</label><input class="input" id="f-name" name="name" autocomplete="name" maxlength="100" required><span class="err" id="e-name"></span></div>
@@ -710,14 +750,14 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
         </div>
         <div class="alert error" id="formError" role="alert"></div>
         <button type="submit" class="btn btn-teal submit" id="submitBtn"><span class="spinner"></span><span class="idle-l">Join the Evingo waitlist</span><span class="busy-l">Joining…</span></button>
-        <p class="fine">No payment details are collected. We use your details only to contact you about Evingo.</p>
+        <p class="fine">No payment details are collected. We use your details only to contact you about Evingo. <button type="button" class="linkbtn" data-open-privacy>How we handle your details</button></p>
       </form>
       <div class="success" id="success" role="status" tabindex="-1">
         <span class="ava" id="evaHappy"></span>
         <h3 id="successTitle">You're on the list.</h3>
         <p id="successText"></p>
         <ol>
-          <li><span>01</span><span>We'll confirm your spot by email.</span></li>
+          <li><span>01</span><span>Your details are saved. There's nothing else to do.</span></li>
           <li><span>02</span><span>You'll get product updates as Evingo develops.</span></li>
           <li><span>03</span><span id="nextThird">We'll reach out about pilots and pre-orders when they open.</span></li>
         </ol>
@@ -751,7 +791,7 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
         <p class="tagline">Evingo — Intelligence, on your terms.</p>
       </div>
       <ul><li><a href="#receptionist">Product</a></li><li><a href="#unit">Hardware</a></li><li><a href="#privacy">Privacy</a></li></ul>
-      <ul><li><a href="#about">About</a></li><li id="contactItem" hidden><a id="contactLink" href="#waitlist">Contact</a></li><li><a href="#waitlist">Join waitlist</a></li></ul>
+      <ul><li><a href="#about">About</a></li><li id="contactItem" hidden><a id="contactLink" href="#waitlist">Contact</a></li><li><a href="#waitlist">Join waitlist</a></li><li><button type="button" class="linkbtn" data-open-privacy>Waitlist privacy</button></li></ul>
     </div>
     <div class="foot-bottom">
       <span>© <span id="yr">2026</span> Evingo</span>
@@ -771,10 +811,10 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
   </svg>
 </template>
 
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/environments/RoomEnvironment.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" integrity="sha384-eD5ubmuCcvTdCADWuSchJYE7wcj2nzNr0itbrh6w/KJyBiltSZ8w3VFRBSWu5YQ8" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js" integrity="sha384-wagZhIFgY4hD+7awjQjR4e2E294y6J2HSnd8eTNc15ZubTeQeVRZwhQJ+W6hnBsf" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/environments/RoomEnvironment.js" integrity="sha384-UpJYDNQ/8wDmBlzh4lZ9VMbunag9yRAOGFiBWYVaf6/FCnrwc9qlto25EZVLhpph" crossorigin="anonymous"></script>
 <script>
 /* ============================================================
    Evingo Unit — concept 3D model, studio, breakdown, explore.
@@ -972,9 +1012,9 @@ function envMap(renderer){
 
 function Stage(el, opts){
   const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:!!opts.snap});
-  renderer.setPixelRatio(Math.min(devicePixelRatio||1,MOBILE?1.75:2));
+  renderer.setPixelRatio(Math.min(devicePixelRatio||1,opts.maxDpr||(MOBILE?1.5:1.6)));
   renderer.outputEncoding=THREE.sRGBEncoding; renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=opts.exposure||.95;
-  renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap; renderer.setClearColor(0,0);
+  renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap; renderer.shadowMap.autoUpdate=false; renderer.shadowMap.needsUpdate=true; renderer.setClearColor(0,0);
   el.prepend(renderer.domElement);
   const scene=new THREE.Scene(); scene.environment=envMap(renderer);
   const key=new THREE.DirectionalLight(0xffffff,opts.keyLight||1.1); key.position.set(-1.1,8,1.4); key.castShadow=true;
@@ -983,7 +1023,7 @@ function Stage(el, opts){
   const unit=buildUnit(opts.MARK_D,opts.TEAL_D); scene.add(unit.root);
   const cam=new THREE.PerspectiveCamera(opts.fov||24,1,.1,80);
   const view={theta:.62,phi:1.28,r:6.2,ty:.5}; Object.assign(view,opts.view||{});
-  let shift=0, shiftY=0, tween=null, ex=0, exTween=null, speakUntil=0, raf=0, visible=true, onFrame=null, controls=null, lastCam=new THREE.Vector3();
+  let shift=0, shiftY=0, tween=null, ex=0, exTween=null, speakUntil=0, raf=0, visible=true, onFrame=null, controls=null, lastCam=new THREE.Vector3(), lastEx=-1;
   unit.setExplode(0); unit.setBars(0,false);
 
   function applyView(){ const s=Math.sin(view.phi); cam.position.set(view.ty*0+view.r*s*Math.sin(view.theta),view.ty+view.r*Math.cos(view.phi),view.r*s*Math.cos(view.theta)); cam.lookAt(0,view.ty,0); if(controls){ controls.target.set(0,view.ty,0); } }
@@ -992,7 +1032,7 @@ function Stage(el, opts){
     if (tween){ const k=clamp((now-tween.t0)/tween.ms), e=ease(k); for(const key in tween.to) view[key]=lerp(tween.from[key],tween.to[key],e); if(controls){ applyView(); controls.update(); } else applyView(); if(k<1) more=true; else tween=null; }
     else if (!controls) applyView();
     if (exTween){ const k=clamp((now-exTween.t0)/exTween.ms); ex=lerp(exTween.from,exTween.to,ease(k)); if(k<1) more=true; else exTween=null; }
-    unit.setExplode(ex);
+    if(ex!==lastEx){ unit.setExplode(ex); renderer.shadowMap.needsUpdate=true; lastEx=ex; }
     const sp=!reduceMotion&&now<speakUntil; unit.setBars(now/1000,sp); if(sp) more=true;
     if (controls && !tween){ controls.update(); if(cam.position.distanceToSquared(lastCam)>1e-8) more=true; }
     lastCam.copy(cam.position);
@@ -1016,6 +1056,7 @@ function Stage(el, opts){
     controls.addEventListener("change",kick);
   }
   function syncFromCam(){ const o=cam.position.clone().sub(new THREE.Vector3(0,view.ty,0)); view.r=o.length(); view.phi=Math.acos(clamp(o.y/view.r,-1,1)); view.theta=Math.atan2(o.x,o.z); }
+  applyView(); try{ renderer.compile(scene,cam); }catch(e){}
   requestAnimationFrame(()=>el.classList.add("ready"));
   const v=new THREE.Vector3(), n=new THREE.Vector3(), toCam=new THREE.Vector3();
   const api={
@@ -1075,7 +1116,8 @@ const clamp = (v,a=0,b=1) => Math.min(b,Math.max(a,v));
 const ease = t => t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
 const ramp = (p,a,b) => ease(clamp((p-a)/(b-a)));
 $("#yr").textContent = new Date().getFullYear();
-if (CONFIG.CONTACT_EMAIL){ const a=$("#contactLink"); a.href="mailto:"+CONFIG.CONTACT_EMAIL; a.textContent="Contact"; $("#contactItem").hidden=false; }
+if (CONFIG.CONTACT_EMAIL){ const a=$("#contactLink"); a.href="mailto:"+CONFIG.CONTACT_EMAIL; a.textContent="Contact"; $("#contactItem").hidden=false;
+  const pc=$("#privContact"); pc.textContent="Email "; const m=document.createElement("a"); m.href="mailto:"+CONFIG.CONTACT_EMAIL; m.textContent=CONFIG.CONTACT_EMAIL; pc.append(m, document.createTextNode(", or reply to any email from Evingo, and we'll delete your details from the list. You can also unsubscribe at any time.")); }
 
 /* ---------- Nav: theme follows the section underneath ---------- */
 const nav=$("#nav"), menuBtn=$("#menuBtn"), floatCta=$("#floatCta");
@@ -1099,15 +1141,15 @@ $$(".split").forEach(el=>{
   let i=0;
   const walk=node=>{ [...node.childNodes].forEach(n=>{
     if (n.nodeType===3){ const frag=document.createDocumentFragment();
-      n.textContent.split(/(\s+)/).forEach(part=>{ if(!part) return; if(/^\s+$/.test(part)){ frag.append(part); return; } const m=document.createElement("span"); m.className="wm"; const w=document.createElement("span"); w.className="w"; w.style.transitionDelay=(i++*55)+"ms"; w.textContent=part; m.append(w); frag.append(m); });
+      n.textContent.split(/(\s+)/).forEach(part=>{ if(!part) return; if(/^\s+$/.test(part)){ frag.append(part); return; } const m=document.createElement("span"); m.className="wm"; const w=document.createElement("span"); w.className="w"; w.style.transitionDelay=Math.min(i++*45,360)+"ms"; w.textContent=part; m.append(w); frag.append(m); });
       n.replaceWith(frag);
     } else if (n.nodeType===1 && n.tagName!=="BR") walk(n);
   }); };
   walk(el);
 });
-const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); if(e.target.dataset.count!==undefined) countUp(e.target); e.target.querySelectorAll("[data-count]").forEach(countUp); } }),{threshold:.15,rootMargin:"0px 0px -40px 0px"});
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); if(e.target.dataset.count!==undefined) countUp(e.target); e.target.querySelectorAll("[data-count]").forEach(countUp); } }),{threshold:0,rootMargin:"0px 0px -6% 0px"});
 $$(".split,.fade,.band-num").forEach(el=>io.observe(el));
-const wipeIO=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.querySelectorAll(":scope > .wipe").forEach(w=>w.classList.add("in")); wipeIO.unobserve(e.target); } }),{threshold:.12});
+const wipeIO=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.querySelectorAll(":scope > .wipe").forEach(w=>w.classList.add("in")); wipeIO.unobserve(e.target); } }),{threshold:0,rootMargin:"0px 0px -6% 0px"});
 new Set($$(".wipe").map(w=>w.parentElement)).forEach(p=>wipeIO.observe(p));
 function countUp(el){ if(el._done) return; el._done=true; const n=+el.dataset.count; if(reduceMotion){ el.textContent=n; return; } const t0=performance.now(); const tick=t=>{ const k=clamp((t-t0)/1100); el.textContent=Math.round(n*ease(k)); if(k<1) requestAnimationFrame(tick); }; el.textContent="0"; requestAnimationFrame(tick); }
 
@@ -1144,9 +1186,14 @@ function play(){ const me=++run; lines.innerHTML=""; playBtn.disabled=true; play
     const [w,t]=CALL[i++]; dlgAva.innerHTML=evaSVG(w==="eva"?"talk":"listening"); lines.append(lineEl(w,t)); lines.scrollTop=lines.scrollHeight; setTimeout(step, reduceMotion?250:650+t.length*24); };
   step(); }
 $("#openCall").addEventListener("click",()=>{ showAll(); playBtn.disabled=false; playBtn.textContent="Play the call"; dlgAva.innerHTML=evaSVG("idle"); if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open",""); if(window.__lenis) window.__lenis.stop(); });
-dlg.addEventListener("close",()=>{ if(window.__lenis) window.__lenis.start(); });
+dlg.addEventListener("close",()=>{ if(window.__lenis) window.__lenis.start(); const o=$("#openCall"); if(o) o.focus({preventScroll:true}); });
 $("#closeCall").addEventListener("click",()=>{ run++; dlg.close ? dlg.close() : dlg.removeAttribute("open"); });
 dlg.addEventListener("click",e=>{ if(e.target===dlg){ run++; dlg.close(); } });
+const priv=$("#privDialog");
+$$("[data-open-privacy]").forEach(b=>b.addEventListener("click",()=>{ priv.__opener=b; if(priv.showModal) priv.showModal(); else priv.setAttribute("open",""); if(window.__lenis) window.__lenis.stop(); }));
+priv.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",()=>priv.close?priv.close():priv.removeAttribute("open")));
+priv.addEventListener("click",e=>{ if(e.target===priv) priv.close(); });
+priv.addEventListener("close",()=>{ if(window.__lenis) window.__lenis.start(); if(priv.__opener) priv.__opener.focus({preventScroll:true}); });
 playBtn.addEventListener("click",play);
 
 /* ---------- Fallback art ---------- */
@@ -1237,7 +1284,7 @@ const HS=[
 ];
 let mode=0, viewKey="three";
 const hsWrap=$("#hotspots"), exN=$("#exN"), exTitle=$("#exTitle"), exText=$("#exText");
-HS.forEach((h,i)=>{ const b=document.createElement("button"); b.type="button"; b.className="hs off"; b.textContent=i+1; b.setAttribute("aria-label",h.t); b.addEventListener("click",()=>pickHS(i)); hsWrap.append(b); h.el=b; });
+HS.forEach((h,i)=>{ const b=document.createElement("button"); b.type="button"; b.className="hs off"; b.textContent=i+1; b.setAttribute("aria-label",(i+1)+". "+h.t); b.addEventListener("click",()=>pickHS(i)); hsWrap.append(b); h.el=b; });
 function pickHS(i){ const h=HS[i]; HS.forEach((o,k)=>o.el.setAttribute("aria-pressed",k===i));
   exN.textContent=String(i+1).padStart(2,"0")+(h.m?" · inside":" · outside"); exTitle.textContent=h.t; exText.textContent=h.x;
   if(xp&&h.v) xp.setView(h.v,1000); }
@@ -1261,7 +1308,7 @@ function setClock(i){
   const old=clock.querySelector(".t:not(.out)"); const nt=document.createElement("div"); nt.className="t wait"; if(dir<0) nt.style.transform="translateY(-100%)";
   nt.innerHTML=DAY[i][0]+"<small>"+DAY[i][1]+"</small>"; clock.append(nt);
   requestAnimationFrame(()=>requestAnimationFrame(()=>{ nt.classList.remove("wait"); nt.style.transform=""; if(old){ old.classList.add("out"); if(dir<0) old.style.transform="translateY(100%)"; setTimeout(()=>old.remove(),600); } }));
-  dayTitle.textContent=DAY[i][2];
+  dayTitle.classList.add("swap"); clearTimeout(dayTitle._t); dayTitle._t=setTimeout(()=>{ dayTitle.textContent=DAY[dayIdx][2]; dayTitle.classList.remove("swap"); },180);
 }
 function dayProgress(p){
   const i=Math.min(3,Math.floor(p*4.0001)); setClock(i);
@@ -1317,8 +1364,13 @@ function initStages(){
     setTimeout(()=>{ try{ const img=$("#beautyImg"), fig=img.parentElement, sc=Math.min(2,1500/Math.max(fig.clientWidth,1)); img.src=hero.snapshot({theta:-.58,phi:1.4,r:5.4,ty:.4},Math.round(fig.clientWidth*sc),Math.round(fig.clientHeight*sc)); img.hidden=false; fig.classList.add("has-img"); }catch(e){} },400);
   }catch(e){ console.warn(e); }
   const lazy=(el,fn)=>new IntersectionObserver((es,o)=>{ if(es[0].isIntersecting){ o.disconnect(); try{ fn(); }catch(e){ console.warn(e); } } },{rootMargin:"600px"}).observe(el);
-  lazy(bdEl,()=>{ bd=Unit3D.Stage(bdEl,{...common,fov:24,exposure:1.1,view:{theta:.55,phi:1.3,r:6.6,ty:.5}}); bd.onFrame(bdLayout); bdP=-1; SM.bd.c=-1; onScroll(); });
-  lazy($("#exploreStage"),()=>{ xp=Unit3D.Stage($("#exploreStage"),{...common,fov:24,orbit:true,minR:2.6,maxR:15,view:{...VIEWS3.three,...CLOSED}}); xp.onFrame(hsLayout); setView3("three"); });
+  /* build the other two stages during idle time, before the visitor reaches them, so nothing is built mid-scroll */
+  const idle=(fn,ms)=>setTimeout(()=>(window.requestIdleCallback||(f=>f()))(fn,{timeout:1200}),ms);
+  const once=fn=>{ let done=false; return ()=>{ if(done) return; done=true; try{ fn(); }catch(e){ console.warn(e); } }; };
+  const mkBd=once(()=>{ bd=Unit3D.Stage(bdEl,{...common,fov:24,exposure:1.1,view:{theta:.55,phi:1.3,r:6.6,ty:.5}}); bd.onFrame(bdLayout); bdP=-1; SM.bd.c=-1; onScroll(); });
+  const mkXp=once(()=>{ xp=Unit3D.Stage($("#exploreStage"),{...common,fov:24,orbit:true,minR:2.6,maxR:15,view:{...VIEWS3.three,...CLOSED}}); xp.onFrame(hsLayout); setView3("three"); });
+  lazy(bdEl,mkBd); lazy($("#exploreStage"),mkXp);
+  idle(mkBd,900); idle(mkXp,1900);
 }
 let started=false; const go=()=>{ if(started) return; started=true; initStages(); };
 if (document.fonts&&document.fonts.ready) document.fonts.ready.then(go,go); setTimeout(go,1500);
@@ -1334,13 +1386,20 @@ const backendReady=(async()=>{
   if (!claudeDb&&(onClaude||(!CONFIG.GOOGLE_FORM&&!CONFIG.WAITLIST_ENDPOINT))){ note.textContent="This is a preview of the Evingo site. The waitlist isn't connected to storage here, so submissions can't be saved yet."; note.classList.add("show"); }
 })();
 const EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-const val=n=>{ const el=form.elements[n]; return el?String(el.value||"").trim():""; };
+const clean=v=>String(v||"").normalize("NFC").replace(/[\u0000-\u001f\u007f-\u009f\u200b-\u200f\u202a-\u202e\u2066-\u2069]/g," ").replace(/\s+/g," ").trim();
+const val=n=>{ const el=form.elements[n]; return el?clean(el.value):""; };
+const LIMITS={name:100,business:140,email:160,city:120,phone:30};
+/* keep spreadsheet apps from treating a value as a formula when the list is exported */
+const safeCell=v=>/^[=+\-@]/.test(v)?"'"+v:v;
+let firstTouch=0; form.addEventListener("focusin",e=>{ if(!firstTouch&&e.target.matches("input:not([type=hidden]),select")) firstTouch=Date.now(); });
 function getData(){ const i=form.querySelector('input[name="interest"]:checked'); return {name:val("name"),business:val("business"),email:val("email").toLowerCase(),type:val("type"),city:val("city"),phone:val("phone"),interest:i?i.value:"",consent:form.elements.consent.checked,website:val("website")}; }
 function validate(d){ const e={};
   if(d.name.length<2) e.name="Please enter your full name."; if(d.business.length<2) e.business="Please enter your business name.";
   if(!d.email) e.email="Please enter your business email."; else if(!EMAIL_RE.test(d.email)) e.email="That email doesn't look right.";
   if(!d.type) e.type="Please choose your business type."; if(d.city.length<2) e.city="Please enter your city or location.";
   if(d.phone){ const n=d.phone.replace(/\D/g,""); if(n.length<10||n.length>15||/[^\d\s()+.\-]/.test(d.phone)) e.phone="Enter a valid phone number, or leave it blank."; }
+  for(const k in LIMITS) if(d[k].length>LIMITS[k]) e[k]="That's longer than we can store. Please shorten it.";
+  if(/[<>]/.test(d.name+d.business+d.city)) { if(/[<>]/.test(d.name)) e.name="Please remove the < and > characters."; if(/[<>]/.test(d.business)) e.business="Please remove the < and > characters."; if(/[<>]/.test(d.city)) e.city="Please remove the < and > characters."; }
   if(!d.interest) e.interest="Please choose one option."; if(!d.consent) e.consent="Please agree so we can email you about Evingo."; return e; }
 function showErrors(e){ form.querySelectorAll(".field").forEach(f=>{ const k=f.dataset.field,m=e[k]; f.classList.toggle("invalid",!!m); const s=document.getElementById("e-"+k); if(s) s.textContent=m||""; const inp=f.querySelector(".input"); if(inp) inp.setAttribute("aria-invalid",m?"true":"false"); }); }
 ["input","change"].forEach(t=>form.addEventListener(t,ev=>{ const f=ev.target.closest(".field"); if(f&&f.classList.contains("invalid")) showErrors(validate(getData())); }));
@@ -1353,8 +1412,8 @@ async function toGoogleForm(p){
   const F=CONFIG.GOOGLE_FORM, h=await sha256(p.email);
   if (seenEmails().includes(h)) return {ok:true,duplicate:true};
   const body=new URLSearchParams();
-  body.append(F.fields.name,p.name); body.append(F.fields.business,p.business); body.append(F.fields.email,p.email);
-  body.append(F.fields.type,p.type); body.append(F.fields.city,p.city); body.append(F.fields.phone,p.phone||"");
+  body.append(F.fields.name,safeCell(p.name)); body.append(F.fields.business,safeCell(p.business)); body.append(F.fields.email,p.email);
+  body.append(F.fields.type,p.type); body.append(F.fields.city,safeCell(p.city)); body.append(F.fields.phone,p.phone||"");
   body.append(F.fields.interest,p.interest); body.append(F.fields.consent,"Yes"); body.append(F.fields.source,p.source);
   const c=new AbortController(), to=setTimeout(()=>c.abort(),20000);
   try{ await fetch("https://docs.google.com/forms/d/e/"+F.id+"/formResponse",{method:"POST",mode:"no-cors",body,signal:c.signal}); }
@@ -1372,7 +1431,8 @@ form.addEventListener("submit",async ev=>{
   busy=true; btn.disabled=true; btn.classList.add("loading");
   const p={name:d.name,business:d.business,email:d.email,type:d.type,city:d.city,phone:d.phone,interest:d.interest,consent:true,website:d.website,submittedAt:new Date().toISOString(),source:location.hostname||"evingo-site"};
   try{
-    if(d.website){ await new Promise(r=>setTimeout(r,600)); return showSuccess(d,false); }
+    const tooFast=!firstTouch||Date.now()-firstTouch<1200;
+    if(d.website||tooFast){ await new Promise(r=>setTimeout(r,600)); return showSuccess(d,false); }
     await Promise.race([backendReady,new Promise(r=>setTimeout(r,10000))]);
     let r; if(claudeDb) r=await toClaudeDb(p); else if(CONFIG.GOOGLE_FORM) r=await toGoogleForm(p); else if(CONFIG.WAITLIST_ENDPOINT) r=await toEndpoint(p); else { const er=new Error("not_connected"); er.code="not_connected"; throw er; }
     showSuccess(d,!!r.duplicate);
