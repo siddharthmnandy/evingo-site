@@ -1308,9 +1308,11 @@ const DAY=[["7:42","AM","Before you open"],["12:10","PM","Lunch rush"],["5:52","
 const feedLis=$$("#feed > li"), clock=$("#clock"), dayTitle=$("#dayTitle"); let dayIdx=0;
 function setClock(i){
   if (i===dayIdx) return; const dir=i>dayIdx?1:-1; dayIdx=i;
-  const old=clock.querySelector(".t:not(.out)"); const nt=document.createElement("div"); nt.className="t wait"; if(dir<0) nt.style.transform="translateY(-100%)";
+  /* retire every current digit block (anything already leaving is dropped at once, so fast scrolling never stacks numbers) */
+  clock.querySelectorAll(".t").forEach(o=>{ if(o._gone){ o.remove(); return; } o._gone=true; o.classList.remove("wait"); o.style.transform=dir<0?"translateY(100%)":""; o.classList.add("out"); setTimeout(()=>o.remove(),560); });
+  const nt=document.createElement("div"); nt.className="t wait"; if(dir<0) nt.style.transform="translateY(-100%)";
   nt.innerHTML=DAY[i][0]+"<small>"+DAY[i][1]+"</small>"; clock.append(nt);
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{ nt.classList.remove("wait"); nt.style.transform=""; if(old){ old.classList.add("out"); if(dir<0) old.style.transform="translateY(100%)"; setTimeout(()=>old.remove(),600); } }));
+  void nt.offsetWidth; nt.classList.remove("wait"); nt.style.transform="";
   dayTitle.classList.add("swap"); clearTimeout(dayTitle._t); dayTitle._t=setTimeout(()=>{ dayTitle.textContent=DAY[dayIdx][2]; dayTitle.classList.remove("swap"); },180);
 }
 function dayProgress(p){
