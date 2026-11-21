@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evingo — An AI receptionist that runs on a unit in your office</title>
+<meta name="description" content="Evingo answers your clinic's phone and books, moves and cancels appointments, from a dedicated unit that sits in your office. Built in Regina, Saskatchewan. Join the early-access waitlist.">
+<meta name="theme-color" content="#0b0c10">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='852 633 588 600'%3E%3Crect x='852' y='633' width='588' height='600' fill='%230b0c10'/%3E%3Cpath fill='%23f2f3f5' d='M948.2 1136.7L912.0 1100.5L912.0 933.0L912.0 765.6L948.2 729.3L984.5 693.0L1176.2 693.0L1368.0 693.0L1368.0 693.5L1368.0 694.0L1344.3 729.5L1320.7 765.0L1164.6 765.2L1008.5 765.5L1008.2 831.2L1008.0 897.0L1104.3 897.0L1200.5 897.0L1218.5 915.0L1236.5 933.0L1218.5 951.0L1200.5 969.0L1104.5 969.2L1008.5 969.5L1008.2 1035.2L1008.0 1101.0L1164.2 1101.2L1320.5 1101.5L1343.3 1135.5L1366.1 1169.5L1367.1 1171.2L1368.1 1173.0L1176.3 1173.0L984.5 1173.0L948.2 1136.7Z'/%3E%3Cpath fill='%2301a3b8' d='M1275.0 991.8L1275.0 990.5L1303.7 961.8L1332.5 933.0L1303.7 904.2L1275.0 875.5L1275.0 874.2L1275.0 873.0L1297.7 873.0L1320.4 873.0L1350.2 902.7L1380.0 932.5L1379.7 933.3L1379.5 934.0L1350.0 963.5L1320.5 993.0L1297.8 993.0L1275.0 993.0L1275.0 991.8Z'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#0b0c10; --ink2:#12141a; --paper:#f2f3f5; --paper2:#e8eaee;
+  --teal:#01a3b8; --teal-lt:#3cc5d6; --teal-dk:#00788a;
+  --warn:#c98a12; --danger:#ff8a80;
+  --maxw:1280px; --nav:64px;
+  --sans:"Archivo",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+svg{display:block}
+section{position:relative;scroll-margin-top:var(--nav)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+
+/* Themes */
+.ink{background:var(--ink);color:var(--paper);--fg:#f2f3f5;--fg2:#8d929b;--fg3:#5c616b;--line:#1f232b;--line2:#2c313b;--chip:#14171d}
+.paper{background:var(--paper);color:var(--ink);--fg:#0b0c10;--fg2:#5a5f69;--fg3:#8a8f99;--line:#d9dce2;--line2:#c6cad2;--chip:#e9ebef}
+.paper.grain::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* Type */
+h1,h2,h3{font-weight:500;font-stretch:108%;letter-spacing:-.03em;line-height:1.02}
+h1,h2{font-weight:780;font-stretch:122%;text-transform:uppercase;letter-spacing:-.012em;line-height:.9}
+h2{font-size:clamp(40px,6.2vw,104px)}
+h1 .dim,h2 .dim,.dim-o{color:transparent!important;-webkit-text-stroke:1.4px var(--fg);text-stroke:1.4px var(--fg)}
+.ink h1 .dim,.ink h2 .dim{-webkit-text-stroke-color:#f2f3f5}
+h3{font-weight:650;font-stretch:112%}
+.lead{font-size:clamp(17px,1.45vw,20px);color:var(--fg2);max-width:44ch;font-weight:400;line-height:1.5}
+.dim{color:var(--fg2)}
+.split .wm{display:inline-block;overflow:hidden;vertical-align:top;padding:.04em .02em .08em;margin:-.04em -.02em -.08em}
+.split .w{display:inline-block;transform:translateY(108%);transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.split.in .w{transform:none}
+.wipe{clip-path:inset(0 0 100% 0);transition:clip-path 1.3s cubic-bezier(.16,1,.3,1)}
+.wipe.in{clip-path:inset(0 0 0 0)}
+.fade{opacity:0;transform:translateY(24px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+.fade.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.split .w,.fade{opacity:1!important;transform:none!important;transition:none!important}.wipe{clip-path:none!important;transition:none!important}}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+
+/* Chips (spec-tag style) */
+.chip{display:inline-flex;align-items:stretch;height:28px;border:1px solid var(--line2);font-size:11.5px;font-stretch:78%;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--fg2);background:color-mix(in srgb,var(--chip) 70%,transparent);white-space:nowrap}
+.chip > *{display:flex;align-items:center;padding:0 10px}
+.chip .tag{background:var(--teal);color:var(--ink);border-right:1px solid var(--teal)}
+.chip.warn .tag{background:#f0b54a;border-color:#f0b54a}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;height:56px;padding:0 26px 0 30px;font-weight:700;font-size:15px;font-stretch:110%;text-transform:uppercase;letter-spacing:.04em;border:0;cursor:pointer;white-space:nowrap;transition:background .15s}
+.btn-teal{background:var(--teal);color:var(--ink);clip-path:polygon(10px 0,100% 0,100% 100%,10px 100%,0 calc(100% - 10px),0 10px)}
+.btn-teal:hover{background:#18b7cb}
+.btn-line{border:1px solid var(--line2);background:transparent;color:var(--fg)}
+.btn-line:hover{border-color:var(--fg2)}
+.btn svg{width:12px;height:12px}
+
+/* Nav */
+.nav{position:fixed;inset:0 0 auto 0;height:var(--nav);z-index:60;color:#f2f3f5;transition:color .3s,background .3s,border-color .3s;border-bottom:1px solid transparent}
+.nav.solid{background:#0b0c10;border-color:#1f232b}
+.nav.on-paper{color:#0b0c10}
+.nav.on-paper.solid{background:#f2f3f5;border-color:#d9dce2}
+.nav.on-teal.solid{background:#01a3b8;border-color:rgba(11,12,16,.18)}
+.nav.on-teal .nav-cta{color:#0b0c10}
+.nav .wme path[fill='#01a3b8']{transition:fill .3s}
+.nav.on-teal .wme path[fill='#01a3b8']{fill:#0b0c10}
+.nav .wrap{height:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.nav-links{display:flex;gap:26px;font-size:13px;font-stretch:85%;text-transform:uppercase;letter-spacing:.05em}
+.nav-links a{opacity:.75;transition:opacity .15s}
+.nav-links a:hover,.nav-links a[aria-current="true"]{opacity:1}
+.logo{display:flex;align-items:center;gap:11px;color:inherit}
+.logo .wme{height:15px;width:auto}
+.nav-cta{justify-self:end;font-size:13px;font-stretch:85%;text-transform:uppercase;letter-spacing:.05em;color:var(--teal);font-weight:600}
+.nav.on-paper .nav-cta{color:var(--teal-dk)}
+.menu-btn{display:none;justify-self:end;height:36px;padding:0 12px;border:1px solid currentColor;background:none;cursor:pointer;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;font-stretch:85%}
+.mobile-menu{display:none}
+
+/* Floating CTA */
+.float-cta{position:fixed;right:22px;bottom:22px;z-index:55;width:54px;height:54px;display:grid;place-items:center;background:var(--teal);color:var(--ink);clip-path:polygon(9px 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px),0 9px);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s}
+.float-cta.show{opacity:1;transform:none;pointer-events:auto}
+.float-cta svg{width:20px;height:20px}
+
+/* Stages */
+.stage{position:relative;width:100%;height:100%}
+.stage canvas{position:absolute;inset:0;width:100%!important;height:100%!important;opacity:0;transition:opacity .8s}
+.stage.ready canvas{opacity:1}
+.stage .fallback{position:absolute;inset:18%;display:flex;align-items:center;justify-content:center;transition:opacity .4s}
+.stage.ready .fallback{opacity:0}
+.stage .fallback,.beauty .fallback{pointer-events:none}
+
+/* HERO (curtain: later sections slide over it) */
+.hero{position:sticky;top:0;height:100vh;height:100svh;min-height:600px;overflow:hidden;z-index:0}
+.hero-word{position:absolute;left:50%;top:21%;width:min(1180px,92vw);transform:translateX(-50%);color:#232731;pointer-events:none;will-change:transform,opacity}
+.hero-word svg{width:100%;height:auto}
+.hero-word svg{opacity:0;transition:opacity 1.4s ease}
+.hero-word.in svg{opacity:1}
+.hero-word path[fill='#01a3b8']{fill:#0f4f58}
+.hero .stage{position:absolute;left:50%;top:9%;width:min(760px,96vw);height:72%;transform:translateX(-50%);will-change:transform}
+.hero-horizon{position:absolute;left:-10%;right:-10%;top:73%;height:1px;background:linear-gradient(90deg,transparent,#2c313b 20%,#2c313b 80%,transparent)}
+.hero-bottom{position:absolute;left:0;right:0;bottom:0;padding-bottom:34px;will-change:opacity}
+.hero-bottom .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
+.hero h1{font-size:clamp(34px,4.3vw,70px)}
+.hero h1,.hero h1 span{white-space:nowrap}
+.hero h1 span{display:inline-block}
+.hero-right{max-width:400px;display:grid;gap:22px}
+.hero-right p{font-size:17px;color:#a9aeb7;line-height:1.5}
+.hero-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.hero-cta span{font-size:13px;color:#5c616b}
+
+main{position:relative;z-index:1}
+
+/* INTRO */
+.intro{padding:150px 0 130px}
+.intro-h{margin-bottom:72px;max-width:14ch}
+.intro-copy{align-self:center}
+.intro-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:stretch}
+
+.intro .lead{margin-bottom:34px}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
+.pill{height:34px;padding:0 13px;border:1px solid var(--line2);background:transparent;cursor:pointer;font-size:12.5px;font-stretch:82%;text-transform:uppercase;letter-spacing:.05em;color:var(--fg2);transition:all .15s}
+.pill:hover{color:var(--fg);border-color:var(--fg3)}
+.pill[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.duty-panel{min-height:150px;border-top:1px solid var(--line);padding-top:18px;margin-bottom:34px}
+.duty-panel ul{list-style:none;display:grid;gap:9px;font-size:16px;color:var(--fg)}
+.duty-panel li{display:grid;grid-template-columns:22px 1fr;align-items:baseline}
+.duty-panel li::before{content:"";width:7px;height:7px;background:var(--teal);clip-path:polygon(0 0,45% 0,100% 50%,45% 100%,0 100%,55% 50%);transform:translateY(-1px)}
+.duty-panel .planned{color:var(--warn);font-size:12px;font-stretch:80%;text-transform:uppercase;letter-spacing:.05em;margin-left:6px}
+.beauty{position:relative;background:linear-gradient(180deg,#171a20 0%,#0b0c10 78%);min-height:600px;overflow:hidden;margin:0;display:flex}
+.beauty::after{content:'';position:absolute;left:0;right:0;top:72%;height:1px;background:#20242c}
+.beauty img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;display:block}
+.beauty .fallback{position:absolute;inset:16%;display:flex;align-items:center;justify-content:center}
+.beauty.has-img .fallback{display:none}
+.beauty figcaption{position:absolute;z-index:2;left:0;right:0;bottom:0;font-size:13px;color:#8d929b;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 18px;border-top:1px solid #1f232b;background:rgba(11,12,16,.92);color:#f2f3f5}
+.tlink-l{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-stretch:85%;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #2c313b;padding-bottom:3px}
+.tlink-l:hover{border-color:#f2f3f5}
+.tlink-l svg{width:10px;height:10px}
+
+/* STAT BAND (teal) */
+.band{background:var(--teal);color:var(--ink);padding:110px 0 100px;overflow:hidden;--fg:#0b0c10;--fg2:#0b2d33;--line:rgba(11,12,16,.2)}
+.band-grid{display:grid;grid-template-columns:1fr;gap:56px}
+.band-copy{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:28px 60px;align-items:start;border-top:1px solid rgba(11,12,16,.25);padding-top:30px}
+.band-copy h3{grid-row:span 2}
+.band-num{font-size:clamp(130px,23vw,380px);font-weight:850;font-stretch:125%;letter-spacing:-.06em;line-height:.74;font-variant-numeric:tabular-nums;white-space:nowrap}
+.band-num i{font-style:normal;font-weight:300;opacity:.45;margin:0 .02em}
+.band-copy h3{font-size:clamp(24px,2.3vw,34px);line-height:1.12;margin-bottom:18px}
+.band-copy p{font-size:17px;color:#0b2d33;margin-bottom:22px}
+.band-copy small{font-size:13px;color:#0b3a42}
+
+/* BREAKDOWN (pinned) */
+.inside{height:420vh}
+.pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.inside .pin{background-image:linear-gradient(#15181e 1px,transparent 1px),linear-gradient(90deg,#15181e 1px,transparent 1px);background-size:72px 72px;background-position:center}
+.inside .stage{position:absolute;inset:0}
+.bd-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.bd-lines line{stroke:#4a4f59;stroke-width:1}
+.bd-lines g{transition:opacity .5s}
+.bd-lines rect{fill:#01a3b8}
+.bd-labels{position:absolute;inset:0;z-index:3;pointer-events:none}
+.bl{position:absolute;left:0;top:0;width:230px;opacity:0;transform:translateY(8px);transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1);display:grid;grid-template-columns:30px 1fr;gap:0 10px;padding:8px 10px;border:1px solid #2c313b;background:rgba(11,12,16,.9)}
+.bl.show{opacity:1;transform:none}
+.bl .num{grid-row:span 2;font-size:12px;font-stretch:80%;color:#0b0c10;background:#01a3b8;display:grid;place-items:center;height:22px}
+.bl b{font-weight:500;font-size:14px;letter-spacing:-.005em}
+.bl small{font-size:12.5px;color:#8d929b;line-height:1.35}
+.bd-intro{position:absolute;left:0;right:0;top:calc(var(--nav) + 34px);z-index:4;will-change:opacity}
+.bd-intro .wrap > div{max-width:520px}
+.inside h2{font-size:clamp(32px,3.7vw,58px);margin:16px 0 18px}
+.inside .lead{font-size:16.5px}
+.bd-outro{position:absolute;left:0;right:0;top:calc(var(--nav) + 60px);z-index:4;opacity:0;pointer-events:none;transition:opacity .3s}
+.bd-outro.show{opacity:1;pointer-events:auto}
+.bd-outro .wrap{display:grid;gap:30px;justify-items:start}
+.bd-outro h3{font-size:clamp(30px,3.8vw,58px);max-width:15ch;font-weight:780;font-stretch:122%;text-transform:uppercase;letter-spacing:-.01em;line-height:.92}
+.bd-outro h3 .dim{color:transparent;-webkit-text-stroke:1.2px #f2f3f5}
+.bd-outro .dim{color:#8d929b}
+.bd-foot{position:absolute;left:0;right:0;bottom:30px;z-index:4}
+.bd-foot .wrap{display:flex;align-items:center;gap:22px}
+.bd-bar{flex:1;height:1px;background:#2c313b;position:relative}
+.bd-bar i{position:absolute;left:0;top:-1px;height:3px;width:0;background:#01a3b8}
+.bd-phase{font-size:12px;font-stretch:80%;text-transform:uppercase;letter-spacing:.06em;color:#8d929b;min-width:90px;text-align:right}
+.bd-legend{display:none}
+.bd-mk{display:none}
+
+/* EXPLORE (interactive studio) */
+.explore{padding:140px 0 120px}
+.ex-head{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:60px;align-items:end;margin-bottom:52px}
+.studio{position:relative;height:min(78vh,760px);min-height:540px;border:1px solid var(--line);background:linear-gradient(#eceef1,#e3e6ea);overflow:hidden;user-select:none}
+.studio .stage{position:absolute;inset:0;cursor:grab}
+.studio .stage.grabbing{cursor:grabbing}
+.hotspots{position:absolute;inset:0;pointer-events:none;z-index:2}
+.hs{position:absolute;left:0;top:0;width:28px;height:28px;margin:-14px 0 0 -14px;display:grid;place-items:center;border:1px solid #0b0c10;background:#f2f3f5;color:#0b0c10;font-size:12px;font-stretch:80%;font-weight:600;cursor:pointer;pointer-events:auto;transition:opacity .25s,background .15s,color .15s;clip-path:polygon(6px 0,100% 0,100% 100%,6px 100%,0 calc(100% - 6px),0 6px)}
+.hs:hover,.hs[aria-pressed="true"]{background:#01a3b8;border-color:#01a3b8}
+.hs.off{opacity:0;pointer-events:none}
+.ex-card{position:absolute;top:18px;right:18px;z-index:3;width:300px;padding:18px 18px 20px;background:rgba(242,243,245,.94);border:1px solid var(--line2)}
+.ex-card .n{font-size:12px;font-stretch:80%;text-transform:uppercase;letter-spacing:.06em;color:var(--teal-dk)}
+.ex-card h3{font-size:24px;margin:6px 0 8px;letter-spacing:-.02em}
+.ex-card p{font-size:14.5px;color:var(--fg2)}
+.ex-bar{position:absolute;left:18px;right:18px;bottom:18px;z-index:3;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;pointer-events:none}
+.seg{display:flex;pointer-events:auto;background:rgba(242,243,245,.94);border:1px solid var(--line2)}
+.seg button{height:38px;min-width:42px;padding:0 13px;border:0;border-right:1px solid var(--line);background:none;cursor:pointer;font-size:12.5px;font-stretch:82%;text-transform:uppercase;letter-spacing:.05em;color:var(--fg)}
+.seg button:last-child{border-right:0}
+.seg button:hover{background:#e3e6ea}
+.seg button[aria-pressed="true"]{background:#0b0c10;color:#f2f3f5}
+.ex-hint{position:absolute;top:22px;left:20px;z-index:3;font-size:12px;font-stretch:82%;text-transform:uppercase;letter-spacing:.06em;color:var(--fg3)}
+
+/* DAY (pinned timeline) */
+.day{height:340vh}
+.day .pin{display:flex;align-items:center}
+.day-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:60px;align-items:center;width:100%}
+.clock-label{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.clock-label .ava{width:34px;height:34px}
+.clock{height:clamp(96px,11vw,170px);overflow:hidden;position:relative}
+.clock .t{position:absolute;left:0;top:0;font-size:clamp(84px,10vw,160px);font-weight:820;font-stretch:122%;letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums;transition:transform .55s cubic-bezier(.2,.7,.2,1),opacity .55s;white-space:nowrap}
+.clock .t small{font-size:.24em;letter-spacing:0;font-weight:500;margin-left:.2em;color:var(--fg2)}
+.clock .t.out{transform:translateY(-100%);opacity:0}
+.clock .t.wait{transform:translateY(100%);opacity:0}
+.day-title{font-size:clamp(22px,2.2vw,30px);margin-top:14px;font-weight:750;font-stretch:120%;text-transform:uppercase;letter-spacing:-.005em;min-height:1.3em;color:#3cc5d6}
+.day-note{margin-top:30px;font-size:13px;color:var(--fg3);max-width:44ch}
+.feed{list-style:none;border-top:1px solid var(--line)}
+.feed > li{display:grid;grid-template-columns:96px 1fr;gap:18px;padding:18px 0;border-bottom:1px solid var(--line);opacity:.18;transition:opacity .5s}
+.feed > li.past{opacity:.5}
+.feed > li.now{opacity:1}
+.feed time{font-size:13px;font-stretch:85%;letter-spacing:.04em;color:var(--fg2);padding-top:2px}
+.feed ul{list-style:none;display:grid;gap:6px;font-size:15.5px}
+.feed ul li{display:flex;gap:10px;align-items:baseline}
+.feed ul li::before{content:"";flex:none;width:6px;height:6px;border:1px solid var(--fg3);transform:translateY(-2px)}
+.feed > li.now ul li::before{background:var(--teal);border-color:var(--teal)}
+.read-call{margin-top:10px;background:none;border:0;border-bottom:1px solid var(--line2);color:var(--teal-lt);cursor:pointer;font-size:14px;padding:0 0 2px;display:inline-flex;gap:8px;align-items:center}
+.read-call svg{width:10px;height:10px}
+
+/* Dialog (example call) */
+dialog{margin:auto;border:1px solid #2c313b;background:#0f1116;color:#f2f3f5;width:min(560px,92vw);max-height:86vh;padding:0}
+dialog::backdrop{background:rgba(5,6,8,.72)}
+.dlg-head{display:flex;align-items:center;gap:14px;padding:18px 20px;border-bottom:1px solid #1f232b}
+.dlg-head .ava{width:42px;height:42px}
+.dlg-head div{flex:1;line-height:1.35}
+.dlg-head small{display:block;color:#8d929b;font-size:13px}
+.dlg-close{width:36px;height:36px;border:1px solid #2c313b;background:none;cursor:pointer;color:#f2f3f5;font-size:18px}
+.lines{display:grid;gap:10px;padding:20px;min-height:320px;align-content:start;overflow:auto;max-height:56vh}
+.line{max-width:86%;padding:11px 14px;font-size:15px;line-height:1.45;animation:lin .35s ease both}
+.line small{display:block;font-size:11px;font-stretch:80%;text-transform:uppercase;letter-spacing:.06em;color:#8d929b;margin-bottom:2px}
+.line.eva{background:#0d1b20;border-left:2px solid var(--teal)}
+.line.caller{justify-self:end;background:#191c22}
+@keyframes lin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.dlg-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-top:1px solid #1f232b;font-size:13px;color:#5c616b}
+.dlg-foot .btn{height:40px;font-size:13px}
+
+/* PRIVACY */
+.privacy{padding:140px 0 130px}
+.pv-head{display:grid;gap:30px;margin-bottom:72px}
+.pv-head h2{max-width:13ch}
+.pv-cols{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.pv-col{padding:30px 40px 0 0}
+.pv-col + .pv-col{padding-left:40px;border-left:1px solid var(--line)}
+.pv-col .chip{margin-bottom:24px}
+.pv-col ul{list-style:none;display:grid;gap:22px}
+.pv-col li b{display:block;font-weight:500;font-size:19px;margin-bottom:4px;letter-spacing:-.01em}
+.pv-col li span{color:var(--fg2);font-size:15.5px}
+.pv-notes{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:56px;color:var(--fg2)}
+.pv-notes b{color:var(--fg);font-weight:500}
+
+/* SETUP */
+.setup{padding:0 0 130px}
+.setup-box{border-top:1px solid var(--line);padding-top:60px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:60px;align-items:end}
+.tabs{display:flex;gap:6px;margin:26px 0 0}
+.tab-panel{display:grid;grid-template-columns:1fr 120px;gap:30px;align-items:center;border:1px solid var(--line);padding:34px;min-height:220px;background:color-mix(in srgb,var(--paper2) 45%,transparent)}
+.tab-panel .n{font-size:13px;font-stretch:85%;color:var(--fg3);letter-spacing:.06em}
+.tab-panel h3{font-size:clamp(30px,3vw,42px);margin:6px 0 12px}
+.tab-panel p{color:var(--fg2);max-width:42ch}
+.tab-panel svg{width:110px;height:110px;color:var(--fg2)}
+.status-row{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,.6fr) minmax(0,.6fr);gap:60px;margin-top:90px;border-top:1px solid var(--line);padding-top:34px}
+.status-row h3{font-size:clamp(26px,2.6vw,34px)}
+.status-row h3 + p{margin-top:10px;color:var(--fg2);font-size:15px}
+.status-row ul{list-style:none;display:grid;gap:0;font-size:15.5px}
+.status-row ul li{padding:10px 0;border-bottom:1px solid var(--line)}
+.status-row .chip{margin-bottom:14px}
+
+/* WAITLIST */
+.waitlist{padding:140px 0 130px}
+.wl-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:80px;align-items:start}
+.wl-left h2{font-size:clamp(34px,3.7vw,58px)}
+.wl-left .lead{margin-top:24px}
+.wl-left ol{list-style:none;margin-top:36px;border-top:1px solid var(--line)}
+.wl-left ol li{display:grid;grid-template-columns:38px 1fr;padding:14px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.wl-left ol span{color:var(--fg3);font-size:13px;font-stretch:85%;padding-top:2px}
+.free{margin-top:28px;font-size:15px;border-left:2px solid var(--teal);padding-left:16px}
+form{display:grid;gap:20px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+.field{display:grid;gap:7px;align-content:start}
+.field .radio-row,.field .consent{text-transform:none!important;letter-spacing:0!important;font-stretch:100%!important;font-size:15.5px!important;color:var(--fg)!important}
+.field .consent{font-size:14.5px!important;color:var(--fg2)!important}
+.field label,.field legend{font-size:12.5px;font-stretch:85%;text-transform:uppercase;letter-spacing:.06em;color:var(--fg2)}
+.field .opt{text-transform:none;letter-spacing:0;color:var(--fg3)}
+.input{height:50px;width:100%;padding:0 14px;border:1px solid var(--line2);background:#0f1116;outline:none;font-size:16px;color:#f2f3f5;transition:border-color .15s}
+.input:hover{border-color:#3d424c}
+.input:focus{border-color:var(--teal)}
+select.input{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%238d929b' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center;padding-right:40px;cursor:pointer}
+select.input option{background:#0f1116}
+.field.invalid .input{border-color:var(--danger)}
+.err{font-size:13.5px;color:var(--danger);display:none}
+.field.invalid .err{display:block}
+fieldset{border:0}
+.radios{margin-top:6px;border-top:1px solid var(--line)}
+.radio-row{display:flex;gap:14px;align-items:center;padding:13px 2px;border-bottom:1px solid var(--line);cursor:pointer;font-size:15.5px}
+.radio-row input{appearance:none;-webkit-appearance:none;flex:none;width:18px;height:18px;border-radius:50%;border:1.5px solid #4c515b;display:grid;place-items:center;cursor:pointer;margin:0}
+.radio-row input:checked{border-color:var(--teal)}
+.radio-row input:checked::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--teal)}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--fg2);cursor:pointer}
+.consent input{appearance:none;-webkit-appearance:none;flex:none;width:18px;height:18px;border:1.5px solid #4c515b;margin-top:2px;display:grid;place-items:center;cursor:pointer}
+.consent input:checked{background:var(--teal);border-color:var(--teal)}
+.consent input:checked::after{content:"";width:9px;height:5px;border-left:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(-45deg) translate(1px,-1px)}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+.submit{width:100%;height:54px}
+.submit[disabled]{opacity:.7;cursor:progress}
+.spinner{width:16px;height:16px;border-radius:50%;border:2px solid rgba(11,12,16,.25);border-top-color:var(--ink);animation:spin .8s linear infinite;display:none}
+.loading .spinner{display:block}
+.loading .idle-l{display:none}
+.busy-l{display:none}
+.loading .busy-l{display:inline}
+@keyframes spin{to{transform:rotate(360deg)}}
+.alert{display:none;padding:13px 15px;font-size:14.5px;line-height:1.5}
+.alert.show{display:block}
+.alert.error{background:#2a1513;border:1px solid #5a2a26;color:#ffc9c3}
+.alert.info{background:#221e12;border:1px solid #4a4026;color:#f0dca8}
+.fine{font-size:13.5px;color:var(--fg3)}
+.success{display:none;gap:18px;animation:lin .5s ease both}
+.form-wrap.done form{display:none}
+.form-wrap.done .success{display:grid}
+.success .ava{width:64px;height:64px}
+.success h3{font-size:36px}
+.success p{color:var(--fg2)}
+.success ol{list-style:none;border-top:1px solid var(--line);margin:6px 0 8px}
+.success li{display:grid;grid-template-columns:38px 1fr;padding:13px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.success li span:first-child{color:var(--fg3);font-size:13px;padding-top:2px}
+
+/* ABOUT + FOOTER */
+.about{padding:140px 0 120px}
+.about-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:80px;align-items:end}
+.about h2 .dim{color:var(--fg2)}
+.about p{color:var(--fg2);font-size:19px}
+.about p + p{margin-top:18px}
+.about .where{margin-top:30px;font-size:15px;color:var(--fg)}
+footer{padding:110px 0 36px;border-top:1px solid var(--line)}
+.closing{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+.closing h2{font-size:clamp(44px,7.4vw,124px);max-width:12ch}
+.closing h2 .dim{color:var(--fg2)}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-top:90px;padding-top:36px;border-top:1px solid var(--line);align-items:start}
+.lockup{display:block;width:220px;height:auto}
+.foot .tagline{margin-top:18px;color:var(--fg2);font-size:15px}
+.foot ul{list-style:none;display:grid;align-content:start;gap:9px;font-size:13px;font-stretch:85%;text-transform:uppercase;letter-spacing:.05em;color:var(--fg2)}
+.foot ul a:hover{color:var(--fg)}
+.foot-bottom{margin-top:56px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12.5px;color:var(--fg3)}
+
+/* Responsive */
+@media (max-width:1060px){
+  .intro-grid,.wl-grid,.about-grid,.setup-box{grid-template-columns:1fr;gap:44px}
+  .beauty{min-height:460px}
+  .band-grid{gap:36px}
+  .band-copy{grid-template-columns:1fr}
+  .band-copy h3{grid-row:auto}
+  .status-row{grid-template-columns:1fr 1fr}
+  .status-row > div:first-child{grid-column:1/-1}
+  .ex-head{grid-template-columns:1fr;gap:20px}
+}
+@media (max-width:860px){
+  .nav .wrap{grid-template-columns:1fr auto}
+  .nav-links,.nav-cta{display:none}
+  .menu-btn{display:block}
+  .mobile-menu{display:none;position:fixed;top:var(--nav);left:0;right:0;padding:6px 32px 26px;background:var(--ink);color:#f2f3f5;border-bottom:1px solid #1f232b}
+  .nav.open{color:#f2f3f5;background:var(--ink)}
+  .nav.open .mobile-menu{display:grid}
+  .mobile-menu a{padding:14px 0;border-bottom:1px solid #1f232b;font-size:15px;text-transform:uppercase;letter-spacing:.05em;font-stretch:85%}
+  .mobile-menu .btn{margin-top:18px;border-bottom:0}
+  .hero-bottom .wrap{flex-direction:column;align-items:flex-start;gap:20px}
+  .hero-right{max-width:none}
+  .hero .stage{top:12%;height:52%}
+  .hero-word{top:20%}
+  .hero-horizon{top:58%}
+  .day-grid{grid-template-columns:1fr;gap:26px}
+  .feed > li{grid-template-columns:76px 1fr;padding:12px 0}
+  .feed ul{font-size:14.5px}
+  .feed > li:not(.now) ul{display:none}
+  .pv-head,.pv-cols,.pv-notes{grid-template-columns:1fr;gap:28px}
+  .pv-col + .pv-col{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+  .bd-labels .bl{display:none}
+  .bd-lines{display:none}
+  .bd-legend{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;list-style:none;position:absolute;left:20px;right:20px;bottom:76px;z-index:4;font-size:12px;color:#8d929b;opacity:0;transition:opacity .3s}
+  .bd-legend.show{opacity:1}
+  .bd-legend li span{color:#01a3b8;margin-right:6px}
+  .bd-mk{display:grid;position:absolute;width:18px;height:18px;margin:-9px 0 0 -9px;background:#01a3b8;color:#0b0c10;font-size:10px;display:grid;place-items:center;opacity:0;transition:opacity .3s}
+  .bd-mk.show{opacity:1}
+  .ex-card{left:12px;right:12px;width:auto;top:12px;padding:12px 14px}
+  .ex-card h3{font-size:19px}
+  .ex-card p{font-size:13.5px}
+  .ex-hint{display:none}
+  .studio{height:76vh;min-height:520px}
+  .foot{grid-template-columns:1fr 1fr}
+  .foot > div:first-child{grid-column:1/-1}
+}
+@media (max-width:620px){
+  .wrap{padding:0 20px}
+  body{font-size:16px}
+  .intro,.privacy,.waitlist,.about{padding:96px 0 90px}
+  .setup{padding-bottom:90px}
+  .band{padding:80px 0 76px}
+  .hero h1{font-size:clamp(28px,8.4vw,38px)}
+  .hero h1,.hero h1 span{white-space:normal}
+  .hero-right p{font-size:15.5px}
+  .hero-cta .btn{width:100%}
+  .beauty{min-height:380px}
+  .ex-bar{left:10px;right:10px;bottom:10px;gap:6px}
+  .seg button{height:34px;min-width:34px;padding:0 9px;font-size:11.5px}
+  .views{order:-1;width:100%}
+  .views button{flex:1}
+  .tab-panel{grid-template-columns:1fr;padding:24px}
+  .tab-panel svg{display:none}
+  .tabs .pill{flex:1;padding:0 6px}
+  .status-row{grid-template-columns:1fr;gap:30px}
+  .fgrid{grid-template-columns:1fr}
+  .bd-intro{top:calc(var(--nav) + 14px)}
+  .bd-outro{top:calc(var(--nav) + 20px)}
+  .bd-outro h3{font-size:30px}
+  .bd-outro .btn{height:48px}
+  .inside .lead{display:none}
+  .bd-foot .wrap{padding-right:84px}
+  .bd-foot .chip{display:none}
+  .float-cta{right:16px;bottom:16px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <nav class="nav-links" aria-label="Main">
+      <a href="#receptionist">Receptionist</a>
+      <a href="#unit">The unit</a>
+      <a href="#explore">Explore</a>
+      <a href="#day">A day</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#about">About</a>
+    </nav>
+    <a href="#top" class="logo" aria-label="Evingo, back to top"><svg class="wme" viewBox="691 1404 903 103" aria-hidden="true"><g transform="translate(691 1407) scale(0.20625) translate(-912 -693)"><path fill="currentColor" d="M948.2 1136.7L912.0 1100.5L912.0 933.0L912.0 765.6L948.2 729.3L984.5 693.0L1176.2 693.0L1368.0 693.0L1368.0 693.5L1368.0 694.0L1344.3 729.5L1320.7 765.0L1164.6 765.2L1008.5 765.5L1008.2 831.2L1008.0 897.0L1104.3 897.0L1200.5 897.0L1218.5 915.0L1236.5 933.0L1218.5 951.0L1200.5 969.0L1104.5 969.2L1008.5 969.5L1008.2 1035.2L1008.0 1101.0L1164.2 1101.2L1320.5 1101.5L1343.3 1135.5L1366.1 1169.5L1367.1 1171.2L1368.1 1173.0L1176.3 1173.0L984.5 1173.0L948.2 1136.7Z"/><path fill="#01a3b8" d="M1275.0 991.8L1275.0 990.5L1303.7 961.8L1332.5 933.0L1303.7 904.2L1275.0 875.5L1275.0 874.2L1275.0 873.0L1297.7 873.0L1320.4 873.0L1350.2 902.7L1380.0 932.5L1379.7 933.3L1379.5 934.0L1350.0 963.5L1320.5 993.0L1297.8 993.0L1275.0 993.0L1275.0 991.8Z"/></g><path fill="currentColor" d="M1322.0 1505.9C1298.6 1503.0 1292.1 1494.3 1290.5 1463.5C1289.7 1449.7 1291.2 1430.7 1293.7 1423.0C1296.3 1415.0 1301.8 1409.5 1309.8 1406.8L1316.5 1404.6L1345.9 1404.2C1387.6 1403.6 1398.9 1405.3 1405.3 1412.9C1408.3 1416.5 1409.7 1421.1 1410.2 1429.0L1410.5 1434.5L1404.5 1434.5L1398.5 1434.5L1397.9 1428.5C1397.2 1421.4 1395.7 1418.5 1391.2 1416.4C1388.4 1415.1 1382.9 1414.9 1352.2 1415.2L1316.5 1415.5L1312.5 1417.6C1306.4 1420.7 1304.2 1426.0 1302.9 1440.6C1301.6 1454.6 1302.5 1474.2 1304.6 1481.9C1306.5 1488.6 1311.0 1493.3 1317.1 1495.1C1323.4 1497.0 1380.7 1497.0 1386.9 1495.2C1395.8 1492.5 1398.7 1487.0 1399.2 1472.0L1399.5 1463.5L1375.8 1463.2L1352.0 1463.0L1352.0 1458.0L1352.0 1453.0L1382.0 1453.0L1412.0 1453.0L1412.0 1461.9C1412.0 1473.6 1410.3 1485.4 1407.9 1491.0C1404.4 1498.8 1400.1 1502.2 1390.0 1504.8C1383.3 1506.5 1333.5 1507.4 1322.0 1505.9ZM1505.0 1506.0C1486.2 1503.7 1478.4 1497.3 1474.9 1481.5C1473.0 1473.5 1473.0 1435.7 1474.8 1427.9C1476.9 1418.8 1481.5 1412.0 1488.0 1408.8C1496.3 1404.6 1505.7 1403.7 1539.3 1404.2C1562.7 1404.6 1569.5 1405.0 1573.6 1406.3C1583.6 1409.6 1588.6 1414.7 1591.8 1424.9C1594.3 1433.1 1594.3 1476.9 1591.8 1485.1C1588.4 1496.0 1582.2 1501.6 1570.0 1504.8C1563.6 1506.4 1515.5 1507.4 1505.0 1506.0ZM894.4 1505.2C893.9 1504.8 883.1 1485.4 870.5 1462.0C858.0 1438.6 846.1 1416.7 844.3 1413.2L840.8 1407.0L847.8 1407.0L854.8 1407.0L878.1 1451.5C891.0 1476.0 901.8 1495.9 902.3 1495.7C903.0 1495.5 947.9 1411.2 949.2 1407.7C949.4 1407.3 952.6 1407.0 956.3 1407.2L963.0 1407.5L939.9 1450.5C927.2 1474.2 915.3 1496.3 913.4 1499.8L909.9 1506.0L902.7 1506.0C898.7 1506.0 895.0 1505.6 894.4 1505.2ZM1023.7 1505.4C1023.3 1505.0 1023.0 1482.7 1023.0 1455.8L1023.0 1407.0L1029.0 1407.0L1035.0 1407.0L1034.8 1456.2L1034.5 1505.5L1029.5 1505.8C1026.7 1506.0 1024.1 1505.8 1023.7 1505.4ZM1102.7 1505.3C1102.3 1505.0 1102.0 1482.7 1102.0 1455.8L1102.0 1407.0L1108.8 1407.0L1115.5 1407.1L1164.5 1448.5C1191.5 1471.3 1213.8 1490.0 1214.2 1490.0C1214.7 1490.0 1215.0 1471.3 1215.0 1448.5L1215.0 1407.0L1221.0 1407.0L1227.0 1407.0L1226.8 1456.2L1226.5 1505.5L1220.3 1505.5L1214.2 1505.5L1165.4 1464.5C1138.5 1442.0 1116.0 1423.3 1115.2 1423.2C1114.5 1423.0 1114.0 1423.4 1114.1 1424.2C1114.2 1424.9 1114.2 1443.6 1114.1 1465.8L1114.0 1506.0L1108.7 1506.0C1105.7 1506.0 1103.0 1505.7 1102.7 1505.3ZM1567.8 1494.9C1570.2 1494.3 1573.7 1492.3 1575.5 1490.6C1580.8 1485.5 1581.5 1481.6 1581.5 1454.0L1581.5 1429.5L1579.0 1424.5C1577.0 1420.5 1575.5 1419.0 1571.5 1417.0L1566.5 1414.5L1533.5 1414.5L1500.5 1414.5L1495.8 1416.7C1487.4 1420.5 1485.0 1429.1 1485.0 1455.0C1485.0 1486.8 1488.8 1494.0 1506.3 1496.0C1516.7 1497.2 1562.6 1496.4 1567.8 1494.9Z"/></svg></a>
+    <a href="#waitlist" class="nav-cta">Join the waitlist</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#receptionist">Receptionist</a>
+    <a href="#unit">The unit</a>
+    <a href="#explore">Explore in 3D</a>
+    <a href="#day">A day with Eva</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#about">About</a>
+    <a href="#waitlist" class="btn btn-teal">Join the waitlist</a>
+  </div>
+</header>
+
+<a href="#waitlist" class="float-cta" id="floatCta" aria-label="Join the waitlist"><svg viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M1 1h4l5 5-5 5H1l5-5z"/></svg></a>
+
+<!-- HERO -->
+<section class="hero ink" id="top" data-theme="ink">
+  <div class="hero-word" id="heroWord" aria-hidden="true"><svg viewBox="691 1404 903 103" aria-hidden="true"><g transform="translate(691 1407) scale(0.20625) translate(-912 -693)"><path fill="currentColor" d="M948.2 1136.7L912.0 1100.5L912.0 933.0L912.0 765.6L948.2 729.3L984.5 693.0L1176.2 693.0L1368.0 693.0L1368.0 693.5L1368.0 694.0L1344.3 729.5L1320.7 765.0L1164.6 765.2L1008.5 765.5L1008.2 831.2L1008.0 897.0L1104.3 897.0L1200.5 897.0L1218.5 915.0L1236.5 933.0L1218.5 951.0L1200.5 969.0L1104.5 969.2L1008.5 969.5L1008.2 1035.2L1008.0 1101.0L1164.2 1101.2L1320.5 1101.5L1343.3 1135.5L1366.1 1169.5L1367.1 1171.2L1368.1 1173.0L1176.3 1173.0L984.5 1173.0L948.2 1136.7Z"/><path fill="#01a3b8" d="M1275.0 991.8L1275.0 990.5L1303.7 961.8L1332.5 933.0L1303.7 904.2L1275.0 875.5L1275.0 874.2L1275.0 873.0L1297.7 873.0L1320.4 873.0L1350.2 902.7L1380.0 932.5L1379.7 933.3L1379.5 934.0L1350.0 963.5L1320.5 993.0L1297.8 993.0L1275.0 993.0L1275.0 991.8Z"/></g><path fill="currentColor" d="M1322.0 1505.9C1298.6 1503.0 1292.1 1494.3 1290.5 1463.5C1289.7 1449.7 1291.2 1430.7 1293.7 1423.0C1296.3 1415.0 1301.8 1409.5 1309.8 1406.8L1316.5 1404.6L1345.9 1404.2C1387.6 1403.6 1398.9 1405.3 1405.3 1412.9C1408.3 1416.5 1409.7 1421.1 1410.2 1429.0L1410.5 1434.5L1404.5 1434.5L1398.5 1434.5L1397.9 1428.5C1397.2 1421.4 1395.7 1418.5 1391.2 1416.4C1388.4 1415.1 1382.9 1414.9 1352.2 1415.2L1316.5 1415.5L1312.5 1417.6C1306.4 1420.7 1304.2 1426.0 1302.9 1440.6C1301.6 1454.6 1302.5 1474.2 1304.6 1481.9C1306.5 1488.6 1311.0 1493.3 1317.1 1495.1C1323.4 1497.0 1380.7 1497.0 1386.9 1495.2C1395.8 1492.5 1398.7 1487.0 1399.2 1472.0L1399.5 1463.5L1375.8 1463.2L1352.0 1463.0L1352.0 1458.0L1352.0 1453.0L1382.0 1453.0L1412.0 1453.0L1412.0 1461.9C1412.0 1473.6 1410.3 1485.4 1407.9 1491.0C1404.4 1498.8 1400.1 1502.2 1390.0 1504.8C1383.3 1506.5 1333.5 1507.4 1322.0 1505.9ZM1505.0 1506.0C1486.2 1503.7 1478.4 1497.3 1474.9 1481.5C1473.0 1473.5 1473.0 1435.7 1474.8 1427.9C1476.9 1418.8 1481.5 1412.0 1488.0 1408.8C1496.3 1404.6 1505.7 1403.7 1539.3 1404.2C1562.7 1404.6 1569.5 1405.0 1573.6 1406.3C1583.6 1409.6 1588.6 1414.7 1591.8 1424.9C1594.3 1433.1 1594.3 1476.9 1591.8 1485.1C1588.4 1496.0 1582.2 1501.6 1570.0 1504.8C1563.6 1506.4 1515.5 1507.4 1505.0 1506.0ZM894.4 1505.2C893.9 1504.8 883.1 1485.4 870.5 1462.0C858.0 1438.6 846.1 1416.7 844.3 1413.2L840.8 1407.0L847.8 1407.0L854.8 1407.0L878.1 1451.5C891.0 1476.0 901.8 1495.9 902.3 1495.7C903.0 1495.5 947.9 1411.2 949.2 1407.7C949.4 1407.3 952.6 1407.0 956.3 1407.2L963.0 1407.5L939.9 1450.5C927.2 1474.2 915.3 1496.3 913.4 1499.8L909.9 1506.0L902.7 1506.0C898.7 1506.0 895.0 1505.6 894.4 1505.2ZM1023.7 1505.4C1023.3 1505.0 1023.0 1482.7 1023.0 1455.8L1023.0 1407.0L1029.0 1407.0L1035.0 1407.0L1034.8 1456.2L1034.5 1505.5L1029.5 1505.8C1026.7 1506.0 1024.1 1505.8 1023.7 1505.4ZM1102.7 1505.3C1102.3 1505.0 1102.0 1482.7 1102.0 1455.8L1102.0 1407.0L1108.8 1407.0L1115.5 1407.1L1164.5 1448.5C1191.5 1471.3 1213.8 1490.0 1214.2 1490.0C1214.7 1490.0 1215.0 1471.3 1215.0 1448.5L1215.0 1407.0L1221.0 1407.0L1227.0 1407.0L1226.8 1456.2L1226.5 1505.5L1220.3 1505.5L1214.2 1505.5L1165.4 1464.5C1138.5 1442.0 1116.0 1423.3 1115.2 1423.2C1114.5 1423.0 1114.0 1423.4 1114.1 1424.2C1114.2 1424.9 1114.2 1443.6 1114.1 1465.8L1114.0 1506.0L1108.7 1506.0C1105.7 1506.0 1103.0 1505.7 1102.7 1505.3ZM1567.8 1494.9C1570.2 1494.3 1573.7 1492.3 1575.5 1490.6C1580.8 1485.5 1581.5 1481.6 1581.5 1454.0L1581.5 1429.5L1579.0 1424.5C1577.0 1420.5 1575.5 1419.0 1571.5 1417.0L1566.5 1414.5L1533.5 1414.5L1500.5 1414.5L1495.8 1416.7C1487.4 1420.5 1485.0 1429.1 1485.0 1455.0C1485.0 1486.8 1488.8 1494.0 1506.3 1496.0C1516.7 1497.2 1562.6 1496.4 1567.8 1494.9Z"/></svg></div>
+  <div class="hero-horizon" aria-hidden="true"></div>
+  <div class="stage" id="heroStage" role="img" aria-label="3D render of the Evingo Unit concept: a compact graphite box with angled corners and a waveform display on the front"><div class="fallback" aria-hidden="true"></div></div>
+  <div class="hero-bottom" id="heroBottom">
+    <div class="wrap">
+      <h1>Your front desk.<br><span class="dim">Powered by AI.</span></h1>
+      <div class="hero-right">
+        <p>An AI receptionist that answers your clinic's phone and books, moves and cancels appointments — from a unit that sits in your office.</p>
+        <div class="hero-cta"><a href="#waitlist" class="btn btn-teal">Join the waitlist</a><span>Working prototype · concept unit shown</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<!-- INTRO -->
+<section class="intro paper grain" id="receptionist" data-theme="paper">
+  <div class="wrap">
+    <h2 class="split intro-h">More than an AI assistant. <span class="dim">Your new receptionist.</span></h2>
+  </div>
+  <div class="wrap intro-grid">
+    <div class="intro-copy">
+      <p class="lead fade">Meet Evingo, your AI receptionist that answers calls, manages appointments, and keeps your business available around the clock — all through dedicated local hardware.</p>
+      <div class="pills fade" role="tablist" aria-label="What Evingo does">
+        <button class="pill" role="tab" aria-selected="true" aria-controls="dutyPanel" data-duty="0">Phone</button>
+        <button class="pill" role="tab" aria-selected="false" aria-controls="dutyPanel" data-duty="1">Appointments</button>
+        <button class="pill" role="tab" aria-selected="false" aria-controls="dutyPanel" data-duty="2">After hours</button>
+        <button class="pill" role="tab" aria-selected="false" aria-controls="dutyPanel" data-duty="3">For clinics</button>
+      </div>
+      <div class="duty-panel fade" id="dutyPanel" role="tabpanel"></div>
+      <a href="#unit" class="btn btn-line fade">See inside the unit <svg viewBox="0 0 12 12" aria-hidden="true"><path fill="#01a3b8" d="M1 1h4l5 5-5 5H1l5-5z"/></svg></a>
+    </div>
+    <figure class="beauty wipe">
+      <img id="beautyImg" alt="Close-up render of the Evingo Unit concept: the front display glowing teal under a brushed graphite shell" hidden>
+      <div class="fallback" aria-hidden="true"></div>
+      <figcaption>
+        <span>Evingo Unit · concept render</span>
+        <a href="#explore" class="tlink-l">Explore it in 3D <svg viewBox="0 0 12 12" aria-hidden="true"><path fill="#01a3b8" d="M1 1h4l5 5-5 5H1l5-5z"/></svg></a>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- STAT BAND -->
+<section class="band" data-theme="teal" aria-label="Why Evingo">
+  <div class="wrap band-grid">
+    <div class="band-num" aria-hidden="true"><span data-count="8">8</span><i>/</i>10</div>
+    <div class="band-copy fade">
+      <h3>We called 10 clinics in Regina to book an appointment. 8 never picked up.</h3>
+      <p>Every one of those calls was a patient who went somewhere else. Evingo is built so the phone gets answered — day, night and weekends.</p>
+      <small>Calls placed by the Evingo founders to Regina clinics, 2026.</small>
+    </div>
+  </div>
+</section>
+
+<!-- BREAKDOWN (pinned, scroll-scrubbed) -->
+<section class="inside ink" id="unit" data-theme="ink">
+  <div class="pin">
+    <div class="stage" id="insideStage" role="img" aria-label="The Evingo Unit concept separating into its parts as you scroll"><div class="fallback" aria-hidden="true"></div></div>
+    <svg class="bd-lines" id="bdLines" aria-hidden="true"></svg>
+    <div class="bd-labels" id="bdLabels" aria-hidden="true"></div>
+    <div class="bd-intro" id="bdIntro"><div class="wrap"><div>
+      <span class="chip warn"><span class="tag">Concept</span><span>Prototype design</span></span>
+      <h2>Powerful AI.<br>Right on your desk.</h2>
+      <p class="lead">Evingo is designed around a dedicated computer in your office, rather than relying entirely on remote cloud servers. Keep scrolling to take it apart.</p>
+    </div></div></div>
+    <div class="bd-outro" id="bdOutro"><div class="wrap">
+      <h3>One quiet box. <span class="dim">Nothing else to manage.</span></h3>
+      <a href="#explore" class="btn btn-teal">Explore it yourself</a>
+    </div></div>
+    <div class="bd-foot"><div class="wrap">
+      <span class="chip"><span class="tag">Concept layout</span><span>Components and specs not final</span></span>
+      <div class="bd-bar"><i id="bdBar"></i></div>
+      <span class="bd-phase" id="bdPhase">Assembled</span>
+    </div></div>
+    <ol class="bd-legend" id="bdLegend"></ol>
+  </div>
+</section>
+
+<!-- EXPLORE (interactive) -->
+<section class="explore paper grain" id="explore" data-theme="paper">
+  <div class="wrap">
+    <div class="ex-head">
+      <h2 class="split">Explore the unit. <span class="dim">Turn it, open it.</span></h2>
+      <p class="lead fade">Drag to look around. Open it up to see the concept layout inside, and tap a number to learn what each part does.</p>
+    </div>
+    <div class="studio wipe" id="studio">
+      <div class="stage" id="exploreStage" role="img" aria-label="Interactive 3D model of the Evingo Unit concept. Drag to rotate."><div class="fallback" aria-hidden="true"></div></div>
+      <div class="hotspots" id="hotspots"></div>
+      <aside class="ex-card" id="exCard" aria-live="polite">
+        <span class="n" id="exN">Concept model</span>
+        <h3 id="exTitle">Pick a number</h3>
+        <p id="exText">Each numbered point explains one part. Switch to “Open” to see inside.</p>
+      </aside>
+      <div class="ex-bar">
+        <div class="seg" role="group" aria-label="Model state">
+          <button type="button" data-mode="0" aria-pressed="true">Closed</button>
+          <button type="button" data-mode="1" aria-pressed="false">Open</button>
+        </div>
+        <div class="seg views" role="group" aria-label="Camera view">
+          <button type="button" data-v="front">Front</button><button type="button" data-v="three">¾</button><button type="button" data-v="side">Side</button><button type="button" data-v="back">Back</button><button type="button" data-v="top">Top</button>
+        </div>
+        <div class="seg" role="group" aria-label="Zoom">
+          <button type="button" id="zoomOut" aria-label="Zoom out">−</button><button type="button" id="zoomIn" aria-label="Zoom in">+</button><button type="button" id="resetView">Reset</button>
+        </div>
+      </div>
+      <span class="ex-hint">Drag to rotate</span>
+    </div>
+  </div>
+</section>
+
+<!-- DAY (pinned) -->
+<section class="day ink" id="day" data-theme="ink">
+  <div class="pin">
+    <div class="wrap day-grid">
+      <div>
+        <div class="clock-label"><span class="ava" id="dayAva"></span><span class="chip"><span class="tag">Example</span><span>A day with Eva</span></span></div>
+        <div class="clock" id="clock" aria-live="polite"><div class="t" id="clockT">7:42<small>AM</small></div></div>
+        <p class="day-title" id="dayTitle">Before you open</p>
+        <p class="day-note">An illustration of how Eva is designed to work, not a log from a real clinic. Eva is the voice of Evingo.</p>
+      </div>
+      <ol class="feed" id="feed">
+        <li><time>7:42 AM</time><ul><li>A caller asks what time you open.</li><li>Eva answers from your clinic's information.</li><li>Books them in for 9:15 AM.</li></ul></li>
+        <li><time>12:10 PM</time><div><ul><li>A patient needs to move Thursday's cleaning.</li><li>Eva offers two open times.</li><li>Moved to Monday at 3:15 PM.</li></ul><button type="button" class="read-call" id="openCall">Read this call <svg viewBox="0 0 12 12" aria-hidden="true"><path fill="#01a3b8" d="M1 1h4l5 5-5 5H1l5-5z"/></svg></button></div></li>
+        <li><time>5:52 PM</time><ul><li>After close, a patient cancels tomorrow.</li><li>Eva confirms the cancellation.</li><li>The slot opens back up on the schedule.</li></ul></li>
+        <li><time>9:30 PM</time><ul><li>A new patient asks if you take walk-ins.</li><li>Eva answers from the info you gave her.</li><li>Offers the first open appointment.</li></ul></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<dialog id="callDialog" aria-labelledby="dlgTitle">
+  <div class="dlg-head"><span class="ava" id="dlgAva"></span><div><b id="dlgTitle">Eva · example call</b><small>Lakeview Dental is a fictional clinic.</small></div><button type="button" class="dlg-close" id="closeCall" aria-label="Close">×</button></div>
+  <div class="lines" id="lines" aria-live="polite"></div>
+  <div class="dlg-foot"><span>12:10 PM · rescheduling</span><button type="button" class="btn btn-teal" id="playCall">Play the call</button></div>
+</dialog>
+
+<!-- PRIVACY -->
+<section class="privacy paper grain" id="privacy" data-theme="paper">
+  <div class="wrap">
+    <div class="pv-head">
+      <h2 class="split">Your business. Your hardware. <span class="dim">Your data.</span></h2>
+      <p class="lead fade">Evingo uses a local-first design: the intelligence lives on hardware in your office, so more of your business information stays in your hands.</p>
+    </div>
+    <div class="pv-cols fade">
+      <div class="pv-col">
+        <span class="chip"><span class="tag">On the unit</span><span>Designed to stay</span></span>
+        <ul>
+          <li><b>Local processing</b><span>Core AI processing is designed to happen directly on the business's hardware.</span></li>
+          <li><b>On-site data</b><span>Customer information and appointment records can remain within the business's local environment.</span></li>
+        </ul>
+      </div>
+      <div class="pv-col">
+        <span class="chip"><span>Leaves your office</span></span>
+        <ul>
+          <li><b>The phone call itself</b><span>Calls reach you through your phone carrier, like any other call.</span></li>
+          <li><b>Calendar sync, if you turn it on</b><span>Connecting an online calendar shares booking details with that service. It follows its own privacy practices.</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pv-notes fade">
+      <p><b>Greater control.</b> Reduce dependence on third-party cloud AI providers and keep more control over business information.</p>
+      <p><b>Built around privacy.</b> A local-first approach gives businesses more ownership over their technology. Less leaves the office — we won't claim nothing ever does.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SETUP + STATUS -->
+<section class="setup paper grain" id="setup" data-theme="paper">
+  <div class="wrap">
+    <div class="setup-box">
+      <div>
+        <h2 class="split">Set it up once. <span class="dim">Then it picks up.</span></h2>
+        <div class="tabs" role="tablist" aria-label="Setup steps">
+          <button class="pill" role="tab" aria-selected="true" aria-controls="tabPanel" data-tab="0">01 Install</button>
+          <button class="pill" role="tab" aria-selected="false" aria-controls="tabPanel" data-tab="1">02 Operate</button>
+          <button class="pill" role="tab" aria-selected="false" aria-controls="tabPanel" data-tab="2">03 Manage</button>
+        </div>
+      </div>
+      <div class="tab-panel wipe" id="tabPanel" role="tabpanel"></div>
+    </div>
+    <div class="status-row">
+      <div class="fade"><h3>Where Evingo stands.</h3><p>As of November 2026.</p></div>
+      <div class="fade"><span class="chip"><span class="tag">Working</span><span>In our prototype</span></span>
+        <ul><li>Answering calls in natural conversation</li><li>Booking, rescheduling and cancelling</li><li>Running on local hardware (a standard PC in our test setup)</li></ul></div>
+      <div class="fade"><span class="chip"><span>Not built yet</span></span>
+        <ul><li>The dedicated Evingo Unit</li><li>Calendar-system integrations</li><li>The staff interface</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="waitlist ink" id="waitlist" data-theme="ink">
+  <div class="wrap wl-grid">
+    <div class="wl-left">
+      <h2 class="split">Be among the first to experience Evingo.</h2>
+      <p class="lead fade">We're preparing Evingo for its first businesses. Join the early-access list to receive product updates, pilot opportunities, and information about upcoming pre-orders.</p>
+      <ol class="fade">
+        <li><span>01</span>Product updates as Evingo develops</li>
+        <li><span>02</span>A chance to be considered as a pilot business</li>
+        <li><span>03</span>First word when pre-orders open</li>
+      </ol>
+      <p class="free fade">Joining is free. It isn't a purchase, a deposit, or a commitment of any kind.</p>
+    </div>
+
+    <div class="form-wrap fade" id="formWrap">
+      <form id="waitlistForm" novalidate>
+        <div class="alert info" id="previewNote" role="status"></div>
+        <div class="fgrid">
+          <div class="field" data-field="name"><label for="f-name">Full name</label><input class="input" id="f-name" name="name" autocomplete="name" maxlength="100" required><span class="err" id="e-name"></span></div>
+          <div class="field" data-field="business"><label for="f-business">Business name</label><input class="input" id="f-business" name="business" autocomplete="organization" maxlength="140" required><span class="err" id="e-business"></span></div>
+          <div class="field" data-field="email"><label for="f-email">Business email</label><input class="input" id="f-email" name="email" type="email" autocomplete="email" maxlength="160" required><span class="err" id="e-email"></span></div>
+          <div class="field" data-field="type"><label for="f-type">Business type</label>
+            <select class="input" id="f-type" name="type" required>
+              <option value="">Choose one</option><option>Medical clinic</option><option>Dental office</option><option>Physiotherapy / chiropractic</option><option>Optometry</option><option>Veterinary clinic</option><option>Salon / spa</option><option>Other appointment-based business</option>
+            </select><span class="err" id="e-type"></span></div>
+          <div class="field" data-field="city"><label for="f-city">City / location</label><input class="input" id="f-city" name="city" autocomplete="address-level2" maxlength="120" required><span class="err" id="e-city"></span></div>
+          <div class="field" data-field="phone"><label for="f-phone">Phone number <span class="opt">(optional)</span></label><input class="input" id="f-phone" name="phone" type="tel" autocomplete="tel" maxlength="30"><span class="err" id="e-phone"></span></div>
+        </div>
+        <fieldset class="field" data-field="interest">
+          <legend>How interested are you in Evingo?</legend>
+          <div class="radios">
+            <label class="radio-row"><input type="radio" name="interest" value="Keep me updated">Keep me updated.</label>
+            <label class="radio-row"><input type="radio" name="interest" value="Interested in early access">I'm interested in early access.</label>
+            <label class="radio-row"><input type="radio" name="interest" value="Wants to be a pilot business">I'd like to become a pilot business.</label>
+            <label class="radio-row"><input type="radio" name="interest" value="Wants to reserve a device at pre-order">I'd like to reserve a device when pre-orders open.</label>
+          </div>
+          <span class="err" id="e-interest"></span>
+        </fieldset>
+        <div class="hp" aria-hidden="true"><label for="f-website">Website</label><input id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
+        <div class="field" data-field="consent">
+          <label class="consent"><input type="checkbox" id="f-consent" name="consent"><span>I agree to receive emails from Evingo about early access, pilots and pre-orders. I can unsubscribe at any time.</span></label>
+          <span class="err" id="e-consent"></span>
+        </div>
+        <div class="alert error" id="formError" role="alert"></div>
+        <button type="submit" class="btn btn-teal submit" id="submitBtn"><span class="spinner"></span><span class="idle-l">Join the Evingo waitlist</span><span class="busy-l">Joining…</span></button>
+        <p class="fine">No payment details are collected. We use your details only to contact you about Evingo.</p>
+      </form>
+      <div class="success" id="success" role="status" tabindex="-1">
+        <span class="ava" id="evaHappy"></span>
+        <h3 id="successTitle">You're on the list.</h3>
+        <p id="successText"></p>
+        <ol>
+          <li><span>01</span><span>We'll confirm your spot by email.</span></li>
+          <li><span>02</span><span>You'll get product updates as Evingo develops.</span></li>
+          <li><span>03</span><span id="nextThird">We'll reach out about pilots and pre-orders when they open.</span></li>
+        </ol>
+        <div><a href="#top" class="btn btn-line">Back to top</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about paper grain" id="about" data-theme="paper">
+  <div class="wrap about-grid">
+    <h2 class="split">Technology should work for you. <span class="dim">Not the other way around.</span></h2>
+    <div class="fade">
+      <p>Evingo is built around a simple idea: businesses should have access to powerful AI without giving up control of their technology and customer information.</p>
+      <p>We're bringing together intelligent automation, dedicated hardware, and local computing to rethink how businesses handle everyday operations.</p>
+      <p class="where">Built in Regina, Saskatchewan.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="ink" data-theme="ink">
+  <div class="wrap">
+    <div class="closing">
+      <h2 class="split">Your business. Your AI. <span class="dim">Your hardware.</span></h2>
+      <a href="#waitlist" class="btn btn-teal">Join the waitlist</a>
+    </div>
+    <div class="foot">
+      <div>
+        <a href="#top" aria-label="Evingo, back to top"><svg class="lockup" role="img" aria-label="Evingo, AI clinic reception" xmlns="http://www.w3.org/2000/svg" viewBox="691 1404 903 232"><g transform="translate(691 1407) scale(0.20625) translate(-912 -693)"><path fill="#f2f3f5" d="M948.2 1136.7L912.0 1100.5L912.0 933.0L912.0 765.6L948.2 729.3L984.5 693.0L1176.2 693.0L1368.0 693.0L1368.0 693.5L1368.0 694.0L1344.3 729.5L1320.7 765.0L1164.6 765.2L1008.5 765.5L1008.2 831.2L1008.0 897.0L1104.3 897.0L1200.5 897.0L1218.5 915.0L1236.5 933.0L1218.5 951.0L1200.5 969.0L1104.5 969.2L1008.5 969.5L1008.2 1035.2L1008.0 1101.0L1164.2 1101.2L1320.5 1101.5L1343.3 1135.5L1366.1 1169.5L1367.1 1171.2L1368.1 1173.0L1176.3 1173.0L984.5 1173.0L948.2 1136.7Z"/><path fill="#01a3b8" d="M1275.0 991.8L1275.0 990.5L1303.7 961.8L1332.5 933.0L1303.7 904.2L1275.0 875.5L1275.0 874.2L1275.0 873.0L1297.7 873.0L1320.4 873.0L1350.2 902.7L1380.0 932.5L1379.7 933.3L1379.5 934.0L1350.0 963.5L1320.5 993.0L1297.8 993.0L1275.0 993.0L1275.0 991.8Z"/></g><path fill="#f2f3f5" d="M1322.0 1505.9C1298.6 1503.0 1292.1 1494.3 1290.5 1463.5C1289.7 1449.7 1291.2 1430.7 1293.7 1423.0C1296.3 1415.0 1301.8 1409.5 1309.8 1406.8L1316.5 1404.6L1345.9 1404.2C1387.6 1403.6 1398.9 1405.3 1405.3 1412.9C1408.3 1416.5 1409.7 1421.1 1410.2 1429.0L1410.5 1434.5L1404.5 1434.5L1398.5 1434.5L1397.9 1428.5C1397.2 1421.4 1395.7 1418.5 1391.2 1416.4C1388.4 1415.1 1382.9 1414.9 1352.2 1415.2L1316.5 1415.5L1312.5 1417.6C1306.4 1420.7 1304.2 1426.0 1302.9 1440.6C1301.6 1454.6 1302.5 1474.2 1304.6 1481.9C1306.5 1488.6 1311.0 1493.3 1317.1 1495.1C1323.4 1497.0 1380.7 1497.0 1386.9 1495.2C1395.8 1492.5 1398.7 1487.0 1399.2 1472.0L1399.5 1463.5L1375.8 1463.2L1352.0 1463.0L1352.0 1458.0L1352.0 1453.0L1382.0 1453.0L1412.0 1453.0L1412.0 1461.9C1412.0 1473.6 1410.3 1485.4 1407.9 1491.0C1404.4 1498.8 1400.1 1502.2 1390.0 1504.8C1383.3 1506.5 1333.5 1507.4 1322.0 1505.9ZM1505.0 1506.0C1486.2 1503.7 1478.4 1497.3 1474.9 1481.5C1473.0 1473.5 1473.0 1435.7 1474.8 1427.9C1476.9 1418.8 1481.5 1412.0 1488.0 1408.8C1496.3 1404.6 1505.7 1403.7 1539.3 1404.2C1562.7 1404.6 1569.5 1405.0 1573.6 1406.3C1583.6 1409.6 1588.6 1414.7 1591.8 1424.9C1594.3 1433.1 1594.3 1476.9 1591.8 1485.1C1588.4 1496.0 1582.2 1501.6 1570.0 1504.8C1563.6 1506.4 1515.5 1507.4 1505.0 1506.0ZM894.4 1505.2C893.9 1504.8 883.1 1485.4 870.5 1462.0C858.0 1438.6 846.1 1416.7 844.3 1413.2L840.8 1407.0L847.8 1407.0L854.8 1407.0L878.1 1451.5C891.0 1476.0 901.8 1495.9 902.3 1495.7C903.0 1495.5 947.9 1411.2 949.2 1407.7C949.4 1407.3 952.6 1407.0 956.3 1407.2L963.0 1407.5L939.9 1450.5C927.2 1474.2 915.3 1496.3 913.4 1499.8L909.9 1506.0L902.7 1506.0C898.7 1506.0 895.0 1505.6 894.4 1505.2ZM1023.7 1505.4C1023.3 1505.0 1023.0 1482.7 1023.0 1455.8L1023.0 1407.0L1029.0 1407.0L1035.0 1407.0L1034.8 1456.2L1034.5 1505.5L1029.5 1505.8C1026.7 1506.0 1024.1 1505.8 1023.7 1505.4ZM1102.7 1505.3C1102.3 1505.0 1102.0 1482.7 1102.0 1455.8L1102.0 1407.0L1108.8 1407.0L1115.5 1407.1L1164.5 1448.5C1191.5 1471.3 1213.8 1490.0 1214.2 1490.0C1214.7 1490.0 1215.0 1471.3 1215.0 1448.5L1215.0 1407.0L1221.0 1407.0L1227.0 1407.0L1226.8 1456.2L1226.5 1505.5L1220.3 1505.5L1214.2 1505.5L1165.4 1464.5C1138.5 1442.0 1116.0 1423.3 1115.2 1423.2C1114.5 1423.0 1114.0 1423.4 1114.1 1424.2C1114.2 1424.9 1114.2 1443.6 1114.1 1465.8L1114.0 1506.0L1108.7 1506.0C1105.7 1506.0 1103.0 1505.7 1102.7 1505.3ZM1567.8 1494.9C1570.2 1494.3 1573.7 1492.3 1575.5 1490.6C1580.8 1485.5 1581.5 1481.6 1581.5 1454.0L1581.5 1429.5L1579.0 1424.5C1577.0 1420.5 1575.5 1419.0 1571.5 1417.0L1566.5 1414.5L1533.5 1414.5L1500.5 1414.5L1495.8 1416.7C1487.4 1420.5 1485.0 1429.1 1485.0 1455.0C1485.0 1486.8 1488.8 1494.0 1506.3 1496.0C1516.7 1497.2 1562.6 1496.4 1567.8 1494.9Z"/><path fill="#8d929b" d="M781.0 1634.9C781.0 1634.3 782.5 1628.2 784.2 1621.3C787.1 1610.3 787.7 1609.0 789.5 1609.2C791.1 1609.4 792.0 1611.3 794.2 1620.0C798.1 1635.0 798.3 1636.0 797.1 1636.0C796.5 1636.0 795.7 1634.8 795.4 1633.2C794.4 1629.2 793.1 1628.0 789.6 1628.0C785.5 1628.0 784.4 1628.9 783.5 1632.8C782.9 1635.8 781.0 1637.4 781.0 1634.9ZM821.0 1635.0C821.0 1634.5 822.4 1634.0 824.0 1634.0L827.0 1634.0L827.0 1622.5L827.0 1611.0L824.6 1611.0C823.2 1611.0 821.8 1610.5 821.5 1610.0C821.1 1609.4 823.5 1609.0 827.9 1609.0C832.0 1609.0 835.0 1609.4 835.0 1610.0C835.0 1610.5 833.9 1611.0 832.5 1611.0L830.0 1611.0L830.0 1622.5L830.0 1634.0L832.5 1634.0C833.9 1634.0 835.0 1634.5 835.0 1635.0C835.0 1635.6 832.0 1636.0 828.0 1636.0C824.0 1636.0 821.0 1635.6 821.0 1635.0ZM900.6 1633.8C898.1 1630.3 898.4 1614.0 900.9 1610.9C904.2 1606.8 914.0 1608.9 914.0 1613.7C914.0 1615.5 913.4 1615.4 910.5 1612.4C907.8 1609.7 904.6 1609.8 902.2 1612.8C900.5 1615.0 900.6 1630.0 902.3 1632.4C904.2 1635.0 910.2 1634.2 911.5 1631.2C912.7 1628.5 914.0 1628.3 914.0 1630.8C914.0 1635.9 903.6 1638.2 900.6 1633.8ZM939.0 1622.5C939.0 1614.2 939.4 1609.0 940.0 1609.0C940.6 1609.0 941.0 1613.8 941.0 1621.5L941.0 1634.0L947.5 1634.0C951.2 1634.0 954.0 1634.4 954.0 1635.0C954.0 1635.6 950.8 1636.0 946.5 1636.0L939.0 1636.0L939.0 1622.5ZM978.0 1635.0C978.0 1634.5 979.1 1634.0 980.5 1634.0L983.0 1634.0L983.0 1622.5L983.0 1611.0L980.5 1611.0C979.1 1611.0 978.0 1610.5 978.0 1610.0C978.0 1609.4 980.8 1609.0 984.5 1609.0C988.2 1609.0 991.0 1609.4 991.0 1610.0C991.0 1610.5 989.9 1611.0 988.5 1611.0L986.0 1611.0L986.0 1622.5L986.0 1634.0L988.5 1634.0C989.9 1634.0 991.0 1634.5 991.0 1635.0C991.0 1635.6 988.2 1636.0 984.5 1636.0C980.8 1636.0 978.0 1635.6 978.0 1635.0ZM1016.0 1622.5L1016.0 1609.0L1017.8 1609.0C1019.2 1609.0 1020.5 1611.5 1023.5 1620.1C1025.7 1626.2 1027.8 1631.4 1028.2 1631.6C1028.6 1631.9 1029.0 1626.9 1029.0 1620.6C1029.0 1613.5 1029.4 1609.0 1030.0 1609.0C1030.6 1609.0 1031.0 1614.2 1031.0 1622.5L1031.0 1636.0L1029.2 1636.0C1027.9 1636.0 1026.5 1633.3 1023.5 1625.0C1021.4 1619.0 1019.2 1614.0 1018.8 1614.0C1018.4 1614.0 1018.0 1619.0 1018.0 1625.0C1018.0 1631.7 1017.6 1636.0 1017.0 1636.0C1016.4 1636.0 1016.0 1630.8 1016.0 1622.5ZM1056.0 1635.0C1056.0 1634.5 1057.1 1634.0 1058.5 1634.0L1061.0 1634.0L1061.0 1622.5L1061.0 1611.0L1058.5 1611.0C1057.1 1611.0 1056.0 1610.5 1056.0 1610.0C1056.0 1609.4 1059.0 1609.0 1063.1 1609.0C1067.5 1609.0 1069.9 1609.4 1069.5 1610.0C1069.2 1610.5 1067.8 1611.0 1066.4 1611.0L1064.0 1611.0L1064.0 1622.5L1064.0 1634.0L1066.5 1634.0C1067.9 1634.0 1069.0 1634.5 1069.0 1635.0C1069.0 1635.6 1066.2 1636.0 1062.5 1636.0C1058.8 1636.0 1056.0 1635.6 1056.0 1635.0ZM1095.6 1633.8C1093.2 1630.4 1093.4 1614.0 1095.8 1611.1C1098.4 1607.9 1103.0 1607.4 1106.3 1610.0C1107.8 1611.2 1109.0 1612.8 1109.0 1613.6C1109.0 1615.6 1108.5 1615.4 1105.5 1612.4C1102.8 1609.7 1099.6 1609.8 1097.2 1612.8C1095.5 1615.0 1095.6 1630.0 1097.3 1632.4C1099.2 1635.0 1105.2 1634.2 1106.5 1631.2C1107.7 1628.5 1109.0 1628.3 1109.0 1630.8C1109.0 1635.9 1098.6 1638.2 1095.6 1633.8ZM1172.0 1622.5L1172.0 1609.0L1178.0 1609.0C1182.8 1609.0 1184.3 1609.4 1186.0 1611.2C1188.7 1614.1 1188.5 1618.2 1185.5 1621.8L1183.0 1624.8L1185.4 1630.4C1187.2 1634.4 1187.5 1636.0 1186.6 1636.0C1185.9 1636.0 1184.0 1633.3 1182.6 1629.9C1180.1 1624.5 1179.6 1623.9 1177.2 1624.2L1174.5 1624.5L1174.2 1630.2C1174.0 1633.4 1173.5 1636.0 1173.0 1636.0C1172.4 1636.0 1172.0 1630.4 1172.0 1622.5ZM1211.0 1622.5L1211.0 1609.0L1219.1 1609.0C1224.2 1609.0 1226.9 1609.4 1226.5 1610.0C1226.2 1610.5 1223.3 1611.0 1220.1 1611.0C1216.9 1611.0 1214.1 1611.2 1213.9 1611.4C1213.7 1611.7 1213.6 1613.9 1213.8 1616.4L1214.2 1621.0L1219.6 1621.0C1222.6 1621.0 1225.0 1621.5 1225.0 1622.0C1225.0 1622.5 1222.5 1623.0 1219.5 1623.0L1214.0 1623.0L1214.0 1628.5L1214.0 1634.0L1220.5 1634.0C1224.2 1634.0 1227.0 1634.4 1227.0 1635.0C1227.0 1635.6 1223.7 1636.0 1219.0 1636.0L1211.0 1636.0L1211.0 1622.5ZM1251.6 1633.8C1249.4 1630.7 1249.4 1614.4 1251.5 1611.3C1255.2 1606.1 1264.9 1608.3 1265.0 1614.4C1265.0 1615.9 1264.4 1615.6 1262.0 1613.0C1258.8 1609.6 1255.8 1609.5 1253.2 1612.8C1251.5 1615.0 1251.6 1630.0 1253.3 1632.4C1255.2 1635.0 1261.2 1634.2 1262.5 1631.2C1263.7 1628.5 1265.0 1628.3 1265.0 1630.8C1265.0 1635.9 1254.6 1638.2 1251.6 1633.8ZM1289.0 1622.5L1289.0 1609.0L1297.0 1609.0C1301.7 1609.0 1305.0 1609.4 1305.0 1610.0C1305.0 1610.6 1302.2 1611.0 1298.5 1611.0L1292.0 1611.0L1292.0 1616.0L1292.0 1621.0L1297.5 1621.0C1300.5 1621.0 1303.0 1621.5 1303.0 1622.0C1303.0 1622.5 1300.5 1623.0 1297.5 1623.0L1292.0 1623.0L1292.0 1628.5L1292.0 1634.0L1298.5 1634.0C1302.2 1634.0 1305.0 1634.4 1305.0 1635.0C1305.0 1635.6 1301.7 1636.0 1297.0 1636.0L1289.0 1636.0L1289.0 1622.5ZM1328.0 1622.5L1328.0 1609.0L1334.3 1609.0C1339.2 1609.0 1341.1 1609.4 1342.3 1610.8C1347.2 1616.2 1344.1 1624.0 1337.0 1624.0C1330.6 1624.0 1330.0 1624.6 1330.0 1630.6C1330.0 1633.6 1329.5 1636.0 1329.0 1636.0C1328.4 1636.0 1328.0 1630.8 1328.0 1622.5ZM1373.8 1623.8L1373.5 1611.5L1369.8 1611.2C1362.4 1610.6 1366.2 1609.0 1375.1 1609.0C1380.8 1609.0 1383.9 1609.4 1383.5 1610.0C1383.2 1610.5 1381.3 1611.0 1379.4 1611.0L1376.0 1611.0L1376.0 1623.5C1376.0 1639.9 1374.2 1640.1 1373.8 1623.8ZM1407.0 1635.0C1407.0 1634.5 1408.1 1634.0 1409.5 1634.0L1412.0 1634.0L1412.0 1622.5L1412.0 1611.0L1409.5 1611.0C1408.1 1611.0 1407.0 1610.5 1407.0 1610.0C1407.0 1609.4 1410.0 1609.0 1414.0 1609.0C1418.0 1609.0 1421.0 1609.4 1421.0 1610.0C1421.0 1610.5 1419.7 1611.0 1418.0 1611.0L1415.0 1611.0L1415.0 1622.5L1415.0 1634.0L1418.0 1634.0C1419.7 1634.0 1421.0 1634.5 1421.0 1635.0C1421.0 1635.6 1418.0 1636.0 1414.0 1636.0C1410.0 1636.0 1407.0 1635.6 1407.0 1635.0ZM1446.6 1633.8C1444.2 1630.4 1444.4 1614.0 1446.8 1611.1C1449.4 1607.9 1454.0 1607.4 1457.3 1610.0L1460.0 1612.1L1460.0 1622.4C1460.0 1634.4 1459.1 1636.0 1452.2 1636.0C1449.1 1636.0 1447.7 1635.5 1446.6 1633.8ZM1484.0 1622.5L1484.0 1609.0L1485.9 1609.0C1487.4 1609.0 1488.6 1611.2 1491.5 1619.5C1493.6 1625.3 1495.7 1630.3 1496.1 1630.6C1496.6 1630.9 1497.0 1626.1 1497.0 1620.1C1497.0 1613.4 1497.4 1609.0 1498.0 1609.0C1498.6 1609.0 1499.0 1614.2 1499.0 1622.5L1499.0 1636.0L1497.2 1636.0C1495.9 1636.0 1494.6 1633.3 1491.6 1625.0C1489.5 1619.0 1487.4 1614.0 1486.9 1614.0C1486.4 1614.0 1486.0 1619.0 1486.0 1625.0C1486.0 1631.7 1485.6 1636.0 1485.0 1636.0C1484.4 1636.0 1484.0 1630.8 1484.0 1622.5ZM1456.8 1632.8C1457.6 1632.0 1458.0 1628.2 1458.0 1622.4L1458.0 1613.1L1455.8 1611.6C1452.8 1609.5 1451.4 1609.6 1449.0 1612.0C1447.3 1613.7 1447.0 1615.3 1447.0 1622.1C1447.0 1626.5 1447.5 1631.0 1448.0 1632.1C1449.2 1634.3 1454.8 1634.8 1456.8 1632.8ZM793.0 1625.2C792.9 1621.8 790.4 1612.6 789.4 1612.3C788.4 1612.0 785.0 1625.6 785.8 1626.5C786.1 1626.8 787.8 1627.0 789.7 1627.0C792.2 1627.0 793.0 1626.6 793.0 1625.2ZM1184.7 1619.4C1186.2 1617.0 1186.2 1616.5 1184.9 1614.1C1183.6 1611.9 1182.7 1611.5 1179.0 1611.5L1174.5 1611.5L1174.2 1615.4C1173.7 1621.1 1174.4 1622.0 1178.9 1622.0C1182.2 1622.0 1183.3 1621.5 1184.7 1619.4ZM1340.8 1620.8C1341.5 1620.1 1342.0 1618.1 1342.0 1616.3C1342.0 1612.4 1339.5 1610.7 1334.2 1611.2L1330.5 1611.5L1330.2 1615.4C1330.0 1617.5 1330.1 1619.8 1330.4 1620.6C1331.1 1622.4 1339.1 1622.5 1340.8 1620.8Z"/></svg></a>
+        <p class="tagline">Evingo — Intelligence, on your terms.</p>
+      </div>
+      <ul><li><a href="#receptionist">Product</a></li><li><a href="#unit">Hardware</a></li><li><a href="#privacy">Privacy</a></li></ul>
+      <ul><li><a href="#about">About</a></li><li id="contactItem" hidden><a id="contactLink" href="#waitlist">Contact</a></li><li><a href="#waitlist">Join waitlist</a></li></ul>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr">2026</span> Evingo</span>
+      <span>Hardware shown is a conceptual prototype. Items marked “planned” aren't available yet.</span>
+    </div>
+  </div>
+</footer>
+</main>
+
+<template id="fallbackSvg">
+  <svg viewBox="0 0 300 230" width="72%" fill="none" aria-hidden="true">
+    <ellipse cx="150" cy="214" rx="118" ry="8" fill="#000" opacity=".35"/>
+    <path d="M70 28H230L270 68V168L230 208H70L30 168V68Z" fill="#1b1d22" stroke="#2a2e36"/>
+    <path d="M74 68H226L238 80V114L226 126H74L62 114V80Z" fill="#030406"/>
+    <g fill="#14c6dc"><rect x="104" y="92" width="3" height="10"/><rect x="114" y="86" width="3" height="22"/><rect x="124" y="80" width="3" height="34"/><rect x="134" y="88" width="3" height="18"/><rect x="144" y="76" width="3" height="42"/><rect x="154" y="84" width="3" height="26"/><rect x="164" y="90" width="3" height="14"/><rect x="174" y="82" width="3" height="30"/><rect x="184" y="91" width="3" height="12"/><rect x="194" y="94" width="3" height="6"/></g>
+    <rect x="80" y="204" width="140" height="2" fill="#01a3b8"/>
+  </svg>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/environments/RoomEnvironment.js"></script>
+<script>
+/* ============================================================
+   Evingo Unit — concept 3D model, studio, breakdown, explore.
+   Everything renders on demand: no idle animation loop.
+   ============================================================ */
+const Unit3D = (function(){
+"use strict";
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+const lerp=(a,b,t)=>a+(b-a)*t;
+const MOBILE = matchMedia("(max-width: 700px)").matches;
+
+/* ---------- textures ---------- */
+function cTex(w,h,draw,repeat){ const c=document.createElement("canvas"); c.width=w; c.height=h; draw(c.getContext("2d"),w,h); const t=new THREE.CanvasTexture(c); t.anisotropy=8; if(repeat){ t.wrapS=t.wrapT=THREE.RepeatWrapping; } return t; }
+let TEX=null;
+function textures(){
+  if (TEX) return TEX;
+  const brushed=cTex(512,512,(g,w,h)=>{ g.fillStyle="rgb(118,118,118)"; g.fillRect(0,0,w,h);
+    for(let i=0;i<5200;i++){ const y=Math.random()*h, x=Math.random()*w, l=30+Math.random()*320, a=.03+Math.random()*.09; g.strokeStyle=(Math.random()<.5?"rgba(255,255,255,":"rgba(0,0,0,")+a+")"; g.lineWidth=Math.random()<.85?1:2; g.beginPath(); g.moveTo(x,y); g.lineTo(x+l,y); g.stroke(); } },true);
+  brushed.repeat.set(2,2);
+  const vent=cTex(512,288,(g,w,h)=>{ g.fillStyle="#000"; const s=19,r=4.6; for(let y=s;y<h-s/2;y+=s*.87){ const row=Math.round(y/(s*.87)); for(let x=s+(row%2?s/2:0);x<w-s/2;x+=s){ g.beginPath(); g.arc(x,y,r,0,Math.PI*2); g.fill(); } } });
+  const pcb=cTex(1024,1024,(g,w,h)=>{ g.fillStyle="#0c2a2e"; g.fillRect(0,0,w,h);
+    g.strokeStyle="#16464b"; g.lineCap="square";
+    for(let i=0;i<260;i++){ let x=Math.random()*w,y=Math.random()*h; g.lineWidth=Math.random()<.7?2:4; g.beginPath(); g.moveTo(x,y); for(let k=0;k<4;k++){ const L=20+Math.random()*120, d=Math.floor(Math.random()*4); if(d===0)x+=L; else if(d===1)x-=L; else if(d===2){x+=L*.7;y+=L*.7;} else y+=L; g.lineTo(x,y); } g.stroke(); }
+    g.fillStyle="#b8952a"; for(let i=0;i<420;i++){ g.fillRect(Math.random()*w,Math.random()*h,4+Math.random()*5,4+Math.random()*5); }
+    g.fillStyle="rgba(230,236,240,.75)"; g.font="600 26px Archivo, Arial, sans-serif"; g.fillText("EVG-01  CONCEPT BOARD",60,980); g.font="500 18px Archivo, Arial"; g.fillText("NOT FINAL",60,1006);
+    g.strokeStyle="rgba(230,236,240,.5)"; g.lineWidth=2; g.strokeRect(40,40,w-80,h-80); });
+  const ssd=cTex(512,160,(g,w,h)=>{ g.fillStyle="#0d0f13"; g.fillRect(0,0,w,h); g.fillStyle="#1ec3d8"; g.fillRect(0,0,10,h); g.fillStyle="#e9ecf0"; g.font="600 34px Archivo, Arial"; g.fillText("ON-SITE STORAGE",34,70); g.fillStyle="#8d929b"; g.font="500 22px Archivo, Arial"; g.fillText("Evingo concept · capacity not final",34,112); });
+  const psu=cTex(256,256,(g,w,h)=>{ g.fillStyle="#1d2026"; g.fillRect(0,0,w,h); g.fillStyle="#0b0c10"; for(let y=20;y<h-10;y+=16) g.fillRect(20,y,w-40,7); });
+  TEX={brushed,vent,pcb,ssd,psu}; return TEX;
+}
+function markTex(d,fill){ return cTex(256,256,c=>{ c.translate(18,16); c.scale(220/480,220/480); c.translate(-912,-693); c.fillStyle=fill; c.fill(new Path2D(d)); }); }
+function radialTex(stops){ return cTex(256,256,(g,w,h)=>{ const gr=g.createRadialGradient(w/2,h/2,0,w/2,h/2,w/2); stops.forEach(s=>gr.addColorStop(s[0],s[1])); g.fillStyle=gr; g.fillRect(0,0,w,h); }); }
+function chShape(w,h,c){ const s=new THREE.Shape(),x=-w/2,y=-h/2; s.moveTo(x+c,y); s.lineTo(x+w-c,y); s.lineTo(x+w,y+c); s.lineTo(x+w,y+h-c); s.lineTo(x+w-c,y+h); s.lineTo(x+c,y+h); s.lineTo(x,y+h-c); s.lineTo(x,y+c); s.closePath(); return s; }
+function slab(shape,depth,bevel){ const g=new THREE.ExtrudeGeometry(shape,bevel?{depth:depth-2*bevel,bevelEnabled:true,bevelThickness:bevel,bevelSize:bevel,bevelSegments:4}:{depth,bevelEnabled:false}); g.rotateX(-Math.PI/2); if(bevel) g.translate(0,bevel,0); g.computeVertexNormals(); return g; }
+const box=(w,h,d,m,x=0,y=0,z=0)=>{ const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m); o.position.set(x,y,z); o.castShadow=true; o.receiveShadow=true; return o; };
+const cyl=(r,h,m,x=0,y=0,z=0,seg=32,open=false)=>{ const o=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,seg,1,open),m); o.position.set(x,y,z); o.castShadow=true; return o; };
+
+/* ---------- the model ---------- */
+function buildUnit(MARK_D, TEAL_D){
+  const T=textures();
+  const W=1.5, D=1.5, F=0.014, BASE=0.07, HS=0.9, BS=0.05, CH=0.2;
+  const Y0=F+BASE;                // shell bottom
+  const TOP=Y0+HS;                // shell top
+  const FZ=D/2+0.002;
+  const M={
+    alu:new THREE.MeshPhysicalMaterial({color:0x121317,envMapIntensity:.55,metalness:.9,roughness:.5,roughnessMap:T.brushed,bumpMap:T.brushed,bumpScale:.0015,clearcoat:.35,clearcoatRoughness:.4}),
+    aluTop:new THREE.MeshPhysicalMaterial({color:0x17181d,envMapIntensity:.5,metalness:.9,roughness:.42,roughnessMap:T.brushed,bumpMap:T.brushed,bumpScale:.001,clearcoat:.5,clearcoatRoughness:.3}),
+    darkMetal:new THREE.MeshStandardMaterial({color:0x07080a,metalness:.5,roughness:.6,envMapIntensity:.4}),
+    glass:new THREE.MeshPhysicalMaterial({color:0x010203,metalness:.1,roughness:.05,clearcoat:1,clearcoatRoughness:.03,envMapIntensity:.35}),
+    bezel:new THREE.MeshStandardMaterial({color:0x060709,metalness:.8,roughness:.3,envMapIntensity:.5}),
+    rubber:new THREE.MeshStandardMaterial({color:0x08090b,roughness:.95}),
+    teal:new THREE.MeshBasicMaterial({color:0x01a3b8,toneMapped:false}),
+    tealBright:new THREE.MeshBasicMaterial({color:0x19c3d8,toneMapped:false}),
+    pcb:new THREE.MeshStandardMaterial({map:T.pcb,roughness:.55,metalness:.15}),
+    pcbSide:new THREE.MeshStandardMaterial({color:0x0c2a2e,roughness:.6}),
+    chip:new THREE.MeshStandardMaterial({color:0x0b0c0f,roughness:.4,metalness:.3,envMapIntensity:.5}),
+    gold:new THREE.MeshStandardMaterial({color:0xc9a227,metalness:1,roughness:.3}),
+    copper:new THREE.MeshStandardMaterial({color:0xb87333,metalness:1,roughness:.28}),
+    fin:new THREE.MeshStandardMaterial({color:0x9da2aa,metalness:1,roughness:.26,envMapIntensity:.8}),
+    fanBlack:new THREE.MeshStandardMaterial({color:0x0c0d11,roughness:.6,metalness:.2,envMapIntensity:.5}),
+    ram:new THREE.MeshStandardMaterial({color:0x15301f,roughness:.6}),
+    ssd:new THREE.MeshStandardMaterial({map:T.ssd,roughness:.5}),
+    psu:new THREE.MeshStandardMaterial({map:T.psu,metalness:.6,roughness:.45}),
+    vent:new THREE.MeshStandardMaterial({map:T.vent,transparent:true,color:0,roughness:1,depthWrite:false}),
+    port:new THREE.MeshStandardMaterial({color:0x22252c,metalness:.8,roughness:.35,envMapIntensity:.6}),
+    hole:new THREE.MeshBasicMaterial({color:0x000000})
+  };
+  const root=new THREE.Group();
+  const parts={};
+  const add=(name,g)=>{ parts[name]=g; g.userData.home=g.position.clone(); root.add(g); return g; };
+
+  /* base: feet, plinth, status strip */
+  const base=new THREE.Group();
+  const plinth=new THREE.Mesh(slab(chShape(W-.14,D-.14,CH-.07),BASE),M.darkMetal); plinth.position.y=F; plinth.castShadow=true; base.add(plinth);
+  const strip=new THREE.Mesh(slab(chShape(W-.13,D-.13,CH-.065),.007),M.teal); strip.position.y=F+.016; strip.scale.set(1.003,1,1.003); base.add(strip);
+  [[1,1],[1,-1],[-1,1],[-1,-1]].forEach(([sx,sz])=>base.add(cyl(.07,F,M.rubber,sx*.48,F/2,sz*.48,24)));
+  add("base",base);
+
+  /* mainboard on chassis tray */
+  const board=new THREE.Group(); board.position.y=Y0;
+  const tray=new THREE.Mesh(slab(chShape(W-.2,D-.2,CH-.09),.02),M.darkMetal); tray.castShadow=true; tray.receiveShadow=true; board.add(tray);
+  const pcb=new THREE.Mesh(new THREE.BoxGeometry(1.14,.022,1.14),[M.pcbSide,M.pcbSide,M.pcb,M.pcbSide,M.pcbSide,M.pcbSide]); pcb.position.y=.04; pcb.castShadow=pcb.receiveShadow=true; board.add(pcb);
+  for(let i=0;i<7;i++){ const c=cyl(.024,.06,M.chip,-.5+i*.045,.08,.5,20); board.add(c); board.add(cyl(.024,.004,M.fin,-.5+i*.045,.112,.5,20)); }
+  [[.0,-.05,.16,.12],[-.45,.25,.1,.08],[.45,.42,.12,.07]].forEach(([x,z,w,d])=>board.add(box(w,.014,d,M.chip,x,.058,z)));
+  for(let i=0;i<4;i++) board.add(box(.07,.05,.06,M.port,-.3+i*.17,.075,-.54));
+  add("board",board);
+
+  /* storage (NVMe-style stick) */
+  const storage=new THREE.Group(); storage.position.set(.41,Y0+.06,.27);
+  storage.add(box(.3,.012,.09,M.ssd)); storage.add(box(.02,.016,.09,M.gold,-.16,0,0));
+  add("storage",storage);
+
+  /* memory */
+  const memory=new THREE.Group(); memory.position.set(.15,Y0+.12,.05);
+  [-.035,.035].forEach(x=>{ memory.add(box(.012,.13,.6,M.ram,x,0,0)); for(let k=0;k<4;k++){ memory.add(box(.006,.05,.09,M.chip,x+.009,.01,-.22+k*.145)); memory.add(box(.006,.05,.09,M.chip,x-.009,.01,-.22+k*.145)); } memory.add(box(.014,.012,.58,M.gold,x,-.066,0)); });
+  add("memory",memory);
+
+  /* power supply */
+  const power=new THREE.Group(); power.position.set(.42,Y0+.13,-.26);
+  power.add(box(.24,.16,.44,M.psu)); power.add(box(.06,.03,.08,M.port,0,.095,-.15));
+  add("power",power);
+
+  /* processor + cooler: copper base, heat pipes, fin stack */
+  const cooler=new THREE.Group(); cooler.position.set(-.19,Y0+.07,.12);
+  cooler.add(box(.24,.02,.24,M.copper,0,0,0)); cooler.add(box(.2,.012,.2,M.chip,0,-.014,0));
+  for(let i=0;i<15;i++) cooler.add(box(.01,.2,.34,M.fin,-.16+i*.0228,.15,0));
+  cooler.add(box(.36,.012,.36,M.fin,0,.256,0));
+  [-.06,.06].forEach(z=>{ const curve=new THREE.CatmullRomCurve3([new THREE.Vector3(-.09,.012,z),new THREE.Vector3(-.2,.04,z),new THREE.Vector3(-.21,.17,z),new THREE.Vector3(-.12,.2,z),new THREE.Vector3(.16,.2,z)]); const t=new THREE.Mesh(new THREE.TubeGeometry(curve,48,.014,12,false),M.copper); t.castShadow=true; cooler.add(t); });
+  add("cooler",cooler);
+
+  /* blower fan */
+  const fan=new THREE.Group(); fan.position.set(-.21,Y0+.1,-.38);
+  fan.add(cyl(.17,.055,M.fanBlack,0,0,0,48,true)); fan.add(cyl(.17,.006,M.fanBlack,0,-.026,0,48));
+  const rotor=new THREE.Group(); rotor.add(cyl(.055,.05,M.fin,0,0,0,32));
+  for(let i=0;i<11;i++){ const b=box(.1,.04,.006,M.fanBlack); b.position.set(Math.cos(i/11*Math.PI*2)*.105,0,Math.sin(i/11*Math.PI*2)*.105); b.rotation.y=-i/11*Math.PI*2+.5; rotor.add(b); }
+  fan.add(rotor); fan.userData.rotor=rotor;
+  add("fan",fan);
+
+  /* front display module */
+  const front=new THREE.Group(); front.position.set(0,Y0+.56,FZ);
+  const rim=new THREE.Mesh(new THREE.ShapeGeometry(chShape(1.0,.38,.068)),M.bezel); front.add(rim);
+  const back=box(.98,.36,.04,M.darkMetal,0,0,-.022); front.add(back);
+  const glass=new THREE.Mesh(new THREE.ShapeGeometry(chShape(.96,.34,.058)),M.glass); glass.position.z=.002; front.add(glass);
+  const bars=[], barGeo=new THREE.PlaneGeometry(.011,1);
+  for(let i=0;i<23;i++){ const m=new THREE.Mesh(barGeo,M.tealBright),u=(i/22)*2-1; m.position.set(u*.3,0,.004); m.userData.env=Math.pow(Math.cos(u*Math.PI/2),1.4); m.userData.rest=.25+.75*Math.abs(Math.sin(i*1.7)); front.add(m); bars.push(m); }
+  add("front",front);
+
+  /* shell sleeve (fades to x-ray when opened) */
+  const shell=new THREE.Group(); shell.position.y=Y0;
+  const bodyGeo=new THREE.ExtrudeGeometry(chShape(W-2*BS,D-2*BS,CH),{depth:HS-2*BS,bevelEnabled:true,bevelThickness:BS,bevelSize:BS,bevelSegments:6});
+  bodyGeo.rotateX(-Math.PI/2); bodyGeo.translate(0,BS,0); bodyGeo.computeVertexNormals();
+  const shellMat=M.alu.clone(); shellMat.transparent=true;
+  const body=new THREE.Mesh(bodyGeo,shellMat); body.castShadow=true; body.receiveShadow=true; shell.add(body);
+  const edges=new THREE.LineSegments(new THREE.EdgesGeometry(bodyGeo,28),new THREE.LineBasicMaterial({color:0x3cc5d6,transparent:true,opacity:0,depthWrite:false})); shell.add(edges);
+  const ventMat=M.vent.clone();
+  [[W/2+.002,0,Math.PI/2],[-W/2-.002,0,-Math.PI/2],[0,-D/2-.002,Math.PI]].forEach(([x,z,ry])=>{ const v=new THREE.Mesh(new THREE.PlaneGeometry(.9,.5),ventMat); v.position.set(x,.48,z); v.rotation.y=ry; shell.add(v); });
+  // rear I/O (concept)
+  const io=new THREE.Group(); io.position.set(0,.16,-D/2-.003); io.rotation.y=Math.PI; shell.add(io);
+  io.add(new THREE.Mesh(new THREE.ShapeGeometry(chShape(.8,.13,.03)),M.darkMetal));
+  const pw=new THREE.Mesh(new THREE.CylinderGeometry(.035,.035,.01,32),M.port); pw.rotation.x=Math.PI/2; pw.position.set(-.3,0,.006); io.add(pw);
+  const pwh=new THREE.Mesh(new THREE.CircleGeometry(.02,24),M.hole); pwh.position.set(-.3,0,.012); io.add(pwh);
+  [-.12,.0].forEach(x=>{ io.add(box(.075,.06,.01,M.port,x,0,.006)); const h=new THREE.Mesh(new THREE.PlaneGeometry(.055,.04),M.hole); h.position.set(x,-.004,.012); io.add(h); });
+  io.add(box(.05,.018,.01,M.port,.14,0,.006)); io.add(box(.05,.018,.01,M.port,.22,0,.006));
+  const ioTeal=new THREE.Mesh(new THREE.PlaneGeometry(.012,.012),M.teal); ioTeal.position.set(.32,0,.008); io.add(ioTeal);
+  // E mark below the display
+  const eM=new THREE.Mesh(new THREE.PlaneGeometry(.085,.085),new THREE.MeshBasicMaterial({map:markTex(MARK_D,"rgba(205,209,217,0.65)"),transparent:true,depthWrite:false}));
+  eM.position.set(0,.2,D/2+.003); shell.add(eM);
+  const cM=new THREE.Mesh(new THREE.PlaneGeometry(.085,.085),new THREE.MeshBasicMaterial({map:markTex(TEAL_D,"#14c6dc"),transparent:true,depthWrite:false,toneMapped:false}));
+  cM.position.set(0,.2,D/2+.0035); shell.add(cM);
+  add("shell",shell);
+
+  /* top plate with engraved mark */
+  const top=new THREE.Group(); top.position.y=TOP-.012;
+  const topMat=M.aluTop.clone(); topMat.transparent=true;
+  const plate=new THREE.Mesh(slab(chShape(W-.17,D-.17,CH-.075),.02,.006),topMat); plate.castShadow=true; top.add(plate);
+  const topMark=new THREE.Mesh(new THREE.PlaneGeometry(.2,.2),new THREE.MeshBasicMaterial({map:markTex(MARK_D,"rgba(0,0,0,0.55)"),transparent:true,depthWrite:false}));
+  topMark.rotation.x=-Math.PI/2; topMark.position.y=.0215; top.add(topMark);
+  const topEdges=new THREE.LineSegments(new THREE.EdgesGeometry(plate.geometry,28),new THREE.LineBasicMaterial({color:0x3cc5d6,transparent:true,opacity:0,depthWrite:false})); top.add(topEdges);
+  add("top",top);
+
+  /* floor: soft contact shadow + shadow catcher */
+  const contact=new THREE.Mesh(new THREE.PlaneGeometry(2.8,2.8),new THREE.MeshBasicMaterial({map:radialTex([[0,"rgba(0,0,0,0.6)"],[.45,"rgba(0,0,0,0.28)"],[1,"rgba(0,0,0,0)"]]),transparent:true,depthWrite:false}));
+  contact.rotation.x=-Math.PI/2; contact.position.y=.001; root.add(contact);
+  const catcher=new THREE.Mesh(new THREE.PlaneGeometry(14,14),new THREE.ShadowMaterial({opacity:.22})); catcher.rotation.x=-Math.PI/2; catcher.receiveShadow=true; root.add(catcher);
+
+  /* explode choreography: [part, rise, forward, delay] */
+  const EX=[["board",.3,0,0],["storage",.66,0,.03],["memory",.78,0,.05],["power",.7,0,.07],["cooler",1.1,0,.1],["fan",1.36,0,.13],["front",.95,.95,.16],["shell",2.08,0,.2],["top",2.9,0,.26]];
+  const fade={shell:[shellMat,ventMat],top:[topMat]};
+  function setExplode(E){
+    EX.forEach(([n,dy,dz,d])=>{ const k=ease(clamp((E-d)/.62)); const g=parts[n]; g.position.y=g.userData.home.y+dy*k; g.position.z=g.userData.home.z+dz*k; });
+    const ks=ease(clamp((E-.2)/.62)), kt=ease(clamp((E-.26)/.62));
+    const xs=clamp((ks-.15)/.6), xt=clamp((kt-.15)/.6);
+    shellMat.opacity=1-.86*xs; ventMat.opacity=1-xs; shellMat.depthWrite=xs<.05; edges.material.opacity=.75*xs;
+    eM.material.opacity=cM.material.opacity=1-xs; io.visible=xs<.6;
+    topMat.opacity=1-.6*xt; topMat.depthWrite=xt<.05; topEdges.material.opacity=.6*xt;
+    body.castShadow=xs<.3;
+    fan.userData.rotor.rotation.y=E*Math.PI*3;
+  }
+  function setBars(t,speaking){ bars.forEach((b,i)=>{ const a=speaking?.4+.6*Math.abs(Math.sin(t*9+i*.6)*Math.sin(t*5.3+i*.23+1.3)):b.userData.rest; b.scale.y=Math.max(.012,.22*b.userData.env*a+.012); }); }
+  root.traverse(o=>{ if(o.isMesh && o.material!==M.vent && !o.material.transparent) { o.castShadow=o.castShadow||false; } });
+  return {root,parts,setExplode,setBars,dims:{W,D,TOP,Y0,FZ}};
+}
+
+/* ---------- studio + stage ---------- */
+function envMap(renderer){
+  const pm=new THREE.PMREMGenerator(renderer); let tex;
+  if (THREE.RoomEnvironment){ tex=pm.fromScene(new THREE.RoomEnvironment(),.035).texture; }
+  else { const s=new THREE.Scene(); s.background=new THREE.Color(0x050506);
+    const a=(w,h,k,p)=>{ const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color:new THREE.Color(0xffffff).multiplyScalar(k),side:THREE.DoubleSide})); m.position.set(...p); m.lookAt(0,.5,0); s.add(m); };
+    a(7,3.5,2.4,[-5,6,5]); a(1.4,7,2,[7,2,-2]); a(1.4,7,1.1,[-7,2,-3]); a(6,6,.5,[0,9,-2]); tex=pm.fromScene(s,.035).texture; }
+  pm.dispose(); return tex;
+}
+
+function Stage(el, opts){
+  const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:!!opts.snap});
+  renderer.setPixelRatio(Math.min(devicePixelRatio||1,MOBILE?1.75:2));
+  renderer.outputEncoding=THREE.sRGBEncoding; renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=opts.exposure||.95;
+  renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap; renderer.setClearColor(0,0);
+  el.prepend(renderer.domElement);
+  const scene=new THREE.Scene(); scene.environment=envMap(renderer);
+  const key=new THREE.DirectionalLight(0xffffff,opts.keyLight||1.1); key.position.set(-1.1,8,1.4); key.castShadow=true;
+  key.shadow.mapSize.set(MOBILE?1024:2048,MOBILE?1024:2048); Object.assign(key.shadow.camera,{left:-3,right:3,top:3,bottom:-3,near:.5,far:20}); key.shadow.bias=-.0004; key.shadow.radius=4;
+  scene.add(key); const rimL=new THREE.DirectionalLight(0xcfe9ff,.35); rimL.position.set(4,2,-3); scene.add(rimL);
+  const unit=buildUnit(opts.MARK_D,opts.TEAL_D); scene.add(unit.root);
+  const cam=new THREE.PerspectiveCamera(opts.fov||24,1,.1,80);
+  const view={theta:.62,phi:1.28,r:6.2,ty:.5}; Object.assign(view,opts.view||{});
+  let shift=0, shiftY=0, tween=null, ex=0, exTween=null, speakUntil=0, raf=0, visible=true, onFrame=null, controls=null, lastCam=new THREE.Vector3();
+  unit.setExplode(0); unit.setBars(0,false);
+
+  function applyView(){ const s=Math.sin(view.phi); cam.position.set(view.ty*0+view.r*s*Math.sin(view.theta),view.ty+view.r*Math.cos(view.phi),view.r*s*Math.cos(view.theta)); cam.lookAt(0,view.ty,0); if(controls){ controls.target.set(0,view.ty,0); } }
+  function frame(now){
+    raf=0; let more=false;
+    if (tween){ const k=clamp((now-tween.t0)/tween.ms), e=ease(k); for(const key in tween.to) view[key]=lerp(tween.from[key],tween.to[key],e); if(controls){ applyView(); controls.update(); } else applyView(); if(k<1) more=true; else tween=null; }
+    else if (!controls) applyView();
+    if (exTween){ const k=clamp((now-exTween.t0)/exTween.ms); ex=lerp(exTween.from,exTween.to,ease(k)); if(k<1) more=true; else exTween=null; }
+    unit.setExplode(ex);
+    const sp=!reduceMotion&&now<speakUntil; unit.setBars(now/1000,sp); if(sp) more=true;
+    if (controls && !tween){ controls.update(); if(cam.position.distanceToSquared(lastCam)>1e-8) more=true; }
+    lastCam.copy(cam.position);
+    const cw=el.clientWidth, chh=el.clientHeight; if(shift||shiftY) cam.setViewOffset(cw,chh,-shift*cw,shiftY*chh,cw,chh); else if(cam.view&&cam.view.enabled) cam.clearViewOffset();
+    renderer.render(scene,cam);
+    if (onFrame) onFrame();
+    if (visible&&more) raf=requestAnimationFrame(frame);
+  }
+  const kick=()=>{ if(!raf) raf=requestAnimationFrame(frame); };
+  function resize(){ const w=el.clientWidth,h=el.clientHeight; if(!w||!h) return; renderer.setSize(w,h,false); cam.aspect=w/h; cam.fov=(opts.fov||24)*(cam.aspect<.9?1.25:1); cam.updateProjectionMatrix(); kick(); }
+  new ResizeObserver(resize).observe(el); resize();
+  new IntersectionObserver(es=>{ visible=es[0].isIntersecting; if(visible) kick(); }).observe(el);
+
+  if (opts.orbit && THREE.OrbitControls){
+    applyView();
+    controls=new THREE.OrbitControls(cam,renderer.domElement);
+    Object.assign(controls,{enableDamping:true,dampingFactor:.08,enablePan:false,enableZoom:false,rotateSpeed:.6,minPolarAngle:.25,maxPolarAngle:1.5});
+    controls.target.set(0,view.ty,0); controls.update();
+    controls.addEventListener("start",()=>{ tween=null; el.classList.add("grabbing"); });
+    controls.addEventListener("end",()=>{ el.classList.remove("grabbing"); syncFromCam(); });
+    controls.addEventListener("change",kick);
+  }
+  function syncFromCam(){ const o=cam.position.clone().sub(new THREE.Vector3(0,view.ty,0)); view.r=o.length(); view.phi=Math.acos(clamp(o.y/view.r,-1,1)); view.theta=Math.atan2(o.x,o.z); }
+  requestAnimationFrame(()=>el.classList.add("ready"));
+  const v=new THREE.Vector3(), n=new THREE.Vector3(), toCam=new THREE.Vector3();
+  const api={
+    unit, cam,
+    setView(to,ms){ if(controls) syncFromCam(); if(!ms){ Object.assign(view,to); tween=null; if(controls){ applyView(); controls.update(); } kick(); return; }
+      let t=to.theta; if(t!==undefined){ while(t-view.theta>Math.PI) t-=2*Math.PI; while(t-view.theta<-Math.PI) t+=2*Math.PI; }
+      tween={from:{...view},to:{...view,...to,...(t!==undefined?{theta:t}:{})},t0:performance.now(),ms}; kick(); },
+    zoom(f){ if(controls) syncFromCam(); api.setView({r:clamp(view.r*f,opts.minR||3,opts.maxR||14)},450); },
+    setShift(f,fy=0){ if(Math.abs(f-shift)>.0005||Math.abs(fy-shiftY)>.0005){ shift=f; shiftY=fy; kick(); } },
+    setExplode(e,ms){ if(!ms){ ex=e; exTween=null; } else exTween={from:ex,to:e,t0:performance.now(),ms}; kick(); },
+    getExplode(){ return exTween?exTween.to:ex; },
+    speak(ms){ speakUntil=performance.now()+ms; kick(); },
+    onFrame(cb){ onFrame=cb; },
+    kick,
+    project(part,local,normal){ const g=unit.parts[part]; g.updateMatrixWorld(); v.copy(local).applyMatrix4(g.matrixWorld);
+      let facing=1; if(normal){ n.copy(normal).transformDirection(g.matrixWorld); toCam.copy(cam.position).sub(v).normalize(); facing=n.dot(toCam); }
+      v.project(cam); return {x:(v.x+1)/2*el.clientWidth,y:(1-v.y)/2*el.clientHeight,facing,behind:v.z>1}; },
+    snapshot(to,w,h){ const sv={...view},se=ex,sw=el.clientWidth,sh=el.clientHeight; Object.assign(view,to); unit.setExplode(0); renderer.setSize(w,h,false); cam.aspect=w/h; cam.updateProjectionMatrix(); applyView(); unit.setBars(1.3,true); renderer.render(scene,cam); const url=renderer.domElement.toDataURL("image/png"); Object.assign(view,sv); ex=se; renderer.setSize(sw,sh,false); cam.aspect=sw/sh; cam.updateProjectionMatrix(); kick(); return url; }
+  };
+  applyView(); kick();
+  return api;
+}
+return {Stage};
+})();
+
+</script>
+<script>
+/* ============================================================
+   CONFIGURATION — edit these when you deploy (see README).
+   ============================================================ */
+const CONFIG = {
+  // Free backend: a Google Form that feeds the "Evingo Waitlist" Google Sheet.
+  GOOGLE_FORM: {
+    id: "1FAIpQLSeXimiAcKZsenk4PeEplohexuXODkj95E4efXTi8zqCt4tkGw",
+    fields: { name:"entry.984918207", business:"entry.28966049", email:"entry.1706403641", type:"entry.1855342977",
+              city:"entry.1812042633", phone:"entry.1834278070", interest:"entry.363827994", consent:"entry.994563933", source:"entry.434184316" }
+  },
+  WAITLIST_ENDPOINT: "",   // optional alternative: an Apps Script web-app URL
+  CONTACT_EMAIL: ""
+};
+
+function evaSVG(expr){
+  var M="#14c6dc", BODY="#1b1d22", EDGE="#2a2e36", BAND="#33373f", SCREEN="#05060a", eyes, mouth;
+  var std='<rect x="60" y="74" width="10" height="19" rx="5" fill="'+M+'"/><rect x="90" y="74" width="10" height="19" rx="5" fill="'+M+'"/>';
+  if (expr==="happy"){ eyes='<path d="M57 88q7-11 14 0M89 88q7-11 14 0" stroke="'+M+'" stroke-width="4.5" stroke-linecap="round" fill="none"/>'; mouth='<path d="M70 98q10 9 20 0" stroke="'+M+'" stroke-width="4" stroke-linecap="round" fill="none"/>'; }
+  else if (expr==="listening"){ eyes=std; mouth='<path d="M75 101h10" stroke="'+M+'" stroke-width="4" stroke-linecap="round"/>'; }
+  else if (expr==="talk"){ eyes=std; mouth='<rect x="73" y="97" width="14" height="9" rx="4.5" fill="'+M+'"/>'; }
+  else { eyes=std; mouth='<path d="M72 99q8 6 16 0" stroke="'+M+'" stroke-width="4" stroke-linecap="round" fill="none"/>'; }
+  return '<svg viewBox="0 0 160 160" aria-hidden="true" style="width:100%;height:100%"><path d="M30 66C30 20 130 20 130 66" stroke="'+BAND+'" stroke-width="7" stroke-linecap="round" fill="none"/><rect x="28" y="42" width="104" height="100" rx="30" fill="'+BODY+'" stroke="'+EDGE+'" stroke-width="1.5"/><rect x="42" y="62" width="76" height="50" rx="14" fill="'+SCREEN+'"/>'+eyes+mouth+'<rect x="17" y="58" width="16" height="30" rx="7" fill="'+BAND+'"/><rect x="127" y="58" width="16" height="30" rx="7" fill="'+BAND+'"/><path d="M25 86c0 26 14 34 34 33" stroke="'+BAND+'" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="61" cy="119" r="4.5" fill="'+M+'"/><rect x="52" y="135" width="56" height="2.5" rx="1.25" fill="'+M+'"/></svg>';
+}
+
+(function(){
+"use strict";
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const clamp = (v,a=0,b=1) => Math.min(b,Math.max(a,v));
+const ease = t => t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+const ramp = (p,a,b) => ease(clamp((p-a)/(b-a)));
+$("#yr").textContent = new Date().getFullYear();
+if (CONFIG.CONTACT_EMAIL){ const a=$("#contactLink"); a.href="mailto:"+CONFIG.CONTACT_EMAIL; a.textContent="Contact"; $("#contactItem").hidden=false; }
+
+/* ---------- Nav: theme follows the section underneath ---------- */
+const nav=$("#nav"), menuBtn=$("#menuBtn"), floatCta=$("#floatCta");
+const setMenu=o=>{ nav.classList.toggle("open",o); menuBtn.setAttribute("aria-expanded",o); menuBtn.textContent=o?"Close":"Menu"; };
+menuBtn.addEventListener("click",()=>setMenu(!nav.classList.contains("open")));
+$$("#mobileMenu a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
+const themed=$$("[data-theme]");
+function navTheme(){
+  const y=32; let cur=null;
+  for (const s of themed){ const r=s.getBoundingClientRect(); if (r.top<=y && r.bottom>y && s.id!=="top") cur=s; }
+  if (!cur) cur=$("#top");
+  nav.classList.toggle("on-paper", cur.dataset.theme!=="ink"); nav.classList.toggle("on-teal", cur.dataset.theme==="teal"); nav.classList.toggle("solid", scrollY>innerHeight*0.6);
+  const id=cur.id; $$(".nav-links a").forEach(a=>a.setAttribute("aria-current", a.getAttribute("href")==="#"+id));
+  const wl=$("#waitlist").getBoundingClientRect();
+  const st=$("#studio").getBoundingClientRect(), inStudio=innerWidth<700 && st.top<innerHeight && st.bottom>0;
+  floatCta.classList.toggle("show", scrollY>innerHeight*0.9 && !(wl.top<innerHeight && wl.bottom>0) && !inStudio);
+}
+
+/* ---------- Word-by-word heading reveal + fades (run once) ---------- */
+$$(".split").forEach(el=>{
+  let i=0;
+  const walk=node=>{ [...node.childNodes].forEach(n=>{
+    if (n.nodeType===3){ const frag=document.createDocumentFragment();
+      n.textContent.split(/(\s+)/).forEach(part=>{ if(!part) return; if(/^\s+$/.test(part)){ frag.append(part); return; } const m=document.createElement("span"); m.className="wm"; const w=document.createElement("span"); w.className="w"; w.style.transitionDelay=(i++*55)+"ms"; w.textContent=part; m.append(w); frag.append(m); });
+      n.replaceWith(frag);
+    } else if (n.nodeType===1 && n.tagName!=="BR") walk(n);
+  }); };
+  walk(el);
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); if(e.target.dataset.count!==undefined) countUp(e.target); e.target.querySelectorAll("[data-count]").forEach(countUp); } }),{threshold:.15,rootMargin:"0px 0px -40px 0px"});
+$$(".split,.fade,.band-num").forEach(el=>io.observe(el));
+const wipeIO=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.querySelectorAll(":scope > .wipe").forEach(w=>w.classList.add("in")); wipeIO.unobserve(e.target); } }),{threshold:.12});
+new Set($$(".wipe").map(w=>w.parentElement)).forEach(p=>wipeIO.observe(p));
+function countUp(el){ if(el._done) return; el._done=true; const n=+el.dataset.count; if(reduceMotion){ el.textContent=n; return; } const t0=performance.now(); const tick=t=>{ const k=clamp((t-t0)/1100); el.textContent=Math.round(n*ease(k)); if(k<1) requestAnimationFrame(tick); }; el.textContent="0"; requestAnimationFrame(tick); }
+
+/* ---------- Duty pills ---------- */
+const DUTIES=[
+  ["Answers incoming business calls.","Understands natural conversation — no “press 1 for…” menus.","Handles common questions, like hours and location.","Gives every caller the same consistent experience."],
+  ["Checks what's open.","Books new appointments.","Reschedules existing ones.","Cancels them, so the slot opens back up.","Connects to supported calendar systems.<span class='planned'>Planned</span>"],
+  ["Handles calls outside regular business hours.","Takes repetitive calls off your front-desk staff.","Keeps you reachable when nobody's at the desk."],
+  ["Designed for clinics, dental offices and appointment-based businesses.","A simple interface for staff.","Minimal technical knowledge required."]
+];
+const dutyPanel=$("#dutyPanel");
+function showDuty(i){ $$(".pills .pill").forEach((b,k)=>b.setAttribute("aria-selected",k===i)); dutyPanel.innerHTML="<ul>"+DUTIES[i].map(t=>"<li><span>"+t+"</span></li>").join("")+"</ul>"; }
+$$(".pills .pill").forEach((b,k)=>b.addEventListener("click",()=>showDuty(k))); showDuty(0);
+
+/* ---------- Setup tabs ---------- */
+const TABS=[
+  ["01","Install","Connect Evingo to your business phone system, configure your business information, and get started.",'<rect x="12" y="34" width="86" height="50" fill="none" stroke="currentColor" stroke-width="2"/><path d="M34 52v14M42 47v24M50 43v32M58 49v20M66 53v12" stroke="#01a3b8" stroke-width="3"/><path d="M98 59h10" stroke="currentColor" stroke-width="2"/>'],
+  ["02","Operate","Evingo answers incoming calls and handles customer inquiries and appointment requests.",'<path d="M30 20h16l8 20-10 6a44 44 0 0020 20l6-10 20 8v16a8 8 0 01-8 8C50 86 26 62 22 28a8 8 0 018-8z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M70 22a20 20 0 0118 18" stroke="#01a3b8" stroke-width="3" fill="none"/>'],
+  ["03","Manage","Your staff can oversee appointments and business settings through a simple interface.",'<rect x="14" y="20" width="82" height="62" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 34h82" stroke="currentColor" stroke-width="2"/><path d="M26 48h26M26 60h38M26 72h18" stroke="currentColor" stroke-width="2"/><path d="M72 46h12v12H72z" fill="#01a3b8"/>']
+];
+const tabPanel=$("#tabPanel");
+function showTab(i){ $$(".tabs .pill").forEach((b,k)=>b.setAttribute("aria-selected",k===i)); const t=TABS[i]; tabPanel.innerHTML='<div><span class="n">'+t[0]+' / 03</span><h3>'+t[1]+'</h3><p>'+t[2]+'</p></div><svg viewBox="0 0 110 110" aria-hidden="true">'+t[3]+'</svg>'; }
+$$(".tabs .pill").forEach((b,k)=>b.addEventListener("click",()=>showTab(k))); showTab(0);
+
+/* ---------- Eva placements + example call dialog ---------- */
+$("#dayAva").innerHTML=evaSVG("idle"); $("#dlgAva").innerHTML=evaSVG("idle"); $("#evaHappy").innerHTML=evaSVG("happy");
+const CALL=[["eva","Thanks for calling Lakeview Dental, this is Eva. How can I help?"],["caller","Hi, I need to move my cleaning on Thursday."],["eva","Sure. Can I get your name and date of birth?"],["caller","Dana Moore, March 3rd, 1988."],["eva","Thanks, Dana. I see you on Thursday at 2:30. I have Friday at 10:00 or Monday at 3:15 — which works better?"],["caller","Monday's good."],["eva","Done. You're booked for Monday at 3:15, and Thursday is cancelled. Anything else?"],["caller","That's it, thanks!"]];
+const lines=$("#lines"), dlg=$("#callDialog"), playBtn=$("#playCall"), dlgAva=$("#dlgAva");
+const lineEl=(w,t)=>{ const d=document.createElement("div"); d.className="line "+w; const s=document.createElement("small"); s.textContent=w==="eva"?"Eva":"Caller"; d.append(s,document.createTextNode(t)); return d; };
+const showAll=()=>{ lines.innerHTML=""; CALL.forEach(([w,t])=>{ const l=lineEl(w,t); l.style.animation="none"; lines.append(l); }); };
+let run=0;
+function play(){ const me=++run; lines.innerHTML=""; playBtn.disabled=true; playBtn.textContent="Playing…"; let i=0;
+  const step=()=>{ if(me!==run) return; if(i>=CALL.length){ dlgAva.innerHTML=evaSVG("happy"); playBtn.disabled=false; playBtn.textContent="Replay"; return; }
+    const [w,t]=CALL[i++]; dlgAva.innerHTML=evaSVG(w==="eva"?"talk":"listening"); lines.append(lineEl(w,t)); lines.scrollTop=lines.scrollHeight; setTimeout(step, reduceMotion?250:650+t.length*24); };
+  step(); }
+$("#openCall").addEventListener("click",()=>{ showAll(); playBtn.disabled=false; playBtn.textContent="Play the call"; dlgAva.innerHTML=evaSVG("idle"); if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open",""); if(window.__lenis) window.__lenis.stop(); });
+dlg.addEventListener("close",()=>{ if(window.__lenis) window.__lenis.start(); });
+$("#closeCall").addEventListener("click",()=>{ run++; dlg.close ? dlg.close() : dlg.removeAttribute("open"); });
+dlg.addEventListener("click",e=>{ if(e.target===dlg){ run++; dlg.close(); } });
+playBtn.addEventListener("click",play);
+
+/* ---------- Fallback art ---------- */
+const fb=$("#fallbackSvg"); $$(".stage .fallback").forEach(f=>f.appendChild(fb.content.cloneNode(true)));
+
+/* ============================================================
+   3D — hero, breakdown (scroll), explore (interactive)
+   ============================================================ */
+const MARK_D="M948.2 1136.7L912.0 1100.5L912.0 933.0L912.0 765.6L948.2 729.3L984.5 693.0L1176.2 693.0L1368.0 693.0L1368.0 693.5L1368.0 694.0L1344.3 729.5L1320.7 765.0L1164.6 765.2L1008.5 765.5L1008.2 831.2L1008.0 897.0L1104.3 897.0L1200.5 897.0L1218.5 915.0L1236.5 933.0L1218.5 951.0L1200.5 969.0L1104.5 969.2L1008.5 969.5L1008.2 1035.2L1008.0 1101.0L1164.2 1101.2L1320.5 1101.5L1343.3 1135.5L1366.1 1169.5L1367.1 1171.2L1368.1 1173.0L1176.3 1173.0L984.5 1173.0L948.2 1136.7Z", TEAL_D="M1275.0 991.8L1275.0 990.5L1303.7 961.8L1332.5 933.0L1303.7 904.2L1275.0 875.5L1275.0 874.2L1275.0 873.0L1297.7 873.0L1320.4 873.0L1350.2 902.7L1380.0 932.5L1379.7 933.3L1379.5 934.0L1350.0 963.5L1320.5 993.0L1297.8 993.0L1275.0 993.0L1275.0 991.8Z";
+function canGL(){ try{ const c=document.createElement("canvas"); return !!(window.WebGLRenderingContext&&(c.getContext("webgl")||c.getContext("experimental-webgl"))); }catch(e){ return false; } }
+let hero=null, bd=null, xp=null, V3=null;
+
+/* Breakdown scene */
+const bdEl=$("#insideStage"), bdLines=$("#bdLines"), bdLabels=$("#bdLabels"), bdLegend=$("#bdLegend");
+const BD=[
+  ["top",[0,.02,0],"Top plate","Brushed aluminium, engraved mark"],
+  ["shell",[.74,.62,.2],"Aluminium shell","Vents on both sides and the back"],
+  ["front",[-.46,.12,0],"Display module","Waveform moves while Eva talks"],
+  ["fan",[0,.03,0],"Cooling fan","Pushes air out through the vents"],
+  ["cooler",[.12,.26,0],"Processor & cooler","Where the core AI runs, locally"],
+  ["memory",[0,.07,.25],"Memory","Working memory for the AI"],
+  ["power",[.12,.08,0],"Power supply","Built in, concept"],
+  ["storage",[.15,.01,0],"On-site storage","Appointment and caller data"],
+  ["board",[-.5,.05,.5],"Mainboard","Concept layout, not final"],
+  ["base",[.6,.04,.6],"Base & status light","Teal strip shows it's on"]
+];
+BD.forEach((b,i)=>{ const el=document.createElement("div"); el.className="bl"; el.innerHTML='<span class="num">'+String(i+1).padStart(2,"0")+'</span><b>'+b[2]+'</b><small>'+b[3]+'</small>'; bdLabels.append(el); b.el=el;
+  const mk=document.createElement("div"); mk.className="bd-mk"; mk.textContent=i+1; bdLabels.append(mk); b.mk=mk;
+  const li=document.createElement("li"); li.innerHTML="<span>"+(i+1)+"</span>"+b[2]; bdLegend.append(li); });
+let bdP=-1, bdShown=0;
+const SMALL_BD=matchMedia("(max-width: 860px)").matches;
+const BD_SIDE={top:"R",shell:"R",fan:"R",power:"R",storage:"R",front:"L",cooler:"L",memory:"L",board:"L",base:"L"};
+const BD_ORDER={L:["cooler","front","memory","board","base"],R:["top","shell","fan","power","storage"]};
+function bdLayout(){
+  if(!bd) return; const W=bdEl.clientWidth, H=bdEl.clientHeight, colW=230;
+  const pad=Math.max(28,(W-1280)/2+32), top=Math.max(110,H*.13), bottom=H-170;
+  const cols={L:BD_ORDER.L.map(n=>BD.findIndex(b=>b[0]===n)),R:BD_ORDER.R.map(n=>BD.findIndex(b=>b[0]===n))};
+  let svg="";
+  ["L","R"].forEach(side=>{ const ids=cols[side], step=(bottom-top)/Math.max(1,ids.length-1);
+    ids.forEach((i,k)=>{ const b=BD[i], lx= side==="L"?pad:W-pad-colW, ly=Math.round(top+k*step-26);
+      b.el.style.left=lx+"px"; b.el.style.top=ly+"px";
+      const pt=bd.project(b[0],new V3(...b[1])), on=i<bdShown;
+      b.el.classList.toggle("show",on); b.mk.classList.toggle("show",on);
+      b.mk.style.transform="translate("+pt.x.toFixed(1)+"px,"+pt.y.toFixed(1)+"px)";
+      if(on){ const ex= side==="L"?lx+colW:lx, ey=ly+26, mx= side==="L"? ex+24 : ex-24;
+        svg+='<polyline fill="none" stroke="#4a4f59" points="'+ex+','+ey+' '+mx+','+ey+' '+pt.x.toFixed(1)+','+pt.y.toFixed(1)+'"/><rect x="'+(pt.x-3.5).toFixed(1)+'" y="'+(pt.y-3.5).toFixed(1)+'" width="7" height="7"/>'; }
+    });
+  });
+  bdLines.innerHTML=svg;
+}
+function bdProgress(p){
+  if(Math.abs(p-bdP)<.00015) return; bdP=p;
+  const open=ramp(p,.12,.5), close=ramp(p,.84,.97), E=open*(1-close);
+  $("#bdIntro").style.opacity=1-ramp(p,.06,.14);
+  $("#bdOutro").classList.toggle("show",p>.9);
+  $("#bdBar").style.width=(p*100).toFixed(1)+"%";
+  $("#bdPhase").textContent= p<.12?"Assembled": p<.5?"Opening": p<.84?"Inside": p<.97?"Closing":"Assembled";
+  const lk=ramp(p,.46,.74)*(1-ramp(p,.8,.86)); bdShown=Math.round(lk*BD.length);
+  bdLegend.classList.toggle("show",bdShown>0);
+  [...bdLegend.children].forEach((li,i)=>li.style.opacity=i<bdShown?1:.25);
+  if(bd){
+    const th=.55+.35*ramp(p,0,.5)+.35*ramp(p,.5,.84)-.7*ramp(p,.84,1);
+    bd.setExplode(E);
+    bd.setView({theta:th,phi:lerp(1.3,1.18,E),r:SMALL_BD?lerp(9.5,13.5,E):lerp(7.6,12.2,E),ty:lerp(.5,1.85,E)});
+    if(!SMALL_BD) bd.setShift(.2*(1-ramp(p,.1,.3)) + .2*ramp(p,.86,.97),0);
+    else bd.setShift(0,lerp(-.17,.12,E));
+    if(p>.02&&p<.1&&!bd._spoke){ bd._spoke=true; bd.speak(2200); } if(p>.2) bd._spoke=false;
+  }
+}
+const lerp=(a,b,t)=>a+(b-a)*t;
+
+/* Explore studio */
+const VIEWS3={front:{theta:0,phi:1.33},three:{theta:.62,phi:1.24},side:{theta:Math.PI/2,phi:1.33},back:{theta:Math.PI,phi:1.33},top:{theta:.35,phi:.42}};
+const SMALL=matchMedia("(max-width: 700px)").matches;
+const CLOSED={r:SMALL?8.2:5.8,ty:.5}, OPEN={r:SMALL?15:10.9,ty:1.8};
+const HS=[
+  {m:0,part:"front",at:[.33,.12,.01],n:[0,0,1],t:"Waveform display",x:"Moves while Eva is on a call. A glass front with nothing to press.",v:{theta:.12,phi:1.36,r:3.9,ty:.6}},
+  {m:0,part:"base",at:[.5,.04,.62],n:[0,0,1],t:"Status light",x:"A teal strip around the base shows the unit is on.",v:{theta:.55,phi:1.42,r:4.2,ty:.25}},
+  {m:0,part:"shell",at:[.755,.5,.15],n:[1,0,0],t:"Ventilation",x:"Perforated panels on both sides and the back, for running day and night.",v:{theta:1.45,phi:1.32,r:4.4,ty:.5}},
+  {m:0,part:"shell",at:[-.2,.16,-.755],n:[0,0,-1],t:"Rear connections",x:"Power, network and phone-line connections. Concept only — the final ports aren't decided.",v:{theta:Math.PI-.3,phi:1.38,r:3.8,ty:.3}},
+  {m:0,part:"top",at:[.3,.022,.3],n:[0,1,0],t:"Top plate",x:"Brushed aluminium with the Evingo mark engraved in the centre.",v:{theta:.4,phi:.5,r:5,ty:.6}},
+  {m:1,part:"cooler",at:[0,.27,0],t:"Processor & cooler",x:"Where the core AI is designed to run, on the unit itself. Copper heat pipes carry heat to the fins."},
+  {m:1,part:"fan",at:[0,.035,0],t:"Cooling fan",x:"Pulls heat away and pushes it out through the vents."},
+  {m:1,part:"memory",at:[0,.075,.2],t:"Memory",x:"Working memory for the AI. Amount not decided."},
+  {m:1,part:"storage",at:[0,.012,0],t:"On-site storage",x:"Where appointment records and caller details are designed to stay."},
+  {m:1,part:"power",at:[0,.09,0],t:"Power supply",x:"Built into the unit in this concept."},
+  {m:1,part:"board",at:[-.45,.06,.45],t:"Mainboard",x:"Connects every part. This layout is a concept, not a final design."}
+];
+let mode=0, viewKey="three";
+const hsWrap=$("#hotspots"), exN=$("#exN"), exTitle=$("#exTitle"), exText=$("#exText");
+HS.forEach((h,i)=>{ const b=document.createElement("button"); b.type="button"; b.className="hs off"; b.textContent=i+1; b.setAttribute("aria-label",h.t); b.addEventListener("click",()=>pickHS(i)); hsWrap.append(b); h.el=b; });
+function pickHS(i){ const h=HS[i]; HS.forEach((o,k)=>o.el.setAttribute("aria-pressed",k===i));
+  exN.textContent=String(i+1).padStart(2,"0")+(h.m?" · inside":" · outside"); exTitle.textContent=h.t; exText.textContent=h.x;
+  if(xp&&h.v) xp.setView(h.v,1000); }
+function hsLayout(){ if(!xp) return; HS.forEach(h=>{ if(h.m!==mode){ h.el.classList.add("off"); return; }
+  const p=xp.project(h.part,new V3(...h.at),h.n?new V3(...h.n):null); const ok=!p.behind&&p.facing>.08;
+  h.el.classList.toggle("off",!ok); h.el.style.transform="translate("+p.x.toFixed(0)+"px,"+p.y.toFixed(0)+"px)"; }); }
+function setMode(m){ mode=m; $$(".seg [data-mode]").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.mode===m)); HS.forEach(o=>o.el.removeAttribute("aria-pressed"));
+  exN.textContent=m?"Open · concept layout":"Concept model"; exTitle.textContent=m?"Inside the unit":"Pick a number"; exText.textContent=m?"A concept of how the parts could fit. Tap a number for each part.":"Each numbered point explains one part. Switch to “Open” to see inside.";
+  if(xp){ xp.setExplode(m,1400); xp.setView({...VIEWS3[viewKey==="top"?"three":viewKey],...(m?OPEN:CLOSED)},1400); } }
+function setView3(k){ viewKey=k; $$(".views [data-v]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===k)); if(xp) xp.setView({...VIEWS3[k],...(mode?OPEN:CLOSED),...(k==="top"?{r:mode?11:6.2}:{})},1000); }
+$$(".seg [data-mode]").forEach(b=>b.addEventListener("click",()=>setMode(+b.dataset.mode)));
+$$(".views [data-v]").forEach(b=>b.addEventListener("click",()=>setView3(b.dataset.v)));
+$("#zoomIn").addEventListener("click",()=>xp&&xp.zoom(.84)); $("#zoomOut").addEventListener("click",()=>xp&&xp.zoom(1.19));
+$("#resetView").addEventListener("click",()=>{ setView3("three"); });
+
+/* ---------- Day: scroll-scrubbed timeline ---------- */
+const DAY=[["7:42","AM","Before you open"],["12:10","PM","Lunch rush"],["5:52","PM","After close"],["9:30","PM","Late night"]];
+const feedLis=$$("#feed > li"), clock=$("#clock"), dayTitle=$("#dayTitle"); let dayIdx=0;
+function setClock(i){
+  if (i===dayIdx) return; const dir=i>dayIdx?1:-1; dayIdx=i;
+  const old=clock.querySelector(".t:not(.out)"); const nt=document.createElement("div"); nt.className="t wait"; if(dir<0) nt.style.transform="translateY(-100%)";
+  nt.innerHTML=DAY[i][0]+"<small>"+DAY[i][1]+"</small>"; clock.append(nt);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ nt.classList.remove("wait"); nt.style.transform=""; if(old){ old.classList.add("out"); if(dir<0) old.style.transform="translateY(100%)"; setTimeout(()=>old.remove(),600); } }));
+  dayTitle.textContent=DAY[i][2];
+}
+function dayProgress(p){
+  const i=Math.min(3,Math.floor(p*4.0001)); setClock(i);
+  feedLis.forEach((li,k)=>{ li.classList.toggle("now",k===i); li.classList.toggle("past",k<i); });
+}
+
+/* ---------- Hero scroll transition ---------- */
+const heroStageEl=$("#heroStage"), heroWord=$("#heroWord"), heroBottom=$("#heroBottom");
+function heroProgress(h){
+  if (h>=1 && heroStageEl._h===1) return; heroStageEl._h=h;
+  heroStageEl.style.transform="translateX(-50%) translateY("+(-h*12)+"%) scale("+(1-h*.18)+")";
+  heroWord.style.transform="translateX(-50%) translateY("+(h*-6)+"%) scale("+(1+h*.32)+")"; heroWord.style.opacity=1-h*1.1;
+  heroBottom.style.opacity=1-h*1.8; heroBottom.style.transform="translateY("+(h*-60)+"px)";
+}
+
+/* ---------- Scroll driver: smooth page scroll + eased scene progress ---------- */
+const secP=sel=>{ const s=$(sel), r=s.getBoundingClientRect(); return clamp(-r.top/Math.max(1,s.offsetHeight-innerHeight)); };
+const SM={hero:{t:0,c:-1},bd:{t:0,c:-1},day:{t:0,c:-1}};
+let lenis=null, smRaf=0;
+function readTargets(){ SM.hero.t=clamp(scrollY/innerHeight); SM.bd.t=secP("#unit"); SM.day.t=secP("#day"); }
+function smLoop(){
+  smRaf=0; let moving=false; const k=reduceMotion?1:(lenis?.3:.14);
+  for(const key in SM){ const o=SM[key]; if(o.c<0){ o.c=o.t; continue; } const d=o.t-o.c; if(Math.abs(d)>.0002){ o.c+=d*k; moving=true; } else o.c=o.t; }
+  heroProgress(SM.hero.c); bdProgress(SM.bd.c); dayProgress(SM.day.c);
+  if(moving) smRaf=requestAnimationFrame(smLoop);
+}
+function onScroll(){ navTheme(); readTargets(); if(!smRaf) smRaf=requestAnimationFrame(smLoop); }
+if (window.Lenis && !reduceMotion){
+  try{ lenis=new Lenis({lerp:.095,smoothWheel:true,wheelMultiplier:.95}); lenis.on("scroll",onScroll); window.__lenis=lenis;
+    const tick=t=>{ lenis.raf(t); requestAnimationFrame(tick); }; requestAnimationFrame(tick);
+  }catch(e){ lenis=null; }
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest('a[href^="#"]'); if(!a) return; const id=a.getAttribute("href"); if(id.length<2) return;
+  const t= id==="#top" ? 0 : document.querySelector(id); if(t===null) return;
+  e.preventDefault();
+  if (lenis) lenis.scrollTo(t,{duration:1.5,easing:x=>1-Math.pow(1-x,4)});
+  else if (t===0) scrollTo({top:0,behavior:reduceMotion?"auto":"smooth"}); else t.scrollIntoView({behavior:reduceMotion?"auto":"smooth"});
+  try{ history.replaceState(null,"",id); }catch(_){}
+});
+addEventListener("scroll",onScroll,{passive:true}); addEventListener("resize",()=>{ bdP=-1; onScroll(); });
+onScroll();
+setTimeout(()=>heroWord.classList.add("in"),150);
+
+/* ---------- Start 3D ---------- */
+function initStages(){
+  if (!window.THREE||!canGL()) return;
+  V3=THREE.Vector3;
+  const common={MARK_D,TEAL_D};
+  try{
+    hero=Unit3D.Stage(heroStageEl,{...common,snap:true,fov:24,view:{theta:.62,phi:1.3,r:9.5,ty:.5}});
+    hero.setView({r:6.4},1800); setTimeout(()=>hero.speak(2600),900);
+    setTimeout(()=>{ try{ const img=$("#beautyImg"), fig=img.parentElement, sc=Math.min(2,1500/Math.max(fig.clientWidth,1)); img.src=hero.snapshot({theta:-.58,phi:1.4,r:5.4,ty:.4},Math.round(fig.clientWidth*sc),Math.round(fig.clientHeight*sc)); img.hidden=false; fig.classList.add("has-img"); }catch(e){} },400);
+  }catch(e){ console.warn(e); }
+  const lazy=(el,fn)=>new IntersectionObserver((es,o)=>{ if(es[0].isIntersecting){ o.disconnect(); try{ fn(); }catch(e){ console.warn(e); } } },{rootMargin:"600px"}).observe(el);
+  lazy(bdEl,()=>{ bd=Unit3D.Stage(bdEl,{...common,fov:24,exposure:1.1,view:{theta:.55,phi:1.3,r:6.6,ty:.5}}); bd.onFrame(bdLayout); bdP=-1; SM.bd.c=-1; onScroll(); });
+  lazy($("#exploreStage"),()=>{ xp=Unit3D.Stage($("#exploreStage"),{...common,fov:24,orbit:true,minR:2.6,maxR:15,view:{...VIEWS3.three,...CLOSED}}); xp.onFrame(hsLayout); setView3("three"); });
+}
+let started=false; const go=()=>{ if(started) return; started=true; initStages(); };
+if (document.fonts&&document.fonts.ready) document.fonts.ready.then(go,go); setTimeout(go,1500);
+
+/* ============================================================
+   WAITLIST — artifact DB (owner preview) → Apps Script endpoint
+   ============================================================ */
+const form=$("#waitlistForm"), wrap=$("#formWrap"), btn=$("#submitBtn"), errBox=$("#formError"), note=$("#previewNote");
+let claudeDb=null;
+const backendReady=(async()=>{
+  if (window.claude&&typeof window.claude.use==="function"){ try{ const [db,user]=await Promise.all([window.claude.use("db"),window.claude.use("user")]); if(db){ let cw=null; try{ cw=user?await user.canEdit():null; }catch(e){} if(cw!==false) claudeDb=db; } }catch(e){} }
+  const onClaude=/(^|\.)claude(usercontent)?\.(ai|com)$/.test(location.hostname);
+  if (!claudeDb&&(onClaude||(!CONFIG.GOOGLE_FORM&&!CONFIG.WAITLIST_ENDPOINT))){ note.textContent="This is a preview of the Evingo site. The waitlist isn't connected to storage here, so submissions can't be saved yet."; note.classList.add("show"); }
+})();
+const EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const val=n=>{ const el=form.elements[n]; return el?String(el.value||"").trim():""; };
+function getData(){ const i=form.querySelector('input[name="interest"]:checked'); return {name:val("name"),business:val("business"),email:val("email").toLowerCase(),type:val("type"),city:val("city"),phone:val("phone"),interest:i?i.value:"",consent:form.elements.consent.checked,website:val("website")}; }
+function validate(d){ const e={};
+  if(d.name.length<2) e.name="Please enter your full name."; if(d.business.length<2) e.business="Please enter your business name.";
+  if(!d.email) e.email="Please enter your business email."; else if(!EMAIL_RE.test(d.email)) e.email="That email doesn't look right.";
+  if(!d.type) e.type="Please choose your business type."; if(d.city.length<2) e.city="Please enter your city or location.";
+  if(d.phone){ const n=d.phone.replace(/\D/g,""); if(n.length<10||n.length>15||/[^\d\s()+.\-]/.test(d.phone)) e.phone="Enter a valid phone number, or leave it blank."; }
+  if(!d.interest) e.interest="Please choose one option."; if(!d.consent) e.consent="Please agree so we can email you about Evingo."; return e; }
+function showErrors(e){ form.querySelectorAll(".field").forEach(f=>{ const k=f.dataset.field,m=e[k]; f.classList.toggle("invalid",!!m); const s=document.getElementById("e-"+k); if(s) s.textContent=m||""; const inp=f.querySelector(".input"); if(inp) inp.setAttribute("aria-invalid",m?"true":"false"); }); }
+["input","change"].forEach(t=>form.addEventListener(t,ev=>{ const f=ev.target.closest(".field"); if(f&&f.classList.contains("invalid")) showErrors(validate(getData())); }));
+async function sha256(s){ if(crypto&&crypto.subtle){ const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)); return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join(""); } let h=0; for(let i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))|0; return "h"+(h>>>0).toString(16); }
+async function toClaudeDb(p){ const ref=claudeDb.doc("waitlist/"+await sha256(p.email)); const snap=await ref.get(); if(snap.exists) return {ok:true,duplicate:true}; await ref.set(p); return {ok:true}; }
+const SEEN_KEY="evingo-waitlist-seen";
+function seenEmails(){ try{ return JSON.parse(localStorage.getItem(SEEN_KEY)||"[]"); }catch(e){ return []; } }
+function rememberEmail(h){ try{ const a=seenEmails(); if(!a.includes(h)){ a.push(h); localStorage.setItem(SEEN_KEY,JSON.stringify(a.slice(-20))); } }catch(e){} }
+async function toGoogleForm(p){
+  const F=CONFIG.GOOGLE_FORM, h=await sha256(p.email);
+  if (seenEmails().includes(h)) return {ok:true,duplicate:true};
+  const body=new URLSearchParams();
+  body.append(F.fields.name,p.name); body.append(F.fields.business,p.business); body.append(F.fields.email,p.email);
+  body.append(F.fields.type,p.type); body.append(F.fields.city,p.city); body.append(F.fields.phone,p.phone||"");
+  body.append(F.fields.interest,p.interest); body.append(F.fields.consent,"Yes"); body.append(F.fields.source,p.source);
+  const c=new AbortController(), to=setTimeout(()=>c.abort(),20000);
+  try{ await fetch("https://docs.google.com/forms/d/e/"+F.id+"/formResponse",{method:"POST",mode:"no-cors",body,signal:c.signal}); }
+  finally{ clearTimeout(to); }
+  rememberEmail(h); return {ok:true};
+}
+async function toEndpoint(p){ const c=new AbortController(),to=setTimeout(()=>c.abort(),20000);
+  try{ const res=await fetch(CONFIG.WAITLIST_ENDPOINT,{method:"POST",body:JSON.stringify(p),signal:c.signal}); const j=await res.json().catch(()=>null);
+    if(!res.ok||!j) throw new Error("bad_response"); if(!j.ok){ const er=new Error(j.message||"rejected"); er.server=true; throw er; } return j; } finally{ clearTimeout(to); } }
+let busy=false;
+form.addEventListener("submit",async ev=>{
+  ev.preventDefault(); if(busy) return; errBox.classList.remove("show");
+  const d=getData(),e=validate(d); showErrors(e);
+  if(Object.keys(e).length){ const f=form.querySelector(".field.invalid input, .field.invalid select"); if(f) f.focus(); return; }
+  busy=true; btn.disabled=true; btn.classList.add("loading");
+  const p={name:d.name,business:d.business,email:d.email,type:d.type,city:d.city,phone:d.phone,interest:d.interest,consent:true,website:d.website,submittedAt:new Date().toISOString(),source:location.hostname||"evingo-site"};
+  try{
+    if(d.website){ await new Promise(r=>setTimeout(r,600)); return showSuccess(d,false); }
+    await Promise.race([backendReady,new Promise(r=>setTimeout(r,10000))]);
+    let r; if(claudeDb) r=await toClaudeDb(p); else if(CONFIG.GOOGLE_FORM) r=await toGoogleForm(p); else if(CONFIG.WAITLIST_ENDPOINT) r=await toEndpoint(p); else { const er=new Error("not_connected"); er.code="not_connected"; throw er; }
+    showSuccess(d,!!r.duplicate);
+  }catch(err){
+    let m="We couldn't add you to the waitlist just now. Check your connection and try again.";
+    if(err&&err.code==="not_connected") m="The waitlist isn't connected in this preview, so nothing was saved. Please try again on the live Evingo website.";
+    else if(err&&err.server&&err.message) m=err.message; else if(err&&err.code==="quota_exceeded") m="The waitlist is temporarily full on our side. Please try again later.";
+    errBox.textContent=m; errBox.classList.add("show");
+  }finally{ busy=false; btn.disabled=false; btn.classList.remove("loading"); }
+});
+function showSuccess(d,dup){
+  $("#successTitle").textContent=dup?"You're already on the list.":"You're on the list, "+d.name.split(/\s+/)[0]+".";
+  $("#successText").textContent=dup?"We already have "+d.email+" on the Evingo waitlist. Nothing more to do.":d.business+" is on the Evingo early-access list. Eva says hi.";
+  $("#nextThird").textContent=({"Wants to be a pilot business":"We'll reach out about pilot opportunities as we pick our first businesses.","Wants to reserve a device at pre-order":"You'll be among the first to know when pre-orders open.","Interested in early access":"We'll let you know as early-access spots open up."})[d.interest]||"We'll reach out about pilots and pre-orders when they open.";
+  wrap.classList.add("done"); $("#success").focus({preventScroll:true});
+  scrollTo({top:wrap.getBoundingClientRect().top+scrollY-100,behavior:reduceMotion?"auto":"smooth"});
+}
+})();
+</script>
+</body>
+</html>
