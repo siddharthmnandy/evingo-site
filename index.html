@@ -18,7 +18,7 @@
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Evingo logo with the line: Your front desk, powered by AI.">
 <meta name="twitter:card" content="summary_large_image">
-<script>document.documentElement.classList.add("js")</script>
+<script>document.documentElement.classList.add("js");if("scrollRestoration" in history)history.scrollRestoration="manual";if(location.hash)history.replaceState(null,"",location.pathname+location.search);addEventListener("load",function(){scrollTo(0,0)});</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
@@ -275,6 +275,73 @@ dialog::backdrop{background:rgba(5,6,8,.72)}
 
 /* PRIVACY */
 .privacy{padding:140px 0 130px}
+.kit{margin-top:110px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px 72px;align-items:start}
+.kit-head{display:grid;gap:22px;justify-items:start}
+.kit-head h3{font-size:clamp(30px,3.6vw,54px);line-height:.95;text-transform:uppercase;font-stretch:122%;font-weight:800;letter-spacing:-.02em}
+.kit-head h3 .dim{color:transparent;-webkit-text-stroke:1.2px var(--fg)}
+.kit-head p{color:var(--fg2);max-width:40ch;line-height:1.55}
+.kit-table{border-top:1px solid var(--fg)}
+.kr{display:flex;justify-content:space-between;gap:24px;padding:18px 0;border-bottom:1px solid var(--line)}
+.kr span{display:grid;gap:4px}
+.kr b{font-weight:600;font-size:16.5px}
+.kr small{color:var(--fg2);font-size:14px;line-height:1.45}
+.kr em{font-style:normal;font-weight:700;font-stretch:110%;font-size:18px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.kr.total{border-bottom:0;padding-top:22px}
+.kr.total em{font-size:clamp(24px,2.4vw,34px);color:var(--teal-dk)}
+.kit-note{grid-column:2;font-size:13px;color:var(--fg3);line-height:1.55;max-width:62ch}
+.clinics{padding:150px 0 140px}
+.ck-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:40px;align-items:end;margin-bottom:90px}
+.ck-head h2{font-size:clamp(40px,5.4vw,92px)}
+.ck-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line2);margin-bottom:100px}
+.ck-stat{padding:34px 34px 0 0;display:grid;gap:14px;align-content:start}
+.ck-stat + .ck-stat{padding-left:34px;border-left:1px solid var(--line)}
+.ck-stat b{font-size:clamp(56px,7vw,112px);font-weight:820;font-stretch:118%;line-height:.85;letter-spacing:-.04em}
+.ck-stat b i{font-style:normal;font-size:.42em;color:var(--teal-lt);margin-left:.06em;letter-spacing:0}
+.ck-stat span{color:var(--fg2);max-width:30ch;line-height:1.5}
+.ck-src{grid-column:1/-1;margin-top:30px;font-size:12.5px;color:var(--fg3)}
+.ck-src cite{font-style:italic}
+.ck-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:70px;position:relative}
+.ck-flow::before{content:"";position:absolute;left:0;right:0;top:9px;height:1px;background:linear-gradient(90deg,var(--line2),var(--teal) 50%,var(--line2))}
+.ck-node{position:relative;display:grid;gap:6px;padding:34px 24px 0 0}
+.ck-node::before{content:"";position:absolute;left:0;top:4px;width:11px;height:11px;background:var(--ink);border:1px solid var(--fg2)}
+.ck-node.is-unit::before{background:var(--teal);border-color:var(--teal)}
+.ck-node small{font-size:12px;font-stretch:80%;letter-spacing:.06em;color:var(--fg3)}
+.ck-node b{font-size:clamp(18px,1.6vw,24px);font-weight:700;font-stretch:112%;text-transform:uppercase;letter-spacing:-.01em}
+.ck-node.is-unit b{color:var(--teal-lt)}
+.ck-node span{color:var(--fg2);font-size:14.5px}
+.ck-table{border-top:1px solid var(--fg);margin-bottom:100px}
+.ck-row{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,4fr) minmax(0,5fr) minmax(0,1.6fr);gap:28px;padding:24px 0;border-bottom:1px solid var(--line);align-items:start;line-height:1.5}
+.ck-row > span{color:var(--fg2);font-size:15px}
+.ck-row > b{font-weight:650;font-size:17px}
+.ck-th{padding:14px 0}
+.ck-th span{font-size:11.5px!important;font-stretch:80%;text-transform:uppercase;letter-spacing:.07em;color:var(--fg3)!important}
+.st{font-style:normal;display:inline-block;font-size:11.5px;font-stretch:80%;text-transform:uppercase;letter-spacing:.06em;padding:5px 9px;border:1px solid var(--line2);color:var(--fg)}
+.st.plan{border-color:#f0b54a;color:#f0b54a}
+.st.by{border-color:var(--teal);color:var(--teal-lt)}
+.ck-law{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px 72px;padding:50px 0;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2)}
+.ck-law > div:first-child{display:grid;gap:22px;align-content:start;justify-items:start}
+.ck-law h3{font-size:clamp(28px,3vw,46px);line-height:.98;text-transform:uppercase;font-stretch:120%;font-weight:800;letter-spacing:-.02em}
+.ck-law-body{display:grid;gap:18px;color:var(--fg2);line-height:1.6;max-width:62ch}
+.ck-law-body b{color:var(--fg);font-weight:600}
+.ck-sources{margin-top:34px;font-size:13.5px;color:var(--fg2)}
+.ck-sources summary{cursor:pointer;font-size:12px;font-stretch:80%;text-transform:uppercase;letter-spacing:.07em;color:var(--fg2);width:max-content}
+.ck-sources ul{list-style:none;margin-top:14px;display:grid;gap:8px}
+.ck-sources a{color:var(--fg);text-decoration:underline;text-decoration-color:var(--line2);text-underline-offset:3px}
+.ck-sources a:hover{text-decoration-color:var(--teal)}
+@media (max-width:860px){
+  .kit{grid-template-columns:1fr;margin-top:80px}.kit-note{grid-column:auto}
+  .clinics{padding:100px 0 90px}
+  .ck-head{grid-template-columns:1fr;margin-bottom:60px}
+  .ck-head h2{font-size:clamp(24px,6.9vw,60px)}
+  .intro h2{font-size:clamp(26px,7.4vw,60px)}
+  .ck-stats{grid-template-columns:1fr;margin-bottom:70px}
+  .ck-stat,.ck-stat + .ck-stat{padding:26px 0;border-left:0;border-bottom:1px solid var(--line)}
+  .ck-flow{grid-template-columns:1fr 1fr;gap:26px 0}
+  .ck-flow::before{display:none}
+  .ck-row{grid-template-columns:1fr;gap:8px;padding:22px 0}
+  .ck-th{display:none}
+  .ck-law{grid-template-columns:1fr;gap:26px}
+}
 .pv-head{display:grid;gap:30px;margin-bottom:72px}
 .pv-head h2{max-width:13ch}
 .pv-cols{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
@@ -475,7 +542,7 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
       <a href="#explore">Explore</a>
       <a href="#day">A day</a>
       <a href="#privacy">Privacy</a>
-      <a href="#about">About</a>
+      <a href="#clinics">Clinics</a>
     </nav>
     <a href="#top" class="logo" aria-label="Evingo, back to top"><svg class="wme" viewBox="691 1404 903 103" aria-hidden="true"><g transform="translate(691 1407) scale(0.20625) translate(-912 -693)"><path fill="currentColor" d="M948.2 1136.7L912.0 1100.5L912.0 933.0L912.0 765.6L948.2 729.3L984.5 693.0L1176.2 693.0L1368.0 693.0L1368.0 693.5L1368.0 694.0L1344.3 729.5L1320.7 765.0L1164.6 765.2L1008.5 765.5L1008.2 831.2L1008.0 897.0L1104.3 897.0L1200.5 897.0L1218.5 915.0L1236.5 933.0L1218.5 951.0L1200.5 969.0L1104.5 969.2L1008.5 969.5L1008.2 1035.2L1008.0 1101.0L1164.2 1101.2L1320.5 1101.5L1343.3 1135.5L1366.1 1169.5L1367.1 1171.2L1368.1 1173.0L1176.3 1173.0L984.5 1173.0L948.2 1136.7Z"/><path fill="#01a3b8" d="M1275.0 991.8L1275.0 990.5L1303.7 961.8L1332.5 933.0L1303.7 904.2L1275.0 875.5L1275.0 874.2L1275.0 873.0L1297.7 873.0L1320.4 873.0L1350.2 902.7L1380.0 932.5L1379.7 933.3L1379.5 934.0L1350.0 963.5L1320.5 993.0L1297.8 993.0L1275.0 993.0L1275.0 991.8Z"/></g><path fill="currentColor" d="M1322.0 1505.9C1298.6 1503.0 1292.1 1494.3 1290.5 1463.5C1289.7 1449.7 1291.2 1430.7 1293.7 1423.0C1296.3 1415.0 1301.8 1409.5 1309.8 1406.8L1316.5 1404.6L1345.9 1404.2C1387.6 1403.6 1398.9 1405.3 1405.3 1412.9C1408.3 1416.5 1409.7 1421.1 1410.2 1429.0L1410.5 1434.5L1404.5 1434.5L1398.5 1434.5L1397.9 1428.5C1397.2 1421.4 1395.7 1418.5 1391.2 1416.4C1388.4 1415.1 1382.9 1414.9 1352.2 1415.2L1316.5 1415.5L1312.5 1417.6C1306.4 1420.7 1304.2 1426.0 1302.9 1440.6C1301.6 1454.6 1302.5 1474.2 1304.6 1481.9C1306.5 1488.6 1311.0 1493.3 1317.1 1495.1C1323.4 1497.0 1380.7 1497.0 1386.9 1495.2C1395.8 1492.5 1398.7 1487.0 1399.2 1472.0L1399.5 1463.5L1375.8 1463.2L1352.0 1463.0L1352.0 1458.0L1352.0 1453.0L1382.0 1453.0L1412.0 1453.0L1412.0 1461.9C1412.0 1473.6 1410.3 1485.4 1407.9 1491.0C1404.4 1498.8 1400.1 1502.2 1390.0 1504.8C1383.3 1506.5 1333.5 1507.4 1322.0 1505.9ZM1505.0 1506.0C1486.2 1503.7 1478.4 1497.3 1474.9 1481.5C1473.0 1473.5 1473.0 1435.7 1474.8 1427.9C1476.9 1418.8 1481.5 1412.0 1488.0 1408.8C1496.3 1404.6 1505.7 1403.7 1539.3 1404.2C1562.7 1404.6 1569.5 1405.0 1573.6 1406.3C1583.6 1409.6 1588.6 1414.7 1591.8 1424.9C1594.3 1433.1 1594.3 1476.9 1591.8 1485.1C1588.4 1496.0 1582.2 1501.6 1570.0 1504.8C1563.6 1506.4 1515.5 1507.4 1505.0 1506.0ZM894.4 1505.2C893.9 1504.8 883.1 1485.4 870.5 1462.0C858.0 1438.6 846.1 1416.7 844.3 1413.2L840.8 1407.0L847.8 1407.0L854.8 1407.0L878.1 1451.5C891.0 1476.0 901.8 1495.9 902.3 1495.7C903.0 1495.5 947.9 1411.2 949.2 1407.7C949.4 1407.3 952.6 1407.0 956.3 1407.2L963.0 1407.5L939.9 1450.5C927.2 1474.2 915.3 1496.3 913.4 1499.8L909.9 1506.0L902.7 1506.0C898.7 1506.0 895.0 1505.6 894.4 1505.2ZM1023.7 1505.4C1023.3 1505.0 1023.0 1482.7 1023.0 1455.8L1023.0 1407.0L1029.0 1407.0L1035.0 1407.0L1034.8 1456.2L1034.5 1505.5L1029.5 1505.8C1026.7 1506.0 1024.1 1505.8 1023.7 1505.4ZM1102.7 1505.3C1102.3 1505.0 1102.0 1482.7 1102.0 1455.8L1102.0 1407.0L1108.8 1407.0L1115.5 1407.1L1164.5 1448.5C1191.5 1471.3 1213.8 1490.0 1214.2 1490.0C1214.7 1490.0 1215.0 1471.3 1215.0 1448.5L1215.0 1407.0L1221.0 1407.0L1227.0 1407.0L1226.8 1456.2L1226.5 1505.5L1220.3 1505.5L1214.2 1505.5L1165.4 1464.5C1138.5 1442.0 1116.0 1423.3 1115.2 1423.2C1114.5 1423.0 1114.0 1423.4 1114.1 1424.2C1114.2 1424.9 1114.2 1443.6 1114.1 1465.8L1114.0 1506.0L1108.7 1506.0C1105.7 1506.0 1103.0 1505.7 1102.7 1505.3ZM1567.8 1494.9C1570.2 1494.3 1573.7 1492.3 1575.5 1490.6C1580.8 1485.5 1581.5 1481.6 1581.5 1454.0L1581.5 1429.5L1579.0 1424.5C1577.0 1420.5 1575.5 1419.0 1571.5 1417.0L1566.5 1414.5L1533.5 1414.5L1500.5 1414.5L1495.8 1416.7C1487.4 1420.5 1485.0 1429.1 1485.0 1455.0C1485.0 1486.8 1488.8 1494.0 1506.3 1496.0C1516.7 1497.2 1562.6 1496.4 1567.8 1494.9Z"/></svg></a>
     <a href="#waitlist" class="nav-cta">Join the waitlist</a>
@@ -487,6 +554,7 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
     <a href="#explore">Explore in 3D</a>
     <a href="#day">A day with Eva</a>
     <a href="#privacy">Privacy</a>
+    <a href="#clinics">Saskatchewan clinics</a>
     <a href="#about">About</a>
     <a href="#waitlist" class="btn btn-teal">Join the waitlist</a>
   </div>
@@ -605,6 +673,21 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
       </div>
       <span class="ex-hint">Drag to rotate</span>
     </div>
+    <div class="kit">
+      <div class="kit-head fade">
+        <span class="chip"><span class="tag">Reference build</span><span>Parts you can buy today</span></span>
+        <h3>Standard parts. <span class="dim">Realistic cost.</span></h3>
+        <p>Evingo is designed around off-the-shelf mini-PC parts, so units can be built, repaired and upgraded without custom electronics.</p>
+      </div>
+      <div class="kit-table fade" role="table" aria-label="Estimated parts cost">
+        <div class="kr" role="row"><span role="cell"><b>Mainboard &amp; processor</b><small>Mini-PC board with a Ryzen 7 8845HS-class laptop chip, cooler and power adapter</small></span><em role="cell">~$500</em></div>
+        <div class="kr" role="row"><span role="cell"><b>Memory</b><small>32 GB DDR5 laptop memory (SO-DIMM)</small></span><em role="cell">$400–500</em></div>
+        <div class="kr" role="row"><span role="cell"><b>Storage</b><small>1 TB M.2 NVMe SSD, where records stay</small></span><em role="cell">$160–250</em></div>
+        <div class="kr" role="row"><span role="cell"><b>Case &amp; front</b><small>Aluminium case, glass display, light ring (small-batch estimate)</small></span><em role="cell">$100–200</em></div>
+        <div class="kr total" role="row"><span role="cell"><b>Estimated hardware cost</b><small>Canadian dollars</small></span><em role="cell">$1,150–1,450</em></div>
+      </div>
+      <p class="kit-note fade">Estimates from Canadian and US retail listings in November 2026, converted at about $1.42 CAD per US dollar. Memory and SSD prices are unusually high this year. This is what the parts cost, not a price. Pricing for clinics isn't set yet.</p>
+    </div>
   </div>
 </section>
 
@@ -677,6 +760,83 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
       <p><b>Greater control.</b> Reduce dependence on third-party cloud AI providers and keep more control over business information.</p>
       <p><b>Built around privacy.</b> A local-first approach gives businesses more ownership over their technology. Less leaves the office — we won't claim nothing ever does.</p>
     </div>
+  </div>
+</section>
+
+<!-- SASKATCHEWAN CLINICS -->
+<section class="clinics ink" id="clinics" data-theme="ink">
+  <div class="wrap">
+    <div class="ck-head">
+      <h2 class="split">Built for Saskatchewan clinics. <span class="dim">Fits what you already use.</span></h2>
+      <p class="lead fade">Evingo doesn't ask your clinic to change phone companies or records systems. It's designed to plug into the phone line you have and the scheduling software you already run.</p>
+    </div>
+
+    <div class="ck-stats fade">
+      <div class="ck-stat"><b>10.7<i>h</i></b><span>a week of admin work per Saskatchewan physician, tied for the most in Canada.</span></div>
+      <div class="ck-stat"><b>58<i>%</i></b><span>of those admin hours in Saskatchewan were judged unnecessary.</span></div>
+      <div class="ck-stat"><b>260</b><span>full-time physicians' worth of time that cutting that work could free up across the province.</span></div>
+      <p class="ck-src">Source: Canadian Medical Association &amp; Canadian Federation of Independent Business, <cite>Losing Doctors to Desk Work</cite>, January 2026.</p>
+    </div>
+
+    <div class="ck-flow fade" aria-label="How a call reaches your schedule">
+      <div class="ck-node"><small>01</small><b>A patient calls</b><span>Your usual clinic number</span></div>
+      <div class="ck-node"><small>02</small><b>Your phone line</b><span>SaskTel or any VoIP provider</span></div>
+      <div class="ck-node is-unit"><small>03</small><b>Evingo unit</b><span>In your office, answers</span></div>
+      <div class="ck-node"><small>04</small><b>Your schedule</b><span>Accuro, Med Access or dental software</span></div>
+    </div>
+
+    <div class="ck-table fade" role="table" aria-label="How Evingo connects to Saskatchewan clinic systems">
+      <div class="ck-row ck-th" role="row"><span role="columnheader">System</span><span role="columnheader">In Saskatchewan</span><span role="columnheader">How Evingo is designed to connect</span><span role="columnheader">Status</span></div>
+      <div class="ck-row" role="row">
+        <b role="cell">Phone lines</b>
+        <span role="cell">SaskTel IP Trunking, Integrated Business Communications or Centrex, or any VoIP provider.</span>
+        <span role="cell">Evingo joins as one more line on your system (SIP). Your front desk decides when it picks up: after hours, when lines are busy, or every call.</span>
+        <span role="cell"><em class="st plan">Planned</em></span>
+      </div>
+      <div class="ck-row" role="row">
+        <b role="cell">Physician EMRs</b>
+        <span role="cell">Accuro (QHR) and Med Access (TELUS), the two EMRs approved by the Saskatchewan EMR Program.</span>
+        <span role="cell">Books, moves and cancels appointments through each vendor's official API, the same way existing online-booking tools connect. Needs partner approval from each vendor.</span>
+        <span role="cell"><em class="st plan">Planned</em></span>
+      </div>
+      <div class="ck-row" role="row">
+        <b role="cell">Dental software</b>
+        <span role="cell">Dentrix, Tracker, ABELDent, Maxident and other CDAnet-certified practice software.</span>
+        <span role="cell">Scheduling connections built one system at a time, starting with the software our pilot clinics use.</span>
+        <span role="cell"><em class="st plan">Planned</em></span>
+      </div>
+      <div class="ck-row" role="row">
+        <b role="cell">eHealth Saskatchewan</b>
+        <span role="cell">The eHR Viewer, the Pharmaceutical Information Program (PIP) and provincial lab results.</span>
+        <span role="cell">Evingo stays out of the chart. It runs the front desk, not clinical records, so it doesn't need access to provincial systems.</span>
+        <span role="cell"><em class="st by">By design</em></span>
+      </div>
+    </div>
+
+    <div class="ck-law fade">
+      <div>
+        <span class="chip"><span class="tag">HIPA</span><span>The Health Information Protection Act</span></span>
+        <h3>Your clinic stays the trustee.</h3>
+      </div>
+      <div class="ck-law-body">
+        <p>Under HIPA, the clinic is the trustee of patient information. A company that stores or processes that information for you is an <b>information management service provider</b>, and HIPA requires a written agreement with it. Since August 1, 2023, those agreements must cover the terms set out in the updated regulations.</p>
+        <p>Evingo's local-first design keeps call records on the unit in your office, so less information leaves the clinic in the first place. We plan to provide a HIPA-ready service agreement to every clinic before a pilot starts.</p>
+      </div>
+    </div>
+
+    <details class="ck-sources">
+      <summary>Sources</summary>
+      <ul>
+        <li><a href="https://www.cfib-fcei.ca/en/research-economic-analysis/losing-doctors-to-desk-work" target="_blank" rel="noopener noreferrer">CMA &amp; CFIB, Losing Doctors to Desk Work (2026)</a></li>
+        <li><a href="https://issuu.com/sma_docs/docs/membership_guide_2020_med/11" target="_blank" rel="noopener noreferrer">Saskatchewan Medical Association, Saskatchewan EMR Program</a></li>
+        <li><a href="https://www.qhrtechnologies.com/electronic-medical-records/funding-eligibility/" target="_blank" rel="noopener noreferrer">QHR Technologies, Accuro in Saskatchewan</a></li>
+        <li><a href="https://www.telus.com/health/health-professionals/clinics/emr-add-ons" target="_blank" rel="noopener noreferrer">TELUS Health, EMR add-ons and CHR Enterprise API</a></li>
+        <li><a href="https://www.cda-adc.ca/en/services/cdanet/certified_vendors.asp" target="_blank" rel="noopener noreferrer">Canadian Dental Association, CDAnet certified vendors</a></li>
+        <li><a href="https://www.sasktel.com/business/voice-and-collaboration/ip-trunking" target="_blank" rel="noopener noreferrer">SaskTel, IP Trunking</a></li>
+        <li><a href="https://www.mltaikins.com/insights/new-privacy-requirements-for-saskatchewan-health-system/" target="_blank" rel="noopener noreferrer">MLT Aikins, New privacy requirements for the Saskatchewan health system</a></li>
+        <li><a href="https://www.saskatchewan.ca/government/health-care-administration-and-provider-resources/ehealth" target="_blank" rel="noopener noreferrer">Government of Saskatchewan, eHealth services</a></li>
+      </ul>
+    </details>
   </div>
 </section>
 
@@ -790,7 +950,7 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
         <a href="#top" aria-label="Evingo, back to top"><svg class="lockup" role="img" aria-label="Evingo, AI clinic reception" xmlns="http://www.w3.org/2000/svg" viewBox="691 1404 903 232"><g transform="translate(691 1407) scale(0.20625) translate(-912 -693)"><path fill="#f2f3f5" d="M948.2 1136.7L912.0 1100.5L912.0 933.0L912.0 765.6L948.2 729.3L984.5 693.0L1176.2 693.0L1368.0 693.0L1368.0 693.5L1368.0 694.0L1344.3 729.5L1320.7 765.0L1164.6 765.2L1008.5 765.5L1008.2 831.2L1008.0 897.0L1104.3 897.0L1200.5 897.0L1218.5 915.0L1236.5 933.0L1218.5 951.0L1200.5 969.0L1104.5 969.2L1008.5 969.5L1008.2 1035.2L1008.0 1101.0L1164.2 1101.2L1320.5 1101.5L1343.3 1135.5L1366.1 1169.5L1367.1 1171.2L1368.1 1173.0L1176.3 1173.0L984.5 1173.0L948.2 1136.7Z"/><path fill="#01a3b8" d="M1275.0 991.8L1275.0 990.5L1303.7 961.8L1332.5 933.0L1303.7 904.2L1275.0 875.5L1275.0 874.2L1275.0 873.0L1297.7 873.0L1320.4 873.0L1350.2 902.7L1380.0 932.5L1379.7 933.3L1379.5 934.0L1350.0 963.5L1320.5 993.0L1297.8 993.0L1275.0 993.0L1275.0 991.8Z"/></g><path fill="#f2f3f5" d="M1322.0 1505.9C1298.6 1503.0 1292.1 1494.3 1290.5 1463.5C1289.7 1449.7 1291.2 1430.7 1293.7 1423.0C1296.3 1415.0 1301.8 1409.5 1309.8 1406.8L1316.5 1404.6L1345.9 1404.2C1387.6 1403.6 1398.9 1405.3 1405.3 1412.9C1408.3 1416.5 1409.7 1421.1 1410.2 1429.0L1410.5 1434.5L1404.5 1434.5L1398.5 1434.5L1397.9 1428.5C1397.2 1421.4 1395.7 1418.5 1391.2 1416.4C1388.4 1415.1 1382.9 1414.9 1352.2 1415.2L1316.5 1415.5L1312.5 1417.6C1306.4 1420.7 1304.2 1426.0 1302.9 1440.6C1301.6 1454.6 1302.5 1474.2 1304.6 1481.9C1306.5 1488.6 1311.0 1493.3 1317.1 1495.1C1323.4 1497.0 1380.7 1497.0 1386.9 1495.2C1395.8 1492.5 1398.7 1487.0 1399.2 1472.0L1399.5 1463.5L1375.8 1463.2L1352.0 1463.0L1352.0 1458.0L1352.0 1453.0L1382.0 1453.0L1412.0 1453.0L1412.0 1461.9C1412.0 1473.6 1410.3 1485.4 1407.9 1491.0C1404.4 1498.8 1400.1 1502.2 1390.0 1504.8C1383.3 1506.5 1333.5 1507.4 1322.0 1505.9ZM1505.0 1506.0C1486.2 1503.7 1478.4 1497.3 1474.9 1481.5C1473.0 1473.5 1473.0 1435.7 1474.8 1427.9C1476.9 1418.8 1481.5 1412.0 1488.0 1408.8C1496.3 1404.6 1505.7 1403.7 1539.3 1404.2C1562.7 1404.6 1569.5 1405.0 1573.6 1406.3C1583.6 1409.6 1588.6 1414.7 1591.8 1424.9C1594.3 1433.1 1594.3 1476.9 1591.8 1485.1C1588.4 1496.0 1582.2 1501.6 1570.0 1504.8C1563.6 1506.4 1515.5 1507.4 1505.0 1506.0ZM894.4 1505.2C893.9 1504.8 883.1 1485.4 870.5 1462.0C858.0 1438.6 846.1 1416.7 844.3 1413.2L840.8 1407.0L847.8 1407.0L854.8 1407.0L878.1 1451.5C891.0 1476.0 901.8 1495.9 902.3 1495.7C903.0 1495.5 947.9 1411.2 949.2 1407.7C949.4 1407.3 952.6 1407.0 956.3 1407.2L963.0 1407.5L939.9 1450.5C927.2 1474.2 915.3 1496.3 913.4 1499.8L909.9 1506.0L902.7 1506.0C898.7 1506.0 895.0 1505.6 894.4 1505.2ZM1023.7 1505.4C1023.3 1505.0 1023.0 1482.7 1023.0 1455.8L1023.0 1407.0L1029.0 1407.0L1035.0 1407.0L1034.8 1456.2L1034.5 1505.5L1029.5 1505.8C1026.7 1506.0 1024.1 1505.8 1023.7 1505.4ZM1102.7 1505.3C1102.3 1505.0 1102.0 1482.7 1102.0 1455.8L1102.0 1407.0L1108.8 1407.0L1115.5 1407.1L1164.5 1448.5C1191.5 1471.3 1213.8 1490.0 1214.2 1490.0C1214.7 1490.0 1215.0 1471.3 1215.0 1448.5L1215.0 1407.0L1221.0 1407.0L1227.0 1407.0L1226.8 1456.2L1226.5 1505.5L1220.3 1505.5L1214.2 1505.5L1165.4 1464.5C1138.5 1442.0 1116.0 1423.3 1115.2 1423.2C1114.5 1423.0 1114.0 1423.4 1114.1 1424.2C1114.2 1424.9 1114.2 1443.6 1114.1 1465.8L1114.0 1506.0L1108.7 1506.0C1105.7 1506.0 1103.0 1505.7 1102.7 1505.3ZM1567.8 1494.9C1570.2 1494.3 1573.7 1492.3 1575.5 1490.6C1580.8 1485.5 1581.5 1481.6 1581.5 1454.0L1581.5 1429.5L1579.0 1424.5C1577.0 1420.5 1575.5 1419.0 1571.5 1417.0L1566.5 1414.5L1533.5 1414.5L1500.5 1414.5L1495.8 1416.7C1487.4 1420.5 1485.0 1429.1 1485.0 1455.0C1485.0 1486.8 1488.8 1494.0 1506.3 1496.0C1516.7 1497.2 1562.6 1496.4 1567.8 1494.9Z"/><path fill="#8d929b" d="M781.0 1634.9C781.0 1634.3 782.5 1628.2 784.2 1621.3C787.1 1610.3 787.7 1609.0 789.5 1609.2C791.1 1609.4 792.0 1611.3 794.2 1620.0C798.1 1635.0 798.3 1636.0 797.1 1636.0C796.5 1636.0 795.7 1634.8 795.4 1633.2C794.4 1629.2 793.1 1628.0 789.6 1628.0C785.5 1628.0 784.4 1628.9 783.5 1632.8C782.9 1635.8 781.0 1637.4 781.0 1634.9ZM821.0 1635.0C821.0 1634.5 822.4 1634.0 824.0 1634.0L827.0 1634.0L827.0 1622.5L827.0 1611.0L824.6 1611.0C823.2 1611.0 821.8 1610.5 821.5 1610.0C821.1 1609.4 823.5 1609.0 827.9 1609.0C832.0 1609.0 835.0 1609.4 835.0 1610.0C835.0 1610.5 833.9 1611.0 832.5 1611.0L830.0 1611.0L830.0 1622.5L830.0 1634.0L832.5 1634.0C833.9 1634.0 835.0 1634.5 835.0 1635.0C835.0 1635.6 832.0 1636.0 828.0 1636.0C824.0 1636.0 821.0 1635.6 821.0 1635.0ZM900.6 1633.8C898.1 1630.3 898.4 1614.0 900.9 1610.9C904.2 1606.8 914.0 1608.9 914.0 1613.7C914.0 1615.5 913.4 1615.4 910.5 1612.4C907.8 1609.7 904.6 1609.8 902.2 1612.8C900.5 1615.0 900.6 1630.0 902.3 1632.4C904.2 1635.0 910.2 1634.2 911.5 1631.2C912.7 1628.5 914.0 1628.3 914.0 1630.8C914.0 1635.9 903.6 1638.2 900.6 1633.8ZM939.0 1622.5C939.0 1614.2 939.4 1609.0 940.0 1609.0C940.6 1609.0 941.0 1613.8 941.0 1621.5L941.0 1634.0L947.5 1634.0C951.2 1634.0 954.0 1634.4 954.0 1635.0C954.0 1635.6 950.8 1636.0 946.5 1636.0L939.0 1636.0L939.0 1622.5ZM978.0 1635.0C978.0 1634.5 979.1 1634.0 980.5 1634.0L983.0 1634.0L983.0 1622.5L983.0 1611.0L980.5 1611.0C979.1 1611.0 978.0 1610.5 978.0 1610.0C978.0 1609.4 980.8 1609.0 984.5 1609.0C988.2 1609.0 991.0 1609.4 991.0 1610.0C991.0 1610.5 989.9 1611.0 988.5 1611.0L986.0 1611.0L986.0 1622.5L986.0 1634.0L988.5 1634.0C989.9 1634.0 991.0 1634.5 991.0 1635.0C991.0 1635.6 988.2 1636.0 984.5 1636.0C980.8 1636.0 978.0 1635.6 978.0 1635.0ZM1016.0 1622.5L1016.0 1609.0L1017.8 1609.0C1019.2 1609.0 1020.5 1611.5 1023.5 1620.1C1025.7 1626.2 1027.8 1631.4 1028.2 1631.6C1028.6 1631.9 1029.0 1626.9 1029.0 1620.6C1029.0 1613.5 1029.4 1609.0 1030.0 1609.0C1030.6 1609.0 1031.0 1614.2 1031.0 1622.5L1031.0 1636.0L1029.2 1636.0C1027.9 1636.0 1026.5 1633.3 1023.5 1625.0C1021.4 1619.0 1019.2 1614.0 1018.8 1614.0C1018.4 1614.0 1018.0 1619.0 1018.0 1625.0C1018.0 1631.7 1017.6 1636.0 1017.0 1636.0C1016.4 1636.0 1016.0 1630.8 1016.0 1622.5ZM1056.0 1635.0C1056.0 1634.5 1057.1 1634.0 1058.5 1634.0L1061.0 1634.0L1061.0 1622.5L1061.0 1611.0L1058.5 1611.0C1057.1 1611.0 1056.0 1610.5 1056.0 1610.0C1056.0 1609.4 1059.0 1609.0 1063.1 1609.0C1067.5 1609.0 1069.9 1609.4 1069.5 1610.0C1069.2 1610.5 1067.8 1611.0 1066.4 1611.0L1064.0 1611.0L1064.0 1622.5L1064.0 1634.0L1066.5 1634.0C1067.9 1634.0 1069.0 1634.5 1069.0 1635.0C1069.0 1635.6 1066.2 1636.0 1062.5 1636.0C1058.8 1636.0 1056.0 1635.6 1056.0 1635.0ZM1095.6 1633.8C1093.2 1630.4 1093.4 1614.0 1095.8 1611.1C1098.4 1607.9 1103.0 1607.4 1106.3 1610.0C1107.8 1611.2 1109.0 1612.8 1109.0 1613.6C1109.0 1615.6 1108.5 1615.4 1105.5 1612.4C1102.8 1609.7 1099.6 1609.8 1097.2 1612.8C1095.5 1615.0 1095.6 1630.0 1097.3 1632.4C1099.2 1635.0 1105.2 1634.2 1106.5 1631.2C1107.7 1628.5 1109.0 1628.3 1109.0 1630.8C1109.0 1635.9 1098.6 1638.2 1095.6 1633.8ZM1172.0 1622.5L1172.0 1609.0L1178.0 1609.0C1182.8 1609.0 1184.3 1609.4 1186.0 1611.2C1188.7 1614.1 1188.5 1618.2 1185.5 1621.8L1183.0 1624.8L1185.4 1630.4C1187.2 1634.4 1187.5 1636.0 1186.6 1636.0C1185.9 1636.0 1184.0 1633.3 1182.6 1629.9C1180.1 1624.5 1179.6 1623.9 1177.2 1624.2L1174.5 1624.5L1174.2 1630.2C1174.0 1633.4 1173.5 1636.0 1173.0 1636.0C1172.4 1636.0 1172.0 1630.4 1172.0 1622.5ZM1211.0 1622.5L1211.0 1609.0L1219.1 1609.0C1224.2 1609.0 1226.9 1609.4 1226.5 1610.0C1226.2 1610.5 1223.3 1611.0 1220.1 1611.0C1216.9 1611.0 1214.1 1611.2 1213.9 1611.4C1213.7 1611.7 1213.6 1613.9 1213.8 1616.4L1214.2 1621.0L1219.6 1621.0C1222.6 1621.0 1225.0 1621.5 1225.0 1622.0C1225.0 1622.5 1222.5 1623.0 1219.5 1623.0L1214.0 1623.0L1214.0 1628.5L1214.0 1634.0L1220.5 1634.0C1224.2 1634.0 1227.0 1634.4 1227.0 1635.0C1227.0 1635.6 1223.7 1636.0 1219.0 1636.0L1211.0 1636.0L1211.0 1622.5ZM1251.6 1633.8C1249.4 1630.7 1249.4 1614.4 1251.5 1611.3C1255.2 1606.1 1264.9 1608.3 1265.0 1614.4C1265.0 1615.9 1264.4 1615.6 1262.0 1613.0C1258.8 1609.6 1255.8 1609.5 1253.2 1612.8C1251.5 1615.0 1251.6 1630.0 1253.3 1632.4C1255.2 1635.0 1261.2 1634.2 1262.5 1631.2C1263.7 1628.5 1265.0 1628.3 1265.0 1630.8C1265.0 1635.9 1254.6 1638.2 1251.6 1633.8ZM1289.0 1622.5L1289.0 1609.0L1297.0 1609.0C1301.7 1609.0 1305.0 1609.4 1305.0 1610.0C1305.0 1610.6 1302.2 1611.0 1298.5 1611.0L1292.0 1611.0L1292.0 1616.0L1292.0 1621.0L1297.5 1621.0C1300.5 1621.0 1303.0 1621.5 1303.0 1622.0C1303.0 1622.5 1300.5 1623.0 1297.5 1623.0L1292.0 1623.0L1292.0 1628.5L1292.0 1634.0L1298.5 1634.0C1302.2 1634.0 1305.0 1634.4 1305.0 1635.0C1305.0 1635.6 1301.7 1636.0 1297.0 1636.0L1289.0 1636.0L1289.0 1622.5ZM1328.0 1622.5L1328.0 1609.0L1334.3 1609.0C1339.2 1609.0 1341.1 1609.4 1342.3 1610.8C1347.2 1616.2 1344.1 1624.0 1337.0 1624.0C1330.6 1624.0 1330.0 1624.6 1330.0 1630.6C1330.0 1633.6 1329.5 1636.0 1329.0 1636.0C1328.4 1636.0 1328.0 1630.8 1328.0 1622.5ZM1373.8 1623.8L1373.5 1611.5L1369.8 1611.2C1362.4 1610.6 1366.2 1609.0 1375.1 1609.0C1380.8 1609.0 1383.9 1609.4 1383.5 1610.0C1383.2 1610.5 1381.3 1611.0 1379.4 1611.0L1376.0 1611.0L1376.0 1623.5C1376.0 1639.9 1374.2 1640.1 1373.8 1623.8ZM1407.0 1635.0C1407.0 1634.5 1408.1 1634.0 1409.5 1634.0L1412.0 1634.0L1412.0 1622.5L1412.0 1611.0L1409.5 1611.0C1408.1 1611.0 1407.0 1610.5 1407.0 1610.0C1407.0 1609.4 1410.0 1609.0 1414.0 1609.0C1418.0 1609.0 1421.0 1609.4 1421.0 1610.0C1421.0 1610.5 1419.7 1611.0 1418.0 1611.0L1415.0 1611.0L1415.0 1622.5L1415.0 1634.0L1418.0 1634.0C1419.7 1634.0 1421.0 1634.5 1421.0 1635.0C1421.0 1635.6 1418.0 1636.0 1414.0 1636.0C1410.0 1636.0 1407.0 1635.6 1407.0 1635.0ZM1446.6 1633.8C1444.2 1630.4 1444.4 1614.0 1446.8 1611.1C1449.4 1607.9 1454.0 1607.4 1457.3 1610.0L1460.0 1612.1L1460.0 1622.4C1460.0 1634.4 1459.1 1636.0 1452.2 1636.0C1449.1 1636.0 1447.7 1635.5 1446.6 1633.8ZM1484.0 1622.5L1484.0 1609.0L1485.9 1609.0C1487.4 1609.0 1488.6 1611.2 1491.5 1619.5C1493.6 1625.3 1495.7 1630.3 1496.1 1630.6C1496.6 1630.9 1497.0 1626.1 1497.0 1620.1C1497.0 1613.4 1497.4 1609.0 1498.0 1609.0C1498.6 1609.0 1499.0 1614.2 1499.0 1622.5L1499.0 1636.0L1497.2 1636.0C1495.9 1636.0 1494.6 1633.3 1491.6 1625.0C1489.5 1619.0 1487.4 1614.0 1486.9 1614.0C1486.4 1614.0 1486.0 1619.0 1486.0 1625.0C1486.0 1631.7 1485.6 1636.0 1485.0 1636.0C1484.4 1636.0 1484.0 1630.8 1484.0 1622.5ZM1456.8 1632.8C1457.6 1632.0 1458.0 1628.2 1458.0 1622.4L1458.0 1613.1L1455.8 1611.6C1452.8 1609.5 1451.4 1609.6 1449.0 1612.0C1447.3 1613.7 1447.0 1615.3 1447.0 1622.1C1447.0 1626.5 1447.5 1631.0 1448.0 1632.1C1449.2 1634.3 1454.8 1634.8 1456.8 1632.8ZM793.0 1625.2C792.9 1621.8 790.4 1612.6 789.4 1612.3C788.4 1612.0 785.0 1625.6 785.8 1626.5C786.1 1626.8 787.8 1627.0 789.7 1627.0C792.2 1627.0 793.0 1626.6 793.0 1625.2ZM1184.7 1619.4C1186.2 1617.0 1186.2 1616.5 1184.9 1614.1C1183.6 1611.9 1182.7 1611.5 1179.0 1611.5L1174.5 1611.5L1174.2 1615.4C1173.7 1621.1 1174.4 1622.0 1178.9 1622.0C1182.2 1622.0 1183.3 1621.5 1184.7 1619.4ZM1340.8 1620.8C1341.5 1620.1 1342.0 1618.1 1342.0 1616.3C1342.0 1612.4 1339.5 1610.7 1334.2 1611.2L1330.5 1611.5L1330.2 1615.4C1330.0 1617.5 1330.1 1619.8 1330.4 1620.6C1331.1 1622.4 1339.1 1622.5 1340.8 1620.8Z"/></svg></a>
         <p class="tagline">Evingo — Intelligence, on your terms.</p>
       </div>
-      <ul><li><a href="#receptionist">Product</a></li><li><a href="#unit">Hardware</a></li><li><a href="#privacy">Privacy</a></li></ul>
+      <ul><li><a href="#receptionist">Product</a></li><li><a href="#unit">Hardware</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#clinics">Clinics</a></li></ul>
       <ul><li><a href="#about">About</a></li><li id="contactItem" hidden><a id="contactLink" href="#waitlist">Contact</a></li><li><a href="#waitlist">Join waitlist</a></li><li><button type="button" class="linkbtn" data-open-privacy>Waitlist privacy</button></li></ul>
     </div>
     <div class="foot-bottom">
@@ -830,173 +990,213 @@ const MOBILE = matchMedia("(max-width: 700px)").matches;
 
 /* ---------- textures ---------- */
 function cTex(w,h,draw,repeat){ const c=document.createElement("canvas"); c.width=w; c.height=h; draw(c.getContext("2d"),w,h); const t=new THREE.CanvasTexture(c); t.anisotropy=8; if(repeat){ t.wrapS=t.wrapT=THREE.RepeatWrapping; } return t; }
+const R=(a,b)=>a+Math.random()*(b-a);
 let TEX=null;
 function textures(){
   if (TEX) return TEX;
-  const brushed=cTex(512,512,(g,w,h)=>{ g.fillStyle="rgb(118,118,118)"; g.fillRect(0,0,w,h);
-    for(let i=0;i<5200;i++){ const y=Math.random()*h, x=Math.random()*w, l=30+Math.random()*320, a=.03+Math.random()*.09; g.strokeStyle=(Math.random()<.5?"rgba(255,255,255,":"rgba(0,0,0,")+a+")"; g.lineWidth=Math.random()<.85?1:2; g.beginPath(); g.moveTo(x,y); g.lineTo(x+l,y); g.stroke(); } },true);
-  brushed.repeat.set(2,2);
-  const vent=cTex(512,288,(g,w,h)=>{ g.fillStyle="#000"; const s=19,r=4.6; for(let y=s;y<h-s/2;y+=s*.87){ const row=Math.round(y/(s*.87)); for(let x=s+(row%2?s/2:0);x<w-s/2;x+=s){ g.beginPath(); g.arc(x,y,r,0,Math.PI*2); g.fill(); } } });
-  const pcb=cTex(1024,1024,(g,w,h)=>{ g.fillStyle="#0c2a2e"; g.fillRect(0,0,w,h);
-    g.strokeStyle="#16464b"; g.lineCap="square";
-    for(let i=0;i<260;i++){ let x=Math.random()*w,y=Math.random()*h; g.lineWidth=Math.random()<.7?2:4; g.beginPath(); g.moveTo(x,y); for(let k=0;k<4;k++){ const L=20+Math.random()*120, d=Math.floor(Math.random()*4); if(d===0)x+=L; else if(d===1)x-=L; else if(d===2){x+=L*.7;y+=L*.7;} else y+=L; g.lineTo(x,y); } g.stroke(); }
-    g.fillStyle="#b8952a"; for(let i=0;i<420;i++){ g.fillRect(Math.random()*w,Math.random()*h,4+Math.random()*5,4+Math.random()*5); }
-    g.fillStyle="rgba(230,236,240,.75)"; g.font="600 26px Archivo, Arial, sans-serif"; g.fillText("EVG-01  CONCEPT BOARD",60,980); g.font="500 18px Archivo, Arial"; g.fillText("NOT FINAL",60,1006);
-    g.strokeStyle="rgba(230,236,240,.5)"; g.lineWidth=2; g.strokeRect(40,40,w-80,h-80); });
-  const ssd=cTex(512,160,(g,w,h)=>{ g.fillStyle="#0d0f13"; g.fillRect(0,0,w,h); g.fillStyle="#1ec3d8"; g.fillRect(0,0,10,h); g.fillStyle="#e9ecf0"; g.font="600 34px Archivo, Arial"; g.fillText("ON-SITE STORAGE",34,70); g.fillStyle="#8d929b"; g.font="500 22px Archivo, Arial"; g.fillText("Evingo concept · capacity not final",34,112); });
-  const psu=cTex(256,256,(g,w,h)=>{ g.fillStyle="#1d2026"; g.fillRect(0,0,w,h); g.fillStyle="#0b0c10"; for(let y=20;y<h-10;y+=16) g.fillRect(20,y,w-40,7); });
-  TEX={brushed,vent,pcb,ssd,psu}; return TEX;
+  /* fine bead-blasted anodising: low-contrast grain, no streaks */
+  const grain=cTex(256,256,(g,w,h)=>{ const im=g.createImageData(w,h); for(let i=0;i<im.data.length;i+=4){ const v=118+Math.random()*26; im.data[i]=im.data[i+1]=im.data[i+2]=v; im.data[i+3]=255; } g.putImageData(im,0,0); },true);
+  grain.repeat.set(3,3);
+  /* machined perforation field: round holes on a staggered grid */
+  const perf=cTex(1024,256,(g,w,h)=>{ const s=22,r=6; for(let y=s*.8;y<h-s*.5;y+=s*.866){ const row=Math.round(y/(s*.866)); for(let x=s*.8+(row%2?s/2:0);x<w-s*.6;x+=s){ g.fillStyle="#000"; g.beginPath(); g.arc(x,y,r,0,Math.PI*2); g.fill(); g.strokeStyle="rgba(255,255,255,.18)"; g.lineWidth=1.2; g.beginPath(); g.arc(x,y+.6,r,.1*Math.PI,.9*Math.PI); g.stroke(); } } });
+  /* exhaust slots on the back */
+  const slots=cTex(512,160,(g,w,h)=>{ for(let x=10;x<w-14;x+=22){ g.fillStyle="#000"; g.beginPath(); g.roundRect?g.roundRect(x,8,11,h-16,5.5):g.rect(x,8,11,h-16); g.fill(); g.fillStyle="rgba(170,176,186,.45)"; for(let y=14;y<h-14;y+=7) g.fillRect(x+2,y,7,1.4); } });
+  /* black solder-mask mainboard with traces, pads and silkscreen */
+  const pcb=cTex(1024,1024,(g,w,h)=>{ g.fillStyle="#101418"; g.fillRect(0,0,w,h);
+    g.strokeStyle="#1b2229"; g.lineCap="round";
+    for(let i=0;i<340;i++){ let x=R(0,w),y=R(0,h); g.lineWidth=Math.random()<.75?1.6:3.2; g.beginPath(); g.moveTo(x,y); for(let k=0;k<3;k++){ const L=R(20,140), d=Math.floor(R(0,4)); if(d===0)x+=L; else if(d===1)y+=L; else if(d===2){x+=L*.7;y+=L*.7;} else {x-=L*.7;y+=L*.7;} g.lineTo(x,y); } g.stroke(); }
+    g.fillStyle="#6f5d33"; for(let i=0;i<70;i++){ const x=R(40,w-40),y=R(40,h-40); for(let k=0;k<6;k++) g.fillRect(x+k*9,y,5,5); }
+    g.fillStyle="#c9b071"; [[60,60],[w-60,60],[60,h-60],[w-60,h-60]].forEach(([x,y])=>{ g.beginPath(); g.arc(x,y,22,0,Math.PI*2); g.fill(); g.fillStyle="#101418"; g.beginPath(); g.arc(x,y,12,0,Math.PI*2); g.fill(); g.fillStyle="#c9b071"; });
+    g.fillStyle="rgba(225,229,235,.8)"; g.font="600 22px Archivo, Arial, sans-serif"; g.fillText("MINI-PC MAINBOARD · REFERENCE",110,h-58); g.font="500 16px Archivo, Arial"; g.fillText("EVINGO CONCEPT · LAYOUT NOT FINAL",110,h-32);
+    g.strokeStyle="rgba(225,229,235,.55)"; g.lineWidth=1.5; g.strokeRect(470,300,250,230); g.fillText("SoC",480,322); g.strokeRect(180,640,560,250); g.fillText("SO-DIMM ×2",190,662); });
+  const ram=cTex(512,256,(g,w,h)=>{ g.fillStyle="#173b26"; g.fillRect(0,0,w,h); g.strokeStyle="#21503a"; g.lineWidth=2; for(let i=0;i<60;i++){ const y=R(10,h-40); g.beginPath(); g.moveTo(R(0,w),y); g.lineTo(R(0,w),y); g.stroke(); }
+    g.fillStyle="#d8dde4"; g.fillRect(150,40,210,120); g.fillStyle="#1a1d22"; g.font="600 22px Archivo, Arial"; g.fillText("16GB DDR5",168,82); g.font="500 16px Archivo, Arial"; g.fillText("SO-DIMM · 262-pin",168,112); g.fillText("standard laptop part",168,138);
+    g.fillStyle="#c9a227"; for(let x=8;x<w-8;x+=6) g.fillRect(x,h-26,4,22); });
+  const ssd=cTex(512,140,(g,w,h)=>{ g.fillStyle="#0f1216"; g.fillRect(0,0,w,h); g.fillStyle="#e7eaee"; g.fillRect(60,18,330,104); g.fillStyle="#14181d"; g.font="700 26px Archivo, Arial"; g.fillText("1TB NVMe · M.2 2280",76,58); g.font="500 17px Archivo, Arial"; g.fillText("on-site storage · standard part",76,90); g.fillStyle="#01a3b8"; g.fillRect(60,18,8,104);
+    g.fillStyle="#c9a227"; for(let y=10;y<h-10;y+=6) g.fillRect(w-20,y,14,4); });
+  TEX={grain,perf,slots,pcb,ram,ssd}; return TEX;
 }
 function markTex(d,fill){ return cTex(256,256,c=>{ c.translate(18,16); c.scale(220/480,220/480); c.translate(-912,-693); c.fillStyle=fill; c.fill(new Path2D(d)); }); }
 function radialTex(stops){ return cTex(256,256,(g,w,h)=>{ const gr=g.createRadialGradient(w/2,h/2,0,w/2,h/2,w/2); stops.forEach(s=>gr.addColorStop(s[0],s[1])); g.fillStyle=gr; g.fillRect(0,0,w,h); }); }
+/* rounded rectangle, centred */
+function rrShape(w,h,r){ const s=new THREE.Shape(),x=-w/2,y=-h/2; s.moveTo(x+r,y); s.lineTo(x+w-r,y); s.absarc(x+w-r,y+r,r,-Math.PI/2,0); s.lineTo(x+w,y+h-r); s.absarc(x+w-r,y+h-r,r,0,Math.PI/2); s.lineTo(x+r,y+h); s.absarc(x+r,y+h-r,r,Math.PI/2,Math.PI); s.lineTo(x,y+r); s.absarc(x+r,y+r,r,Math.PI,1.5*Math.PI); return s; }
 function chShape(w,h,c){ const s=new THREE.Shape(),x=-w/2,y=-h/2; s.moveTo(x+c,y); s.lineTo(x+w-c,y); s.lineTo(x+w,y+c); s.lineTo(x+w,y+h-c); s.lineTo(x+w-c,y+h); s.lineTo(x+c,y+h); s.lineTo(x,y+h-c); s.lineTo(x,y+c); s.closePath(); return s; }
-function slab(shape,depth,bevel){ const g=new THREE.ExtrudeGeometry(shape,bevel?{depth:depth-2*bevel,bevelEnabled:true,bevelThickness:bevel,bevelSize:bevel,bevelSegments:4}:{depth,bevelEnabled:false}); g.rotateX(-Math.PI/2); if(bevel) g.translate(0,bevel,0); g.computeVertexNormals(); return g; }
+function chPath(w,h,c){ return new THREE.Path(chShape(w,h,c).getPoints()); }
+function rrPath(w,h,r){ const s=rrShape(w,h,r); return new THREE.Path(s.getPoints(12)); }
+function slab(shape,depth,bevel){ const g=new THREE.ExtrudeGeometry(shape,bevel?{depth:depth-2*bevel,bevelEnabled:true,bevelThickness:bevel,bevelSize:bevel,bevelSegments:4,curveSegments:16}:{depth,bevelEnabled:false,curveSegments:16}); g.rotateX(-Math.PI/2); if(bevel) g.translate(0,bevel,0); g.computeVertexNormals(); return g; }
 const box=(w,h,d,m,x=0,y=0,z=0)=>{ const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m); o.position.set(x,y,z); o.castShadow=true; o.receiveShadow=true; return o; };
 const cyl=(r,h,m,x=0,y=0,z=0,seg=32,open=false)=>{ const o=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,seg,1,open),m); o.position.set(x,y,z); o.castShadow=true; return o; };
+const plane=(w,h,m,x=0,y=0,z=0)=>{ const o=new THREE.Mesh(new THREE.PlaneGeometry(w,h),m); o.position.set(x,y,z); return o; };
 
-/* ---------- the model ---------- */
+/* ---------- the model ----------
+   Proportioned like a real mini PC: 150 × 150 × 60 mm (1 unit = 100 mm).
+   Every part is a standard, buyable component: a mini-PC mainboard with a
+   laptop-class processor, DDR5 SO-DIMM memory, an M.2 2280 SSD, a blower fan
+   with copper heat pipes, a 2.25" bar display, and an external power adapter. */
 function buildUnit(MARK_D, TEAL_D){
   const T=textures();
-  const W=1.5, D=1.5, F=0.014, BASE=0.07, HS=0.9, BS=0.05, CH=0.2;
-  const Y0=F+BASE;                // shell bottom
-  const TOP=Y0+HS;                // shell top
-  const FZ=D/2+0.002;
+  const W=1.6, D=1.6, H=.62, CH=.24, WALL=.03, FEET=.012, BEV=.012, PL=.07;
+  const Y0=FEET+PL, TOP=Y0+H, FZ=D/2;
+  const PCB_Y=Y0+.075;             // underside of the mainboard (on standoffs)
+  const BT=PCB_Y+.016;             // top surface of the mainboard
   const M={
-    alu:new THREE.MeshPhysicalMaterial({color:0x121317,envMapIntensity:.55,metalness:.9,roughness:.5,roughnessMap:T.brushed,bumpMap:T.brushed,bumpScale:.0015,clearcoat:.35,clearcoatRoughness:.4}),
-    aluTop:new THREE.MeshPhysicalMaterial({color:0x17181d,envMapIntensity:.5,metalness:.9,roughness:.42,roughnessMap:T.brushed,bumpMap:T.brushed,bumpScale:.001,clearcoat:.5,clearcoatRoughness:.3}),
-    darkMetal:new THREE.MeshStandardMaterial({color:0x07080a,metalness:.5,roughness:.6,envMapIntensity:.4}),
-    glass:new THREE.MeshPhysicalMaterial({color:0x010203,metalness:.1,roughness:.05,clearcoat:1,clearcoatRoughness:.03,envMapIntensity:.35}),
-    bezel:new THREE.MeshStandardMaterial({color:0x060709,metalness:.8,roughness:.3,envMapIntensity:.5}),
-    rubber:new THREE.MeshStandardMaterial({color:0x08090b,roughness:.95}),
-    teal:new THREE.MeshBasicMaterial({color:0x01a3b8,toneMapped:false}),
-    tealBright:new THREE.MeshBasicMaterial({color:0x19c3d8,toneMapped:false}),
-    pcb:new THREE.MeshStandardMaterial({map:T.pcb,roughness:.55,metalness:.15}),
-    pcbSide:new THREE.MeshStandardMaterial({color:0x0c2a2e,roughness:.6}),
-    chip:new THREE.MeshStandardMaterial({color:0x0b0c0f,roughness:.4,metalness:.3,envMapIntensity:.5}),
+    alu:new THREE.MeshPhysicalMaterial({color:0x1c1e22,metalness:.85,roughness:.4,roughnessMap:T.grain,envMapIntensity:.6,clearcoat:.2,clearcoatRoughness:.35}),
+    aluTop:new THREE.MeshPhysicalMaterial({color:0x1e2024,metalness:.85,roughness:.38,roughnessMap:T.grain,envMapIntensity:.55,clearcoat:.25,clearcoatRoughness:.3}),
+    steel:new THREE.MeshStandardMaterial({color:0x1b1c1f,metalness:.6,roughness:.6,envMapIntensity:.35}),
+    glass:new THREE.MeshPhysicalMaterial({color:0x010102,metalness:0,roughness:.06,clearcoat:1,clearcoatRoughness:.03,envMapIntensity:.45,reflectivity:.35}),
+    rubber:new THREE.MeshStandardMaterial({color:0x111214,roughness:.95}),
+    teal:new THREE.MeshBasicMaterial({color:0x14c6dc,toneMapped:false}),
+    light:new THREE.MeshBasicMaterial({color:0x0fb4c9,toneMapped:false}),
+    pcb:new THREE.MeshStandardMaterial({map:T.pcb,roughness:.72,metalness:.05,envMapIntensity:.4}),
+    pcbEdge:new THREE.MeshStandardMaterial({color:0x101418,roughness:.6}),
+    ramPcb:new THREE.MeshStandardMaterial({map:T.ram,roughness:.65,envMapIntensity:.5}),
+    ramEdge:new THREE.MeshStandardMaterial({color:0x173b26,roughness:.6}),
+    ssd:new THREE.MeshStandardMaterial({map:T.ssd,roughness:.6,envMapIntensity:.5}),
+    chip:new THREE.MeshStandardMaterial({color:0x0e0f12,roughness:.38,metalness:.25,envMapIntensity:.6}),
+    die:new THREE.MeshStandardMaterial({color:0x8d939c,metalness:.9,roughness:.25}),
+    substrate:new THREE.MeshStandardMaterial({color:0x26402c,roughness:.6}),
+    inductor:new THREE.MeshStandardMaterial({color:0x3b3e44,metalness:.4,roughness:.55}),
     gold:new THREE.MeshStandardMaterial({color:0xc9a227,metalness:1,roughness:.3}),
-    copper:new THREE.MeshStandardMaterial({color:0xb87333,metalness:1,roughness:.28}),
-    fin:new THREE.MeshStandardMaterial({color:0x9da2aa,metalness:1,roughness:.26,envMapIntensity:.8}),
-    fanBlack:new THREE.MeshStandardMaterial({color:0x0c0d11,roughness:.6,metalness:.2,envMapIntensity:.5}),
-    ram:new THREE.MeshStandardMaterial({color:0x15301f,roughness:.6}),
-    ssd:new THREE.MeshStandardMaterial({map:T.ssd,roughness:.5}),
-    psu:new THREE.MeshStandardMaterial({map:T.psu,metalness:.6,roughness:.45}),
-    vent:new THREE.MeshStandardMaterial({map:T.vent,transparent:true,color:0,roughness:1,depthWrite:false}),
-    port:new THREE.MeshStandardMaterial({color:0x22252c,metalness:.8,roughness:.35,envMapIntensity:.6}),
-    hole:new THREE.MeshBasicMaterial({color:0x000000})
+    copper:new THREE.MeshStandardMaterial({color:0xb66f3c,metalness:1,roughness:.3,envMapIntensity:1}),
+    fin:new THREE.MeshStandardMaterial({color:0xb8bdc4,metalness:1,roughness:.3,envMapIntensity:1}),
+    plastic:new THREE.MeshStandardMaterial({color:0x15161a,roughness:.55,metalness:.05}),
+    portMetal:new THREE.MeshStandardMaterial({color:0xa3a8b0,metalness:1,roughness:.32,envMapIntensity:.9}),
+    hole:new THREE.MeshBasicMaterial({color:0x020203}),
+    usbBlue:new THREE.MeshStandardMaterial({color:0x1d4f9e,roughness:.5}),
+    flex:new THREE.MeshStandardMaterial({color:0xb5762a,roughness:.5,metalness:.2}),
+    perf:new THREE.MeshBasicMaterial({map:T.perf,transparent:true,depthWrite:false}),
+    slots:new THREE.MeshBasicMaterial({map:T.slots,transparent:true,depthWrite:false})
   };
   const root=new THREE.Group();
   const parts={};
   const add=(name,g)=>{ parts[name]=g; g.userData.home=g.position.clone(); root.add(g); return g; };
 
-  /* base: feet, plinth, status strip */
+  /* base: steel bottom plate, rubber feet, board standoffs */
   const base=new THREE.Group();
-  const plinth=new THREE.Mesh(slab(chShape(W-.14,D-.14,CH-.07),BASE),M.darkMetal); plinth.position.y=F; plinth.castShadow=true; base.add(plinth);
-  const strip=new THREE.Mesh(slab(chShape(W-.13,D-.13,CH-.065),.007),M.teal); strip.position.y=F+.016; strip.scale.set(1.003,1,1.003); base.add(strip);
-  [[1,1],[1,-1],[-1,1],[-1,-1]].forEach(([sx,sz])=>base.add(cyl(.07,F,M.rubber,sx*.48,F/2,sz*.48,24)));
+  const plate=new THREE.Mesh(slab(chShape(W-2*WALL-.006,D-2*WALL-.006,CH-.02),.025),M.steel); plate.position.y=Y0; plate.castShadow=plate.receiveShadow=true; base.add(plate);
+  const plinth=new THREE.Mesh(slab(chShape(W-.26,D-.26,CH-.11),PL),M.steel); plinth.position.y=FEET; plinth.castShadow=true; base.add(plinth);
+  const ringO=chShape(W-.07,D-.07,CH-.03); ringO.holes.push(chPath(W-.24,D-.24,CH-.1)); const ring=new THREE.Mesh(slab(ringO,.014),M.light); ring.position.y=Y0-.02; base.add(ring);
+  /* light spill from the ring onto the desk */
+  const spill=plane(W+.9,D+.9,new THREE.MeshBasicMaterial({map:radialTex([[0,"rgba(20,198,220,0)"],[.5,"rgba(20,198,220,0)"],[.6,"rgba(20,198,220,0.22)"],[.75,"rgba(20,198,220,0.06)"],[1,"rgba(20,198,220,0)"]]),transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,toneMapped:false})); spill.rotation.x=-Math.PI/2; spill.position.y=.003; base.add(spill);
+  [[1,1],[1,-1],[-1,1],[-1,-1]].forEach(([sx,sz])=>{ base.add(cyl(.07,FEET,M.rubber,sx*.46,FEET/2,sz*.46,28)); base.add(cyl(.018,.05,M.portMetal,sx*.5,Y0+.05,-.13+sz*.5,16)); });
   add("base",base);
 
-  /* mainboard on chassis tray */
-  const board=new THREE.Group(); board.position.y=Y0;
-  const tray=new THREE.Mesh(slab(chShape(W-.2,D-.2,CH-.09),.02),M.darkMetal); tray.castShadow=true; tray.receiveShadow=true; board.add(tray);
-  const pcb=new THREE.Mesh(new THREE.BoxGeometry(1.14,.022,1.14),[M.pcbSide,M.pcbSide,M.pcb,M.pcbSide,M.pcbSide,M.pcbSide]); pcb.position.y=.04; pcb.castShadow=pcb.receiveShadow=true; board.add(pcb);
-  for(let i=0;i<7;i++){ const c=cyl(.024,.06,M.chip,-.5+i*.045,.08,.5,20); board.add(c); board.add(cyl(.024,.004,M.fin,-.5+i*.045,.112,.5,20)); }
-  [[.0,-.05,.16,.12],[-.45,.25,.1,.08],[.45,.42,.12,.07]].forEach(([x,z,w,d])=>board.add(box(w,.014,d,M.chip,x,.058,z)));
-  for(let i=0;i<4;i++) board.add(box(.07,.05,.06,M.port,-.3+i*.17,.075,-.54));
+  /* mainboard: black PCB, processor package, power stages, rear connectors */
+  const board=new THREE.Group(); board.position.y=PCB_Y;
+  const pcb=new THREE.Mesh(new THREE.BoxGeometry(1.1,.016,1.1),[M.pcbEdge,M.pcbEdge,M.pcb,M.pcbEdge,M.pcbEdge,M.pcbEdge]); pcb.position.set(0,.008,-.13); pcb.castShadow=pcb.receiveShadow=true; board.add(pcb);
+  const t=.016;
+  board.add(box(.26,.012,.25,M.substrate,.06,t+.006,-.22)); board.add(box(.13,.006,.11,M.die,.06,t+.015,-.22));
+  for(let i=0;i<7;i++) board.add(box(.05,.04,.05,M.inductor,-.1+i*.062,t+.02,-.42));
+  [[.33,-.05,.08,.06],[-.2,.0,.07,.07],[.26,.0,.05,.04],[-.42,.33,.06,.05]].forEach(([x,z,w,d])=>board.add(box(w,.01,d,M.chip,x,t+.005,z)));
+  for(let i=0;i<10;i++) board.add(box(.016,.012,.03,M.inductor,.2+i*.022,t+.006,-.12));
+  // rear connectors (match cut-outs in the case)
+  const rj=(x,h)=>{ const g=new THREE.Group(); g.position.set(x,t+h/2,-.62); g.add(box(.16,h,.18,M.portMetal)); const ho=plane(.12,.085,M.hole,0,-.01,-.0905); ho.rotation.y=Math.PI; g.add(ho); g.add(box(.02,.004,.002,M.gold,-.03,.02,-.09)); g.add(box(.02,.004,.002,M.gold,.03,.02,-.09)); board.add(g); };
+  rj(.06,.135); rj(.22,.135);
+  const usb=new THREE.Group(); usb.position.set(.375,t+.075,-.62); usb.add(box(.135,.15,.17,M.portMetal));
+  [.035,-.035].forEach(y=>{ const h=plane(.115,.048,M.hole,0,y,-.0855); h.rotation.y=Math.PI; usb.add(h); usb.add(box(.1,.012,.03,M.usbBlue,0,y-.006,-.075)); }); board.add(usb);
+  const usbc=new THREE.Group(); usbc.position.set(.49,t+.02,-.65); usbc.add(box(.09,.032,.1,M.portMetal)); const uh=plane(.075,.02,M.hole,0,0,-.0505); uh.rotation.y=Math.PI; usbc.add(uh); board.add(usbc);
+  // flat-flex cable to the front display header
+  board.add(box(.18,.003,.38,M.flex,.32,t+.002,.25));
   add("board",board);
 
-  /* storage (NVMe-style stick) */
-  const storage=new THREE.Group(); storage.position.set(.41,Y0+.06,.27);
-  storage.add(box(.3,.012,.09,M.ssd)); storage.add(box(.02,.016,.09,M.gold,-.16,0,0));
-  add("storage",storage);
-
-  /* memory */
-  const memory=new THREE.Group(); memory.position.set(.15,Y0+.12,.05);
-  [-.035,.035].forEach(x=>{ memory.add(box(.012,.13,.6,M.ram,x,0,0)); for(let k=0;k<4;k++){ memory.add(box(.006,.05,.09,M.chip,x+.009,.01,-.22+k*.145)); memory.add(box(.006,.05,.09,M.chip,x-.009,.01,-.22+k*.145)); } memory.add(box(.014,.012,.58,M.gold,x,-.066,0)); });
+  /* memory: two DDR5 SO-DIMMs, stacked flat like a laptop */
+  const memory=new THREE.Group(); memory.position.set(-.16,BT,.2);
+  [.028,.072].forEach((y,k)=>{ memory.add(box(.72,.03,.035,M.plastic,0,y-.01,-.165)); const m=new THREE.Mesh(new THREE.BoxGeometry(.695,.008,.3),[M.ramEdge,M.ramEdge,M.ramPcb,M.ramEdge,M.ramEdge,M.ramEdge]); m.position.set(0,y,0); m.castShadow=m.receiveShadow=true; memory.add(m); for(let c=0;c<4;c++) memory.add(box(.11,.007,.09,M.chip,-.27+c*.18+(c>1?.0:0),y+.0075,.08)); });
   add("memory",memory);
 
-  /* power supply */
-  const power=new THREE.Group(); power.position.set(.42,Y0+.13,-.26);
-  power.add(box(.24,.16,.44,M.psu)); power.add(box(.06,.03,.08,M.port,0,.095,-.15));
+  /* storage: M.2 2280 NVMe SSD */
+  const storage=new THREE.Group(); storage.position.set(.4,BT+.02,-.03);
+  const sd=new THREE.Mesh(new THREE.BoxGeometry(.22,.01,.8),[M.pcbEdge,M.pcbEdge,M.ssd,M.pcbEdge,M.pcbEdge,M.pcbEdge]); sd.castShadow=true; storage.add(sd);
+  sd.material[2].map.center.set(.5,.5); sd.material[2].map.rotation=Math.PI/2;
+  storage.add(box(.24,.03,.04,M.plastic,0,-.006,-.41));
+  add("storage",storage);
+
+  /* power input: barrel jack and input filtering (adapter is external) */
+  const power=new THREE.Group(); power.position.set(-.09,BT,-.62);
+  const jack=new THREE.Group(); jack.position.y=.05; jack.add(box(.1,.1,.16,M.plastic)); const jr=new THREE.Mesh(new THREE.CylinderGeometry(.03,.03,.01,24),M.portMetal); jr.rotation.x=Math.PI/2; jr.position.z=-.081; jack.add(jr); const jh=new THREE.Mesh(new THREE.CircleGeometry(.022,24),M.hole); jh.rotation.y=Math.PI; jh.position.z=-.087; jack.add(jh); power.add(jack);
+  [[-.1,.12],[.0,.16],[.1,.12]].forEach(([x,z])=>{ power.add(cyl(.025,.06,M.chip,x,.03,z,20)); power.add(cyl(.025,.003,M.portMetal,x,.062,z,20)); });
+  power.add(box(.07,.05,.07,M.inductor,.1,.025,.22));
   add("power",power);
 
-  /* processor + cooler: copper base, heat pipes, fin stack */
-  const cooler=new THREE.Group(); cooler.position.set(-.19,Y0+.07,.12);
-  cooler.add(box(.24,.02,.24,M.copper,0,0,0)); cooler.add(box(.2,.012,.2,M.chip,0,-.014,0));
-  for(let i=0;i<15;i++) cooler.add(box(.01,.2,.34,M.fin,-.16+i*.0228,.15,0));
-  cooler.add(box(.36,.012,.36,M.fin,0,.256,0));
-  [-.06,.06].forEach(z=>{ const curve=new THREE.CatmullRomCurve3([new THREE.Vector3(-.09,.012,z),new THREE.Vector3(-.2,.04,z),new THREE.Vector3(-.21,.17,z),new THREE.Vector3(-.12,.2,z),new THREE.Vector3(.16,.2,z)]); const t=new THREE.Mesh(new THREE.TubeGeometry(curve,48,.014,12,false),M.copper); t.castShadow=true; cooler.add(t); });
+  /* cooler: copper cold plate, two heat pipes, aluminium fin stack at the rear */
+  const cooler=new THREE.Group(); cooler.position.set(0,BT,0);
+  cooler.add(box(.2,.016,.2,M.copper,.06,.03,-.22));
+  for(let i=0;i<22;i++) cooler.add(box(.005,.15,.13,M.fin,-.52+i*.0168,.085,-.635));
+  cooler.add(box(.37,.006,.14,M.fin,-.34,.163,-.635));
+  [[-.18,-.6],[-.24,-.665]].forEach(([zA,zB],k)=>{ const c=new THREE.CatmullRomCurve3([new THREE.Vector3(.12,.04,zA+.0),new THREE.Vector3(-.02,.05,zA-.02),new THREE.Vector3(-.13,.17,zA-.1),new THREE.Vector3(-.15,.175,zB+.04),new THREE.Vector3(-.28,.175,zB),new THREE.Vector3(-.52,.175,zB)]); const tb=new THREE.Mesh(new THREE.TubeGeometry(c,64,.013,12,false),M.copper); tb.scale.y=.8; tb.castShadow=true; cooler.add(tb); });
   add("cooler",cooler);
 
-  /* blower fan */
-  const fan=new THREE.Group(); fan.position.set(-.21,Y0+.1,-.38);
-  fan.add(cyl(.17,.055,M.fanBlack,0,0,0,48,true)); fan.add(cyl(.17,.006,M.fanBlack,0,-.026,0,48));
-  const rotor=new THREE.Group(); rotor.add(cyl(.055,.05,M.fin,0,0,0,32));
-  for(let i=0;i<11;i++){ const b=box(.1,.04,.006,M.fanBlack); b.position.set(Math.cos(i/11*Math.PI*2)*.105,0,Math.sin(i/11*Math.PI*2)*.105); b.rotation.y=-i/11*Math.PI*2+.5; rotor.add(b); }
+  /* blower fan: housing, open intake, blades, outlet into the fin stack */
+  const fan=new THREE.Group(); fan.position.set(-.34,BT,-.32);
+  fan.add(cyl(.19,.004,M.plastic,0,.002,0,48)); fan.add(cyl(.19,.1,M.plastic,0,.05,0,48,true));
+  const fanRing=new THREE.Mesh(new THREE.RingGeometry(.09,.19,48),M.plastic); const ring2=fanRing; ring2.rotation.x=-Math.PI/2; ring2.position.y=.1; fan.add(ring2);
+  fan.add(box(.36,.1,.14,M.plastic,0,.05,-.2));
+  const rotor=new THREE.Group(); rotor.position.y=.05; rotor.add(cyl(.06,.08,M.plastic,0,0,0,32)); rotor.add(cyl(.045,.003,M.steel,0,.041,0,32));
+  for(let i=0;i<31;i++){ const a=i/31*Math.PI*2; const b=box(.07,.08,.004,M.plastic); b.position.set(Math.cos(a)*.12,0,Math.sin(a)*.12); b.rotation.y=-a+.6; rotor.add(b); }
   fan.add(rotor); fan.userData.rotor=rotor;
   add("fan",fan);
 
-  /* front display module */
-  const front=new THREE.Group(); front.position.set(0,Y0+.56,FZ);
-  const rim=new THREE.Mesh(new THREE.ShapeGeometry(chShape(1.0,.38,.068)),M.bezel); front.add(rim);
-  const back=box(.98,.36,.04,M.darkMetal,0,0,-.022); front.add(back);
-  const glass=new THREE.Mesh(new THREE.ShapeGeometry(chShape(.96,.34,.058)),M.glass); glass.position.z=.002; front.add(glass);
-  const bars=[], barGeo=new THREE.PlaneGeometry(.011,1);
-  for(let i=0;i<23;i++){ const m=new THREE.Mesh(barGeo,M.tealBright),u=(i/22)*2-1; m.position.set(u*.3,0,.004); m.userData.env=Math.pow(Math.cos(u*Math.PI/2),1.4); m.userData.rest=.25+.75*Math.abs(Math.sin(i*1.7)); front.add(m); bars.push(m); }
+  /* front: black glass panel with a 2.25" bar display and the power button */
+  const front=new THREE.Group(); front.position.set(0,Y0+H/2,FZ-.006);
+  const gw=W-2*CH-.08, gh=H-.14;
+  const glass=new THREE.Mesh(slab(chShape(gw,gh,.05),.012),M.glass); glass.rotation.x=Math.PI/2; glass.position.z=0; glass.castShadow=true; front.add(glass);
+  const dispBack=box(.72,.22,.02,M.pcbEdge,0,.05,-.02); front.add(dispBack); front.add(box(.12,.12,.004,M.flex,-.1,-.12,-.03));
+  const panel=plane(.66,.17,new THREE.MeshBasicMaterial({color:0x05090b}),0,.05,.0125); front.add(panel);
+  const bars=[], barGeo=new THREE.PlaneGeometry(.0085,1);
+  for(let i=0;i<33;i++){ const m=new THREE.Mesh(barGeo,M.teal),u=(i/32)*2-1; m.position.set(u*.27,.05,.013); m.userData.env=Math.pow(Math.cos(u*Math.PI/2),1.3); m.userData.rest=.25+.75*Math.abs(Math.sin(i*1.7)); front.add(m); bars.push(m); }
+  const btn=new THREE.Group(); btn.position.set(gw/2-.11,-gh/2+.075,.0125);
+  const led=new THREE.Mesh(new THREE.RingGeometry(.03,.036,40),M.teal); btn.add(led);
+  const cap=new THREE.Mesh(new THREE.CircleGeometry(.03,40),M.glass); cap.position.z=.0005; btn.add(cap); front.add(btn);
+  const eM=plane(.07,.07,new THREE.MeshBasicMaterial({map:markTex(MARK_D,"rgba(205,209,217,0.55)"),transparent:true,depthWrite:false}),-gw/2+.1,-gh/2+.075,.0127); front.add(eM);
+  const cM=plane(.07,.07,new THREE.MeshBasicMaterial({map:markTex(TEAL_D,"#14c6dc"),transparent:true,depthWrite:false,toneMapped:false}),-gw/2+.1,-gh/2+.075,.0129); front.add(cM);
   add("front",front);
 
-  /* shell sleeve (fades to x-ray when opened) */
+  /* case: one extruded aluminium sleeve (open top and bottom), machined vents and rear cut-outs */
   const shell=new THREE.Group(); shell.position.y=Y0;
-  const bodyGeo=new THREE.ExtrudeGeometry(chShape(W-2*BS,D-2*BS,CH),{depth:HS-2*BS,bevelEnabled:true,bevelThickness:BS,bevelSize:BS,bevelSegments:6});
-  bodyGeo.rotateX(-Math.PI/2); bodyGeo.translate(0,BS,0); bodyGeo.computeVertexNormals();
+  const BS=BEV*.8; const outer=chShape(W-2*BS,D-2*BS,CH-BS*.4); outer.holes.push(chPath(W-2*WALL+2*BS,D-2*WALL+2*BS,CH-WALL*.4+BS*.4));
+  const sleeveGeo=new THREE.ExtrudeGeometry(outer,{depth:H-2*BEV,bevelEnabled:true,bevelThickness:BEV,bevelSize:BEV*.8,bevelSegments:5,curveSegments:20});
+  sleeveGeo.rotateX(-Math.PI/2); sleeveGeo.translate(0,BEV,0); sleeveGeo.computeVertexNormals();
   const shellMat=M.alu.clone(); shellMat.transparent=true;
-  const body=new THREE.Mesh(bodyGeo,shellMat); body.castShadow=true; body.receiveShadow=true; shell.add(body);
-  const edges=new THREE.LineSegments(new THREE.EdgesGeometry(bodyGeo,28),new THREE.LineBasicMaterial({color:0x3cc5d6,transparent:true,opacity:0,depthWrite:false})); shell.add(edges);
-  const ventMat=M.vent.clone();
-  [[W/2+.002,0,Math.PI/2],[-W/2-.002,0,-Math.PI/2],[0,-D/2-.002,Math.PI]].forEach(([x,z,ry])=>{ const v=new THREE.Mesh(new THREE.PlaneGeometry(.9,.5),ventMat); v.position.set(x,.48,z); v.rotation.y=ry; shell.add(v); });
-  // rear I/O (concept)
-  const io=new THREE.Group(); io.position.set(0,.16,-D/2-.003); io.rotation.y=Math.PI; shell.add(io);
-  io.add(new THREE.Mesh(new THREE.ShapeGeometry(chShape(.8,.13,.03)),M.darkMetal));
-  const pw=new THREE.Mesh(new THREE.CylinderGeometry(.035,.035,.01,32),M.port); pw.rotation.x=Math.PI/2; pw.position.set(-.3,0,.006); io.add(pw);
-  const pwh=new THREE.Mesh(new THREE.CircleGeometry(.02,24),M.hole); pwh.position.set(-.3,0,.012); io.add(pwh);
-  [-.12,.0].forEach(x=>{ io.add(box(.075,.06,.01,M.port,x,0,.006)); const h=new THREE.Mesh(new THREE.PlaneGeometry(.055,.04),M.hole); h.position.set(x,-.004,.012); io.add(h); });
-  io.add(box(.05,.018,.01,M.port,.14,0,.006)); io.add(box(.05,.018,.01,M.port,.22,0,.006));
-  const ioTeal=new THREE.Mesh(new THREE.PlaneGeometry(.012,.012),M.teal); ioTeal.position.set(.32,0,.008); io.add(ioTeal);
-  // E mark below the display
-  const eM=new THREE.Mesh(new THREE.PlaneGeometry(.085,.085),new THREE.MeshBasicMaterial({map:markTex(MARK_D,"rgba(205,209,217,0.65)"),transparent:true,depthWrite:false}));
-  eM.position.set(0,.2,D/2+.003); shell.add(eM);
-  const cM=new THREE.Mesh(new THREE.PlaneGeometry(.085,.085),new THREE.MeshBasicMaterial({map:markTex(TEAL_D,"#14c6dc"),transparent:true,depthWrite:false,toneMapped:false}));
-  cM.position.set(0,.2,D/2+.0035); shell.add(cM);
+  const body=new THREE.Mesh(sleeveGeo,shellMat); body.castShadow=true; body.receiveShadow=true; shell.add(body);
+  const edges=new THREE.LineSegments(new THREE.EdgesGeometry(sleeveGeo,30),new THREE.LineBasicMaterial({color:0x3cc5d6,transparent:true,opacity:0,depthWrite:false})); shell.add(edges);
+  const perfMat=M.perf.clone(), slotMat=M.slots.clone();
+  [[W/2+.0015,Math.PI/2],[-W/2-.0015,-Math.PI/2]].forEach(([x,ry])=>{ const v=plane(.86,.24,perfMat,x,.3,0); v.rotation.y=ry; shell.add(v); });
+  // rear: exhaust slots in front of the fin stack, and port openings that line up with the board
+  const rear=new THREE.Group(); rear.position.z=-D/2-.0015; rear.rotation.y=Math.PI; shell.add(rear);
+  const ex=plane(.36,.16,slotMat,.34,BT-Y0+.085,0); rear.add(ex);
+  const cut=(x,y,w,h)=>{ const g=new THREE.Group(); g.position.set(-x,y-Y0,0); g.add(plane(w,h,M.hole)); [[0,h/2,w,.006],[0,-h/2,w,.006],[w/2,0,.006,h],[-w/2,0,.006,h]].forEach(([a,b,c,d])=>{ const f=plane(c,d,M.portMetal,a,b,.0005); g.add(f); }); rear.add(g); return g; };
+  const rjCut=(x)=>{ const g=cut(x,BT+.0675,.165,.14); g.add(plane(.12,.085,new THREE.MeshBasicMaterial({color:0x0a0b0d}),0,-.01,.001)); g.add(box(.02,.004,.002,M.gold,-.03,.035,.002)); g.add(box(.02,.004,.002,M.gold,.03,.035,.002)); };
+  rjCut(.06); rjCut(.22);
+  const uc=cut(.375,BT+.075,.14,.155); [.035,-.035].forEach(y=>uc.add(box(.1,.012,.004,M.usbBlue,0,y-.006,.002)));
+  cut(.49,BT+.02,.094,.036);
+  const dc=new THREE.Group(); dc.position.set(.09,BT+.05-Y0,0); dc.add(new THREE.Mesh(new THREE.CircleGeometry(.036,32),M.portMetal)); const dch=new THREE.Mesh(new THREE.CircleGeometry(.024,32),M.hole); dch.position.z=.0005; dc.add(dch); rear.add(dc);
   add("shell",shell);
 
-  /* top plate with engraved mark */
-  const top=new THREE.Group(); top.position.y=TOP-.012;
+  /* top lid: aluminium plate set into the sleeve, engraved mark */
+  const top=new THREE.Group(); top.position.y=TOP-.03;
   const topMat=M.aluTop.clone(); topMat.transparent=true;
-  const plate=new THREE.Mesh(slab(chShape(W-.17,D-.17,CH-.075),.02,.006),topMat); plate.castShadow=true; top.add(plate);
-  const topMark=new THREE.Mesh(new THREE.PlaneGeometry(.2,.2),new THREE.MeshBasicMaterial({map:markTex(MARK_D,"rgba(0,0,0,0.55)"),transparent:true,depthWrite:false}));
-  topMark.rotation.x=-Math.PI/2; topMark.position.y=.0215; top.add(topMark);
-  const topEdges=new THREE.LineSegments(new THREE.EdgesGeometry(plate.geometry,28),new THREE.LineBasicMaterial({color:0x3cc5d6,transparent:true,opacity:0,depthWrite:false})); top.add(topEdges);
+  const lid=new THREE.Mesh(slab(chShape(W-2*WALL-.004,D-2*WALL-.004,CH-.015),.03,.006),topMat); lid.castShadow=true; lid.receiveShadow=true; top.add(lid);
+  const topMark=plane(.16,.16,new THREE.MeshBasicMaterial({map:markTex(MARK_D,"rgba(0,0,0,0.45)"),transparent:true,depthWrite:false})); topMark.rotation.x=-Math.PI/2; topMark.position.y=.0305; top.add(topMark);
+  const topEdges=new THREE.LineSegments(new THREE.EdgesGeometry(lid.geometry,30),new THREE.LineBasicMaterial({color:0x3cc5d6,transparent:true,opacity:0,depthWrite:false})); top.add(topEdges);
   add("top",top);
 
   /* floor: soft contact shadow + shadow catcher */
-  const contact=new THREE.Mesh(new THREE.PlaneGeometry(2.8,2.8),new THREE.MeshBasicMaterial({map:radialTex([[0,"rgba(0,0,0,0.6)"],[.45,"rgba(0,0,0,0.28)"],[1,"rgba(0,0,0,0)"]]),transparent:true,depthWrite:false}));
-  contact.rotation.x=-Math.PI/2; contact.position.y=.001; root.add(contact);
+  const contact=plane(2.8,2.8,new THREE.MeshBasicMaterial({map:radialTex([[0,"rgba(0,0,0,0.65)"],[.42,"rgba(0,0,0,0.3)"],[1,"rgba(0,0,0,0)"]]),transparent:true,depthWrite:false})); contact.rotation.x=-Math.PI/2; contact.position.y=.001; root.add(contact);
   const catcher=new THREE.Mesh(new THREE.PlaneGeometry(14,14),new THREE.ShadowMaterial({opacity:.22})); catcher.rotation.x=-Math.PI/2; catcher.receiveShadow=true; root.add(catcher);
 
   /* explode choreography: [part, rise, forward, delay] */
-  const EX=[["board",.3,0,0],["storage",.66,0,.03],["memory",.78,0,.05],["power",.7,0,.07],["cooler",1.1,0,.1],["fan",1.36,0,.13],["front",.95,.95,.16],["shell",2.08,0,.2],["top",2.9,0,.26]];
-  const fade={shell:[shellMat,ventMat],top:[topMat]};
+  const EX=[["board",.16,0,0],["power",.3,-.05,.03],["storage",.42,0,.05],["memory",.52,0,.07],["fan",.6,0,.1],["cooler",.78,0,.12],["front",.12,.72,.15],["shell",1.22,0,.2],["top",1.72,0,.26]];
+  const fade={shell:[shellMat,perfMat,slotMat],top:[topMat]};
   function setExplode(E){
     EX.forEach(([n,dy,dz,d])=>{ const k=ease(clamp((E-d)/.62)); const g=parts[n]; g.position.y=g.userData.home.y+dy*k; g.position.z=g.userData.home.z+dz*k; });
     const ks=ease(clamp((E-.2)/.62)), kt=ease(clamp((E-.26)/.62));
     const xs=clamp((ks-.15)/.6), xt=clamp((kt-.15)/.6);
-    shellMat.opacity=1-.86*xs; ventMat.opacity=1-xs; shellMat.depthWrite=xs<.05; edges.material.opacity=.75*xs;
-    eM.material.opacity=cM.material.opacity=1-xs; io.visible=xs<.6;
+    shellMat.opacity=1-.86*xs; perfMat.opacity=slotMat.opacity=1-xs; shellMat.depthWrite=xs<.05; edges.material.opacity=.75*xs; rear.visible=xs<.6;
     topMat.opacity=1-.6*xt; topMat.depthWrite=xt<.05; topEdges.material.opacity=.6*xt;
     body.castShadow=xs<.3;
     fan.userData.rotor.rotation.y=E*Math.PI*3;
   }
-  function setBars(t,speaking){ bars.forEach((b,i)=>{ const a=speaking?.4+.6*Math.abs(Math.sin(t*9+i*.6)*Math.sin(t*5.3+i*.23+1.3)):b.userData.rest; b.scale.y=Math.max(.012,.22*b.userData.env*a+.012); }); }
-  root.traverse(o=>{ if(o.isMesh && o.material!==M.vent && !o.material.transparent) { o.castShadow=o.castShadow||false; } });
+  function setBars(t,speaking){ bars.forEach((b,i)=>{ const a=speaking?.4+.6*Math.abs(Math.sin(t*9+i*.6)*Math.sin(t*5.3+i*.23+1.3)):b.userData.rest; b.scale.y=Math.max(.006,.11*b.userData.env*a+.006); }); }
   return {root,parts,setExplode,setBars,dims:{W,D,TOP,Y0,FZ}};
 }
 
@@ -1212,16 +1412,16 @@ let hero=null, bd=null, xp=null, V3=null;
 /* Breakdown scene */
 const bdEl=$("#insideStage"), bdLines=$("#bdLines"), bdLabels=$("#bdLabels"), bdLegend=$("#bdLegend");
 const BD=[
-  ["top",[0,.02,0],"Top plate","Brushed aluminium, engraved mark"],
-  ["shell",[.74,.62,.2],"Aluminium shell","Vents on both sides and the back"],
-  ["front",[-.46,.12,0],"Display module","Waveform moves while Eva talks"],
-  ["fan",[0,.03,0],"Cooling fan","Pushes air out through the vents"],
-  ["cooler",[.12,.26,0],"Processor & cooler","Where the core AI runs, locally"],
-  ["memory",[0,.07,.25],"Memory","Working memory for the AI"],
-  ["power",[.12,.08,0],"Power supply","Built in, concept"],
-  ["storage",[.15,.01,0],"On-site storage","Appointment and caller data"],
-  ["board",[-.5,.05,.5],"Mainboard","Concept layout, not final"],
-  ["base",[.6,.04,.6],"Base & status light","Teal strip shows it's on"]
+  ["top",[.3,.03,.3],"Top lid","Aluminium plate, engraved mark"],
+  ["shell",[.8,.42,.25],"Aluminium case","One extruded sleeve, machined vents"],
+  ["front",[-.34,.05,.013],"Glass front & display","Waveform moves while Eva talks"],
+  ["fan",[0,.1,0],"Blower fan","Standard laptop-style, pulls air through"],
+  ["cooler",[-.34,.166,-.635],"Heat pipes & fins","Carry heat to the back of the case"],
+  ["memory",[.25,.08,0],"Memory","Standard DDR5 laptop memory"],
+  ["power",[0,.1,0],"Power input","External adapter, like a laptop"],
+  ["storage",[0,.006,.25],"On-site storage","Standard M.2 SSD, data stays here"],
+  ["board",[-.45,.017,.3],"Mainboard","Standard mini-PC board, laptop-class chip"],
+  ["base",[.7,.08,.3],"Base & light ring","Soft teal ring shows it's on"]
 ];
 BD.forEach((b,i)=>{ const el=document.createElement("div"); el.className="bl"; el.innerHTML='<span class="num">'+String(i+1).padStart(2,"0")+'</span><b>'+b[2]+'</b><small>'+b[3]+'</small>'; bdLabels.append(el); b.el=el;
   const mk=document.createElement("div"); mk.className="bd-mk"; mk.textContent=i+1; bdLabels.append(mk); b.mk=mk;
@@ -1260,7 +1460,7 @@ function bdProgress(p){
   if(bd){
     const th=.55+.35*ramp(p,0,.5)+.35*ramp(p,.5,.84)-.7*ramp(p,.84,1);
     bd.setExplode(E);
-    bd.setView({theta:th,phi:lerp(1.3,1.18,E),r:SMALL_BD?lerp(9.5,13.5,E):lerp(7.6,12.2,E),ty:lerp(.5,1.85,E)});
+    bd.setView({theta:th,phi:lerp(1.28,1.16,E),r:SMALL_BD?lerp(9.5,13,E):lerp(7.4,11,E),ty:lerp(.38,1.25,E)});
     if(!SMALL_BD) bd.setShift(.2*(1-ramp(p,.1,.3)) + .2*ramp(p,.86,.97),0);
     else bd.setShift(0,lerp(-.17,.12,E));
     if(p>.02&&p<.1&&!bd._spoke){ bd._spoke=true; bd.speak(2200); } if(p>.2) bd._spoke=false;
@@ -1271,19 +1471,20 @@ const lerp=(a,b,t)=>a+(b-a)*t;
 /* Explore studio */
 const VIEWS3={front:{theta:0,phi:1.33},three:{theta:.62,phi:1.24},side:{theta:Math.PI/2,phi:1.33},back:{theta:Math.PI,phi:1.33},top:{theta:.35,phi:.42}};
 const SMALL=matchMedia("(max-width: 700px)").matches;
-const CLOSED={r:SMALL?8.2:5.8,ty:.5}, OPEN={r:SMALL?15:10.9,ty:1.8};
+const CLOSED={r:SMALL?8:5.8,ty:.38}, OPEN={r:SMALL?13.5:9.8,ty:1.25};
 const HS=[
-  {m:0,part:"front",at:[.33,.12,.01],n:[0,0,1],t:"Waveform display",x:"Moves while Eva is on a call. A glass front with nothing to press.",v:{theta:.12,phi:1.36,r:3.9,ty:.6}},
-  {m:0,part:"base",at:[.5,.04,.62],n:[0,0,1],t:"Status light",x:"A teal strip around the base shows the unit is on.",v:{theta:.55,phi:1.42,r:4.2,ty:.25}},
-  {m:0,part:"shell",at:[.755,.5,.15],n:[1,0,0],t:"Ventilation",x:"Perforated panels on both sides and the back, for running day and night.",v:{theta:1.45,phi:1.32,r:4.4,ty:.5}},
-  {m:0,part:"shell",at:[-.2,.16,-.755],n:[0,0,-1],t:"Rear connections",x:"Power, network and phone-line connections. Concept only — the final ports aren't decided.",v:{theta:Math.PI-.3,phi:1.38,r:3.8,ty:.3}},
-  {m:0,part:"top",at:[.3,.022,.3],n:[0,1,0],t:"Top plate",x:"Brushed aluminium with the Evingo mark engraved in the centre.",v:{theta:.4,phi:.5,r:5,ty:.6}},
-  {m:1,part:"cooler",at:[0,.27,0],t:"Processor & cooler",x:"Where the core AI is designed to run, on the unit itself. Copper heat pipes carry heat to the fins."},
-  {m:1,part:"fan",at:[0,.035,0],t:"Cooling fan",x:"Pulls heat away and pushes it out through the vents."},
-  {m:1,part:"memory",at:[0,.075,.2],t:"Memory",x:"Working memory for the AI. Amount not decided."},
-  {m:1,part:"storage",at:[0,.012,0],t:"On-site storage",x:"Where appointment records and caller details are designed to stay."},
-  {m:1,part:"power",at:[0,.09,0],t:"Power supply",x:"Built into the unit in this concept."},
-  {m:1,part:"board",at:[-.45,.06,.45],t:"Mainboard",x:"Connects every part. This layout is a concept, not a final design."}
+  {m:0,part:"front",at:[.2,.05,.013],n:[0,0,1],t:"Glass display",x:"A small display behind black glass. The waveform moves while Eva is on a call.",v:{theta:.12,phi:1.36,r:3.8,ty:.42}},
+  {m:0,part:"front",at:[.41,-.165,.013],n:[0,0,1],t:"Power button",x:"The only button on the front, with a small teal ring around it.",v:{theta:.3,phi:1.38,r:3.5,ty:.36}},
+  {m:0,part:"base",at:[.7,.075,.3],n:[.7,0,.7],t:"Light ring",x:"A soft teal ring around the base shows at a glance that Evingo is on. It's a frosted strip lit by a standard LED strip.",v:{theta:.75,phi:1.45,r:4,ty:.25}},
+  {m:0,part:"shell",at:[.802,.3,.3],n:[1,0,0],t:"Side vents",x:"Machined holes on both sides let the fan pull in cool air.",v:{theta:1.45,phi:1.32,r:4,ty:.32}},
+  {m:0,part:"shell",at:[.2,.2,-.802],n:[0,0,-1],t:"Rear ports",x:"Power in, two network ports, USB and USB-C. The network port connects Evingo to your clinic's network. Final ports aren't decided.",v:{theta:Math.PI-.3,phi:1.38,r:3.6,ty:.25}},
+  {m:0,part:"top",at:[.35,.031,.35],n:[0,1,0],t:"Top lid",x:"An aluminium plate set into the case, with the Evingo mark engraved in the centre.",v:{theta:.4,phi:.5,r:4.8,ty:.45}},
+  {m:1,part:"cooler",at:[-.375,.17,-.635],t:"Heat pipes & fins",x:"Copper heat pipes carry heat from the processor to aluminium fins at the back, the same way laptops and mini PCs stay cool."},
+  {m:1,part:"fan",at:[0,.1,0],t:"Blower fan",x:"A standard laptop-style blower pushes air through the fins and out the back."},
+  {m:1,part:"memory",at:[.2,.08,0],t:"Memory",x:"Standard DDR5 laptop memory, 32 GB in the reference build. Easy to buy and replace."},
+  {m:1,part:"storage",at:[0,.006,.2],t:"On-site storage",x:"A standard M.2 SSD. Appointment records and call notes are designed to stay here, in your office."},
+  {m:1,part:"power",at:[0,.1,0],t:"Power input",x:"Power comes from an external adapter, like a laptop charger. Nothing high-voltage inside the case."},
+  {m:1,part:"board",at:[-.42,.017,.3],t:"Mainboard",x:"A standard mini-PC mainboard with a laptop-class processor that can run AI on its own. Layout shown is a concept."}
 ];
 let mode=0, viewKey="three";
 const hsWrap=$("#hotspots"), exN=$("#exN"), exTitle=$("#exTitle"), exText=$("#exText");
@@ -1344,7 +1545,7 @@ function smLoop(){
 }
 function onScroll(){ navTheme(); readTargets(); if(!smRaf) smRaf=requestAnimationFrame(smLoop); }
 if (window.Lenis && !reduceMotion){
-  try{ lenis=new Lenis({lerp:.095,smoothWheel:true,wheelMultiplier:.95}); lenis.on("scroll",onScroll); window.__lenis=lenis;
+  try{ lenis=new Lenis({lerp:.095,smoothWheel:true,wheelMultiplier:.95}); lenis.on("scroll",onScroll); window.__lenis=lenis; lenis.scrollTo(0,{immediate:true});
     const tick=t=>{ lenis.raf(t); requestAnimationFrame(tick); }; requestAnimationFrame(tick);
   }catch(e){ lenis=null; }
 }
@@ -1366,15 +1567,15 @@ function initStages(){
   V3=THREE.Vector3;
   const common={MARK_D,TEAL_D};
   try{
-    hero=Unit3D.Stage(heroStageEl,{...common,snap:true,fov:24,view:{theta:.62,phi:1.3,r:9.5,ty:.5}});
-    hero.setView({r:6.4},1800); setTimeout(()=>hero.speak(2600),900);
-    setTimeout(()=>{ try{ const img=$("#beautyImg"), fig=img.parentElement, sc=Math.min(2,1500/Math.max(fig.clientWidth,1)); img.src=hero.snapshot({theta:-.58,phi:1.4,r:5.4,ty:.4},Math.round(fig.clientWidth*sc),Math.round(fig.clientHeight*sc)); img.hidden=false; fig.classList.add("has-img"); }catch(e){} },400);
+    hero=Unit3D.Stage(heroStageEl,{...common,snap:true,fov:24,view:{theta:.62,phi:1.28,r:9.4,ty:.38}});
+    hero.setView({r:6.2},1800); setTimeout(()=>hero.speak(2600),900);
+    setTimeout(()=>{ try{ const img=$("#beautyImg"), fig=img.parentElement, sc=Math.min(2,1500/Math.max(fig.clientWidth,1)); img.src=hero.snapshot({theta:-.58,phi:1.36,r:5.3,ty:.34},Math.round(fig.clientWidth*sc),Math.round(fig.clientHeight*sc)); img.hidden=false; fig.classList.add("has-img"); }catch(e){} },400);
   }catch(e){ console.warn(e); }
   const lazy=(el,fn)=>new IntersectionObserver((es,o)=>{ if(es[0].isIntersecting){ o.disconnect(); try{ fn(); }catch(e){ console.warn(e); } } },{rootMargin:"600px"}).observe(el);
   /* build the other two stages during idle time, before the visitor reaches them, so nothing is built mid-scroll */
   const idle=(fn,ms)=>setTimeout(()=>(window.requestIdleCallback||(f=>f()))(fn,{timeout:1200}),ms);
   const once=fn=>{ let done=false; return ()=>{ if(done) return; done=true; try{ fn(); }catch(e){ console.warn(e); } }; };
-  const mkBd=once(()=>{ bd=Unit3D.Stage(bdEl,{...common,maxDpr:1.25,fov:24,exposure:1.1,view:{theta:.55,phi:1.3,r:6.6,ty:.5}}); bd.onFrame(bdLayout); bdP=-1; SM.bd.c=-1; onScroll(); });
+  const mkBd=once(()=>{ bd=Unit3D.Stage(bdEl,{...common,maxDpr:1.25,fov:24,exposure:1.1,view:{theta:.55,phi:1.28,r:6.8,ty:.38}}); bd.onFrame(bdLayout); bdP=-1; SM.bd.c=-1; onScroll(); });
   const mkXp=once(()=>{ xp=Unit3D.Stage($("#exploreStage"),{...common,fov:24,orbit:true,minR:2.6,maxR:15,view:{...VIEWS3.three,...CLOSED}}); xp.onFrame(hsLayout); setView3("three"); });
   lazy(bdEl,mkBd); lazy($("#exploreStage"),mkXp);
   idle(mkBd,900); idle(mkXp,1900);
