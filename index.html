@@ -52,18 +52,13 @@ section{position:relative;scroll-margin-top:var(--nav)}
 h1,h2,h3{font-weight:500;font-stretch:108%;letter-spacing:-.03em;line-height:1.02}
 h1,h2{font-weight:780;font-stretch:122%;text-transform:uppercase;letter-spacing:-.012em;line-height:.9}
 h2{font-size:clamp(40px,6.2vw,104px)}
+h2 .dim,.kit-head h3 .dim{display:inline-block;will-change:transform}
+html,body{overflow-x:clip}
 h1 .dim,h2 .dim,.dim-o{color:transparent!important;-webkit-text-stroke:1.4px var(--fg);text-stroke:1.4px var(--fg)}
 .ink h1 .dim,.ink h2 .dim{-webkit-text-stroke-color:#f2f3f5}
 h3{font-weight:650;font-stretch:112%}
 .lead{font-size:clamp(17px,1.45vw,20px);color:var(--fg2);max-width:44ch;font-weight:400;line-height:1.5}
 .dim{color:var(--fg2)}
-.split .wm{display:inline-block;overflow:hidden;vertical-align:top;padding:.04em .02em .08em;margin:-.04em -.02em -.08em}
-.js .split .w{display:inline-block;transform:translateY(108%);transition:transform .75s cubic-bezier(.22,1,.36,1)}
-.split.in .w{transform:none}
-.js .wipe{clip-path:inset(0 0 100% 0);transition:clip-path 1s cubic-bezier(.22,1,.36,1)}
-.wipe.in{clip-path:inset(0 0 0 0)}
-.js .fade{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
-.fade.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.split .w,.fade{opacity:1!important;transform:none!important;transition:none!important}.wipe{clip-path:none!important;transition:none!important}}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
@@ -105,7 +100,7 @@ html.lenis,html.lenis body{height:auto}
 .mobile-menu{display:none}
 
 /* Floating CTA */
-.float-cta{position:fixed;right:22px;bottom:22px;z-index:55;width:54px;height:54px;display:grid;place-items:center;background:var(--teal);color:var(--ink);clip-path:polygon(9px 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px),0 9px);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s}
+.float-cta{position:fixed;right:22px;bottom:22px;z-index:55;height:46px;padding:0 20px;display:grid;place-items:center;font-size:13px;font-weight:650;font-stretch:90%;text-transform:uppercase;letter-spacing:.05em;background:var(--teal);color:var(--ink);clip-path:polygon(9px 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px),0 9px);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s}
 .float-cta.show{opacity:1;transform:none;pointer-events:auto}
 .float-cta svg{width:20px;height:20px}
 
@@ -267,7 +262,7 @@ dialog::backdrop{background:rgba(5,6,8,.72)}
 .lines{display:grid;gap:10px;padding:20px;min-height:320px;align-content:start;overflow:auto;max-height:56vh}
 .line{max-width:86%;padding:11px 14px;font-size:15px;line-height:1.45;animation:lin .35s ease both}
 .line small{display:block;font-size:11px;font-stretch:80%;text-transform:uppercase;letter-spacing:.06em;color:#8d929b;margin-bottom:2px}
-.line.eva{background:#0d1b20;border-left:2px solid var(--teal)}
+.line.eva{background:#0d1b20}
 .line.caller{justify-self:end;background:#191c22}
 @keyframes lin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .dlg-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-top:1px solid #1f232b;font-size:13px;color:#80858f}
@@ -292,10 +287,11 @@ dialog::backdrop{background:rgba(5,6,8,.72)}
 .clinics{padding:150px 0 140px}
 .ck-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:40px;align-items:end;margin-bottom:90px}
 .ck-head h2{font-size:clamp(40px,5.4vw,92px)}
-.ck-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line2);margin-bottom:100px}
+.ck-stats{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr);border-top:1px solid var(--line2);margin-bottom:100px}
 .ck-stat{padding:34px 34px 0 0;display:grid;gap:14px;align-content:start}
 .ck-stat + .ck-stat{padding-left:34px;border-left:1px solid var(--line)}
-.ck-stat b{font-size:clamp(56px,7vw,112px);font-weight:820;font-stretch:118%;line-height:.85;letter-spacing:-.04em}
+.ck-stat:first-child b{font-size:clamp(84px,12vw,200px)}
+.ck-stat b{font-size:clamp(44px,4.6vw,76px);font-weight:820;font-stretch:118%;line-height:.85;letter-spacing:-.04em}
 .ck-stat b i{font-style:normal;font-size:.42em;color:var(--teal-lt);margin-left:.06em;letter-spacing:0}
 .ck-stat span{color:var(--fg2);max-width:30ch;line-height:1.5}
 .ck-src{grid-column:1/-1;margin-top:30px;font-size:12.5px;color:var(--fg3)}
@@ -305,7 +301,6 @@ dialog::backdrop{background:rgba(5,6,8,.72)}
 .ck-node{position:relative;display:grid;gap:6px;padding:34px 24px 0 0}
 .ck-node::before{content:"";position:absolute;left:0;top:4px;width:11px;height:11px;background:var(--ink);border:1px solid var(--fg2)}
 .ck-node.is-unit::before{background:var(--teal);border-color:var(--teal)}
-.ck-node small{font-size:12px;font-stretch:80%;letter-spacing:.06em;color:var(--fg3)}
 .ck-node b{font-size:clamp(18px,1.6vw,24px);font-weight:700;font-stretch:112%;text-transform:uppercase;letter-spacing:-.01em}
 .ck-node.is-unit b{color:var(--teal-lt)}
 .ck-node span{color:var(--fg2);font-size:14.5px}
@@ -347,7 +342,9 @@ dialog::backdrop{background:rgba(5,6,8,.72)}
 .pv-cols{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
 .pv-col{padding:30px 40px 0 0}
 .pv-col + .pv-col{padding-left:40px;border-left:1px solid var(--line)}
-.pv-col .chip{margin-bottom:24px}
+.col-h{font-size:13px;font-weight:650;font-stretch:90%;text-transform:uppercase;letter-spacing:.05em;color:var(--fg);padding-bottom:12px;margin-bottom:22px;border-bottom:1px solid var(--fg)}
+.bd-note{font-size:12.5px;color:#8d929b;white-space:nowrap}
+.clock-cap{font-size:13px;color:#a3a8b1}
 .pv-col ul{list-style:none;display:grid;gap:22px}
 .pv-col li b{display:block;font-weight:500;font-size:19px;margin-bottom:4px;letter-spacing:-.01em}
 .pv-col li span{color:var(--fg2);font-size:15.5px}
@@ -368,7 +365,7 @@ dialog::backdrop{background:rgba(5,6,8,.72)}
 .status-row h3 + p{margin-top:10px;color:var(--fg2);font-size:15px}
 .status-row ul{list-style:none;display:grid;gap:0;font-size:15.5px}
 .status-row ul li{padding:10px 0;border-bottom:1px solid var(--line)}
-.status-row .chip{margin-bottom:14px}
+.status-row .col-h{margin-bottom:6px}
 
 /* WAITLIST */
 .waitlist{padding:140px 0 130px}
@@ -378,7 +375,7 @@ dialog::backdrop{background:rgba(5,6,8,.72)}
 .wl-left ol{list-style:none;margin-top:36px;border-top:1px solid var(--line)}
 .wl-left ol li{display:grid;grid-template-columns:38px 1fr;padding:14px 0;border-bottom:1px solid var(--line);font-size:15.5px}
 .wl-left ol span{color:var(--fg3);font-size:13px;font-stretch:85%;padding-top:2px}
-.free{margin-top:28px;font-size:15px;border-left:2px solid var(--teal);padding-left:16px}
+.free{margin-top:28px;font-size:15px}
 form{display:grid;gap:20px}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
 .field{display:grid;gap:7px;align-content:start}
@@ -526,7 +523,7 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
   .bd-outro .btn{height:48px}
   .inside .lead{display:none}
   .bd-foot .wrap{padding-right:84px}
-  .bd-foot .chip{display:none}
+  .bd-foot .bd-note{display:none}
   .float-cta{right:16px;bottom:16px}
 }
 </style>
@@ -560,7 +557,7 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
   </div>
 </header>
 
-<a href="#waitlist" class="float-cta" id="floatCta" aria-label="Join the waitlist"><svg viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M1 1h4l5 5-5 5H1l5-5z"/></svg></a>
+<a href="#waitlist" class="float-cta" id="floatCta">Join</a>
 
 <!-- HERO -->
 <section class="hero ink" id="top" data-theme="ink" aria-label="Introduction">
@@ -569,10 +566,10 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
   <div class="stage" id="heroStage" role="img" aria-label="3D render of the Evingo Unit concept: a compact graphite box with angled corners and a waveform display on the front"><div class="fallback" aria-hidden="true"></div></div>
   <div class="hero-bottom" id="heroBottom">
     <div class="wrap">
-      <h1>Your front desk.<br><span class="dim">Powered by AI.</span></h1>
+      <h1>Your front desk,<br><span class="dim">powered by AI.</span></h1>
       <div class="hero-right">
         <p>An AI receptionist that answers your clinic's phone and books, moves and cancels appointments — from a unit that sits in your office.</p>
-        <div class="hero-cta"><a href="#waitlist" class="btn btn-teal">Join the waitlist</a><span>Working prototype · concept unit shown</span></div>
+        <div class="hero-cta"><a href="#waitlist" class="btn btn-teal">Join the waitlist</a><span>Working prototype. The unit shown is a concept.</span></div>
       </div>
     </div>
   </div>
@@ -583,7 +580,7 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
 <!-- INTRO -->
 <section class="intro paper grain" id="receptionist" data-theme="paper">
   <div class="wrap">
-    <h2 class="split intro-h">More than an AI assistant. <span class="dim">Your new receptionist.</span></h2>
+    <h2 class="split intro-h">More than an AI assistant: <span class="dim">your new receptionist.</span></h2>
   </div>
   <div class="wrap intro-grid">
     <div class="intro-copy">
@@ -595,14 +592,14 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
         <button class="pill" role="tab" aria-selected="false" aria-controls="dutyPanel" data-duty="3">For clinics</button>
       </div>
       <div class="duty-panel fade" id="dutyPanel" role="tabpanel"></div>
-      <a href="#unit" class="btn btn-line fade">See inside the unit <svg viewBox="0 0 12 12" aria-hidden="true"><path fill="#01a3b8" d="M1 1h4l5 5-5 5H1l5-5z"/></svg></a>
+      <a href="#unit" class="btn btn-line fade">See inside the unit</a>
     </div>
     <figure class="beauty wipe">
       <img id="beautyImg" alt="Close-up render of the Evingo Unit concept: the front display glowing teal under a brushed graphite shell" hidden>
       <div class="fallback" aria-hidden="true"></div>
       <figcaption>
-        <span>Evingo Unit · concept render</span>
-        <a href="#explore" class="tlink-l">Explore it in 3D <svg viewBox="0 0 12 12" aria-hidden="true"><path fill="#01a3b8" d="M1 1h4l5 5-5 5H1l5-5z"/></svg></a>
+        <span>Evingo Unit, concept render</span>
+        <a href="#explore" class="tlink-l">Explore it in 3D</a>
       </figcaption>
     </figure>
   </div>
@@ -627,16 +624,15 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
     <svg class="bd-lines" id="bdLines" aria-hidden="true"></svg>
     <div class="bd-labels" id="bdLabels" aria-hidden="true"></div>
     <div class="bd-intro" id="bdIntro"><div class="wrap"><div>
-      <span class="chip warn"><span class="tag">Concept</span><span>Prototype design</span></span>
       <h2>Powerful AI.<br>Right on your desk.</h2>
       <p class="lead">Evingo is designed around a dedicated computer in your office, rather than relying entirely on remote cloud servers. Keep scrolling to take it apart.</p>
     </div></div></div>
     <div class="bd-outro" id="bdOutro"><div class="wrap">
-      <h3>One quiet box. <span class="dim">Nothing else to manage.</span></h3>
+      <h3>One box on a shelf, <span class="dim">and nothing else to manage.</span></h3>
       <a href="#explore" class="btn btn-teal">Explore it yourself</a>
     </div></div>
     <div class="bd-foot"><div class="wrap">
-      <span class="chip"><span class="tag">Concept layout</span><span>Components and specs not final</span></span>
+      <span class="bd-note">Concept layout. Components and specs aren't final.</span>
       <div class="bd-bar"><i id="bdBar"></i></div>
       <span class="bd-phase" id="bdPhase">Assembled</span>
     </div></div>
@@ -648,7 +644,7 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
 <section class="explore paper grain" id="explore" data-theme="paper">
   <div class="wrap">
     <div class="ex-head">
-      <h2 class="split">Explore the unit. <span class="dim">Turn it, open it.</span></h2>
+      <h2 class="split">Turn it around, <span class="dim">then open it up.</span></h2>
       <p class="lead fade">Drag to look around. Open it up to see the concept layout inside, and tap a number to learn what each part does.</p>
     </div>
     <div class="studio wipe" id="studio">
@@ -675,8 +671,7 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
     </div>
     <div class="kit">
       <div class="kit-head fade">
-        <span class="chip"><span class="tag">Reference build</span><span>Parts you can buy today</span></span>
-        <h3>Standard parts. <span class="dim">Realistic cost.</span></h3>
+        <h3>Built from standard parts <span class="dim">you can buy today.</span></h3>
         <p>Evingo is designed around off-the-shelf mini-PC parts, so units can be built, repaired and upgraded without custom electronics.</p>
       </div>
       <div class="kit-table fade" role="table" aria-label="Estimated parts cost">
@@ -696,14 +691,14 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
   <div class="pin">
     <div class="wrap day-grid">
       <div>
-        <div class="clock-label"><span class="ava" id="dayAva"></span><span class="chip"><span class="tag">Example</span><span>A day with Eva</span></span></div>
+        <div class="clock-label"><span class="ava" id="dayAva"></span><span class="clock-cap">An example day with Eva</span></div>
         <div class="clock" id="clock" aria-live="polite"><div class="t" id="clockT">7:42<small>AM</small></div></div>
         <p class="day-title" id="dayTitle">Before you open</p>
-        <p class="day-note">An illustration of how Eva is designed to work, not a log from a real clinic. Eva is the voice of Evingo.</p>
+        <p class="day-note">An illustration of how Eva is designed to work, not a log from an actual clinic. Eva is the voice of Evingo.</p>
       </div>
       <ol class="feed" id="feed">
         <li><time>7:42 AM</time><ul><li>A caller asks what time you open.</li><li>Eva answers from your clinic's information.</li><li>Books them in for 9:15 AM.</li></ul></li>
-        <li><time>12:10 PM</time><div><ul><li>A patient needs to move Thursday's cleaning.</li><li>Eva offers two open times.</li><li>Moved to Monday at 3:15 PM.</li></ul><button type="button" class="read-call" id="openCall">Read this call <svg viewBox="0 0 12 12" aria-hidden="true"><path fill="#01a3b8" d="M1 1h4l5 5-5 5H1l5-5z"/></svg></button></div></li>
+        <li><time>12:10 PM</time><div><ul><li>A patient needs to move Thursday's cleaning.</li><li>Eva offers two open times.</li><li>Moved to Monday at 3:15 PM.</li></ul><button type="button" class="read-call" id="openCall">Read this call</button></div></li>
         <li><time>5:52 PM</time><ul><li>After close, a patient cancels tomorrow.</li><li>Eva confirms the cancellation.</li><li>The slot opens back up on the schedule.</li></ul></li>
         <li><time>9:30 PM</time><ul><li>A new patient asks if you take walk-ins.</li><li>Eva answers from the info you gave her.</li><li>Offers the first open appointment.</li></ul></li>
       </ol>
@@ -712,7 +707,7 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
 </section>
 
 <dialog id="privDialog" aria-labelledby="privTitle">
-  <div class="dlg-head"><div><b id="privTitle">How we handle your waitlist details</b><small>Plain-language notice · November 2026</small></div><button type="button" class="dlg-close" data-close aria-label="Close">×</button></div>
+  <div class="dlg-head"><div><b id="privTitle">How we handle your waitlist details</b><small>Plain-language notice, November 2026</small></div><button type="button" class="dlg-close" data-close aria-label="Close">×</button></div>
   <div class="priv">
     <h4>What we collect</h4>
     <p>What you type into the waitlist form: your name, business name, business email, business type, city, phone number if you give one, your interest level, and your consent to be emailed. We also note which website the form was sent from.</p>
@@ -728,28 +723,28 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
   <div class="dlg-foot"><span>Waitlist only. Evingo collects no patient data here.</span><button type="button" class="btn btn-teal" data-close>Close</button></div>
 </dialog>
 <dialog id="callDialog" aria-labelledby="dlgTitle">
-  <div class="dlg-head"><span class="ava" id="dlgAva"></span><div><b id="dlgTitle">Eva · example call</b><small>Lakeview Dental is a fictional clinic.</small></div><button type="button" class="dlg-close" id="closeCall" aria-label="Close">×</button></div>
+  <div class="dlg-head"><span class="ava" id="dlgAva"></span><div><b id="dlgTitle">An example call with Eva</b><small>Lakeview Dental is a fictional clinic.</small></div><button type="button" class="dlg-close" id="closeCall" aria-label="Close">×</button></div>
   <div class="lines" id="lines" aria-live="polite"></div>
-  <div class="dlg-foot"><span>12:10 PM · rescheduling</span><button type="button" class="btn btn-teal" id="playCall">Play the call</button></div>
+  <div class="dlg-foot"><span>12:10 PM, rescheduling</span><button type="button" class="btn btn-teal" id="playCall">Play the call</button></div>
 </dialog>
 
 <!-- PRIVACY -->
 <section class="privacy paper grain" id="privacy" data-theme="paper">
   <div class="wrap">
     <div class="pv-head">
-      <h2 class="split">Your business. Your hardware. <span class="dim">Your data.</span></h2>
+      <h2 class="split">Your patients' data stays <span class="dim">on hardware you own.</span></h2>
       <p class="lead fade">Evingo uses a local-first design: the intelligence lives on hardware in your office, so more of your business information stays in your hands.</p>
     </div>
     <div class="pv-cols fade">
       <div class="pv-col">
-        <span class="chip"><span class="tag">On the unit</span><span>Designed to stay</span></span>
+        <h3 class="col-h">Designed to stay on the unit</h3>
         <ul>
           <li><b>Local processing</b><span>Core AI processing is designed to happen directly on the business's hardware.</span></li>
           <li><b>On-site data</b><span>Customer information and appointment records can remain within the business's local environment.</span></li>
         </ul>
       </div>
       <div class="pv-col">
-        <span class="chip"><span>Leaves your office</span></span>
+        <h3 class="col-h">Leaves your office</h3>
         <ul>
           <li><b>The phone call itself</b><span>Calls reach you through your phone carrier, like any other call.</span></li>
           <li><b>Calendar sync, if you turn it on</b><span>Connecting an online calendar shares booking details with that service. It follows its own privacy practices.</span></li>
@@ -779,10 +774,10 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
     </div>
 
     <div class="ck-flow fade" aria-label="How a call reaches your schedule">
-      <div class="ck-node"><small>01</small><b>A patient calls</b><span>Your usual clinic number</span></div>
-      <div class="ck-node"><small>02</small><b>Your phone line</b><span>SaskTel or any VoIP provider</span></div>
-      <div class="ck-node is-unit"><small>03</small><b>Evingo unit</b><span>In your office, answers</span></div>
-      <div class="ck-node"><small>04</small><b>Your schedule</b><span>Accuro, Med Access or dental software</span></div>
+      <div class="ck-node"><b>A patient calls</b><span>Your usual clinic number</span></div>
+      <div class="ck-node"><b>Your phone line</b><span>SaskTel or any VoIP provider</span></div>
+      <div class="ck-node is-unit"><b>Evingo unit</b><span>In your office, answers</span></div>
+      <div class="ck-node"><b>Your schedule</b><span>Accuro, Med Access or dental software</span></div>
     </div>
 
     <div class="ck-table fade" role="table" aria-label="How Evingo connects to Saskatchewan clinic systems">
@@ -815,11 +810,10 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
 
     <div class="ck-law fade">
       <div>
-        <span class="chip"><span class="tag">HIPA</span><span>The Health Information Protection Act</span></span>
         <h3>Your clinic stays the trustee.</h3>
       </div>
       <div class="ck-law-body">
-        <p>Under HIPA, the clinic is the trustee of patient information. A company that stores or processes that information for you is an <b>information management service provider</b>, and HIPA requires a written agreement with it. Since August 1, 2023, those agreements must cover the terms set out in the updated regulations.</p>
+        <p>Under The Health Information Protection Act (HIPA), the clinic is the trustee of patient information. A company that stores or processes that information for you is an <b>information management service provider</b>, and HIPA requires a written agreement with it. Since August 1, 2023, those agreements must cover the terms set out in the updated regulations.</p>
         <p>Evingo's local-first design keeps call records on the unit in your office, so less information leaves the clinic in the first place. We plan to provide a HIPA-ready service agreement to every clinic before a pilot starts.</p>
       </div>
     </div>
@@ -845,20 +839,20 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
   <div class="wrap">
     <div class="setup-box">
       <div>
-        <h2 class="split">Set it up once. <span class="dim">Then it picks up.</span></h2>
+        <h2 class="split">Set it up once, <span class="dim">and it picks up from there.</span></h2>
         <div class="tabs" role="tablist" aria-label="Setup steps">
-          <button class="pill" role="tab" aria-selected="true" aria-controls="tabPanel" data-tab="0">01 Install</button>
-          <button class="pill" role="tab" aria-selected="false" aria-controls="tabPanel" data-tab="1">02 Operate</button>
-          <button class="pill" role="tab" aria-selected="false" aria-controls="tabPanel" data-tab="2">03 Manage</button>
+          <button class="pill" role="tab" aria-selected="true" aria-controls="tabPanel" data-tab="0">Install</button>
+          <button class="pill" role="tab" aria-selected="false" aria-controls="tabPanel" data-tab="1">Operate</button>
+          <button class="pill" role="tab" aria-selected="false" aria-controls="tabPanel" data-tab="2">Manage</button>
         </div>
       </div>
       <div class="tab-panel wipe" id="tabPanel" role="tabpanel"></div>
     </div>
     <div class="status-row">
       <div class="fade"><h3>Where Evingo stands.</h3><p>As of November 2026.</p></div>
-      <div class="fade"><span class="chip"><span class="tag">Working</span><span>In our prototype</span></span>
+      <div class="fade"><h4 class="col-h">Working in our prototype</h4>
         <ul><li>Answering calls in natural conversation</li><li>Booking, rescheduling and cancelling</li><li>Running on local hardware (a standard PC in our test setup)</li></ul></div>
-      <div class="fade"><span class="chip"><span>Not built yet</span></span>
+      <div class="fade"><h4 class="col-h">Not built yet</h4>
         <ul><li>The dedicated Evingo Unit</li><li>Calendar-system integrations</li><li>The staff interface</li></ul></div>
     </div>
   </div>
@@ -930,7 +924,7 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
 <!-- ABOUT -->
 <section class="about paper grain" id="about" data-theme="paper">
   <div class="wrap about-grid">
-    <h2 class="split">Technology should work for you. <span class="dim">Not the other way around.</span></h2>
+    <h2 class="split">Technology should work for you, <span class="dim">not the other way around.</span></h2>
     <div class="fade">
       <p>Evingo is built around a simple idea: businesses should have access to powerful AI without giving up control of their technology and customer information.</p>
       <p>We're bringing together intelligent automation, dedicated hardware, and local computing to rethink how businesses handle everyday operations.</p>
@@ -942,7 +936,7 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
 <footer class="ink" data-theme="ink">
   <div class="wrap">
     <div class="closing">
-      <h2 class="split">Your business. Your AI. <span class="dim">Your hardware.</span></h2>
+      <h2 class="split">An AI receptionist <span class="dim">that lives in your office.</span></h2>
       <a href="#waitlist" class="btn btn-teal">Join the waitlist</a>
     </div>
     <div class="foot">
@@ -1076,8 +1070,7 @@ function buildUnit(MARK_D, TEAL_D){
   const plate=new THREE.Mesh(slab(chShape(W-2*WALL-.006,D-2*WALL-.006,CH-.02),.025),M.steel); plate.position.y=Y0; plate.castShadow=plate.receiveShadow=true; base.add(plate);
   const plinth=new THREE.Mesh(slab(chShape(W-.26,D-.26,CH-.11),PL),M.steel); plinth.position.y=FEET; plinth.castShadow=true; base.add(plinth);
   const ringO=chShape(W-.07,D-.07,CH-.03); ringO.holes.push(chPath(W-.24,D-.24,CH-.1)); const ring=new THREE.Mesh(slab(ringO,.014),M.light); ring.position.y=Y0-.02; base.add(ring);
-  /* light spill from the ring onto the desk */
-  const spill=plane(W+.9,D+.9,new THREE.MeshBasicMaterial({map:radialTex([[0,"rgba(20,198,220,0)"],[.5,"rgba(20,198,220,0)"],[.6,"rgba(20,198,220,0.22)"],[.75,"rgba(20,198,220,0.06)"],[1,"rgba(20,198,220,0)"]]),transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,toneMapped:false})); spill.rotation.x=-Math.PI/2; spill.position.y=.003; base.add(spill);
+
   [[1,1],[1,-1],[-1,1],[-1,-1]].forEach(([sx,sz])=>{ base.add(cyl(.07,FEET,M.rubber,sx*.46,FEET/2,sz*.46,28)); base.add(cyl(.018,.05,M.portMetal,sx*.5,Y0+.05,-.13+sz*.5,16)); });
   add("base",base);
 
@@ -1339,21 +1332,9 @@ function navTheme(){
   floatCta.classList.toggle("show", scrollY>innerHeight*0.9 && !(wl.top<innerHeight && wl.bottom>0) && !inStudio);
 }
 
-/* ---------- Word-by-word heading reveal + fades (run once) ---------- */
-$$(".split").forEach(el=>{
-  let i=0;
-  const walk=node=>{ [...node.childNodes].forEach(n=>{
-    if (n.nodeType===3){ const frag=document.createDocumentFragment();
-      n.textContent.split(/(\s+)/).forEach(part=>{ if(!part) return; if(/^\s+$/.test(part)){ frag.append(part); return; } const m=document.createElement("span"); m.className="wm"; const w=document.createElement("span"); w.className="w"; w.style.transitionDelay=Math.min(i++*38,300)+"ms"; w.textContent=part; m.append(w); frag.append(m); });
-      n.replaceWith(frag);
-    } else if (n.nodeType===1 && n.tagName!=="BR") walk(n);
-  }); };
-  walk(el);
-});
+/* ---------- count-up for the 8/10 band ---------- */
 const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); if(e.target.dataset.count!==undefined) countUp(e.target); e.target.querySelectorAll("[data-count]").forEach(countUp); } }),{threshold:0,rootMargin:"0px 0px 12% 0px"});
-$$(".split,.fade,.band-num").forEach(el=>io.observe(el));
-const wipeIO=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.querySelectorAll(":scope > .wipe").forEach(w=>w.classList.add("in")); wipeIO.unobserve(e.target); } }),{threshold:0,rootMargin:"0px 0px 12% 0px"});
-new Set($$(".wipe").map(w=>w.parentElement)).forEach(p=>wipeIO.observe(p));
+$$(".band-num").forEach(el=>io.observe(el));
 function countUp(el){ if(el._done) return; el._done=true; const n=+el.dataset.count; if(reduceMotion){ el.textContent=n; return; } const t0=performance.now(); const tick=t=>{ const k=clamp((t-t0)/1100); el.textContent=Math.round(n*ease(k)); if(k<1) requestAnimationFrame(tick); }; el.textContent="0"; requestAnimationFrame(tick); }
 
 /* ---------- Duty pills ---------- */
@@ -1490,13 +1471,13 @@ let mode=0, viewKey="three";
 const hsWrap=$("#hotspots"), exN=$("#exN"), exTitle=$("#exTitle"), exText=$("#exText");
 HS.forEach((h,i)=>{ const b=document.createElement("button"); b.type="button"; b.className="hs off"; b.textContent=i+1; b.setAttribute("aria-label",(i+1)+". "+h.t); b.addEventListener("click",()=>pickHS(i)); hsWrap.append(b); h.el=b; });
 function pickHS(i){ const h=HS[i]; HS.forEach((o,k)=>o.el.setAttribute("aria-pressed",k===i));
-  exN.textContent=String(i+1).padStart(2,"0")+(h.m?" · inside":" · outside"); exTitle.textContent=h.t; exText.textContent=h.x;
+  exN.textContent=h.m?"Inside":"Outside"; exTitle.textContent=h.t; exText.textContent=h.x;
   if(xp&&h.v) xp.setView(h.v,1000); }
 function hsLayout(){ if(!xp) return; HS.forEach(h=>{ if(h.m!==mode){ h.el.classList.add("off"); return; }
   const p=xp.project(h.part,new V3(...h.at),h.n?new V3(...h.n):null); const ok=!p.behind&&p.facing>.08;
   h.el.classList.toggle("off",!ok); h.el.style.transform="translate("+p.x.toFixed(0)+"px,"+p.y.toFixed(0)+"px)"; }); }
 function setMode(m){ mode=m; $$(".seg [data-mode]").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.mode===m)); HS.forEach(o=>o.el.removeAttribute("aria-pressed"));
-  exN.textContent=m?"Open · concept layout":"Concept model"; exTitle.textContent=m?"Inside the unit":"Pick a number"; exText.textContent=m?"A concept of how the parts could fit. Tap a number for each part.":"Each numbered point explains one part. Switch to “Open” to see inside.";
+  exN.textContent=m?"Concept layout":"Concept model"; exTitle.textContent=m?"Inside the unit":"Pick a number"; exText.textContent=m?"A concept of how the parts could fit. Tap a number for each part.":"Each numbered point explains one part. Switch to “Open” to see inside.";
   if(xp){ xp.setExplode(m,1400); xp.setView({...VIEWS3[viewKey==="top"?"three":viewKey],...(m?OPEN:CLOSED)},1400); } }
 function setView3(k){ viewKey=k; $$(".views [data-v]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===k)); if(xp) xp.setView({...VIEWS3[k],...(mode?OPEN:CLOSED),...(k==="top"?{r:mode?11:6.2}:{})},1000); }
 $$(".seg [data-mode]").forEach(b=>b.addEventListener("click",()=>setMode(+b.dataset.mode)));
@@ -1543,7 +1524,12 @@ function smLoop(){
   heroProgress(SM.hero.c); bdProgress(SM.bd.c); dayProgress(SM.day.c);
   if(moving) smRaf=requestAnimationFrame(smLoop);
 }
-function onScroll(){ navTheme(); readTargets(); if(!smRaf) smRaf=requestAnimationFrame(smLoop); }
+/* converging headlines: scroll-scrubbed, never hides text */
+const CONV=reduceMotion?[]:$$("h2 .dim,.kit-head h3 .dim").filter(d=>!d.closest(".hero"));
+function converge(){ const vh=innerHeight, max=Math.min(140,innerWidth*.1);
+  for(const d of CONV){ const r=d.parentElement.getBoundingClientRect(); if(r.bottom<-50||r.top>vh+50) continue;
+    const p=clamp((vh-r.top)/(vh*.7)), k=1-Math.pow(1-p,3); d.style.transform="translate3d("+((1-k)*max).toFixed(1)+"px,0,0)"; } }
+function onScroll(){ navTheme(); readTargets(); converge(); if(!smRaf) smRaf=requestAnimationFrame(smLoop); }
 if (window.Lenis && !reduceMotion){
   try{ lenis=new Lenis({lerp:.095,smoothWheel:true,wheelMultiplier:.95}); lenis.on("scroll",onScroll); window.__lenis=lenis; lenis.scrollTo(0,{immediate:true});
     const tick=t=>{ lenis.raf(t); requestAnimationFrame(tick); }; requestAnimationFrame(tick);
