@@ -106,6 +106,7 @@ html.lenis,html.lenis body{height:auto}
 /* Floating CTA */
 .float-cta{position:fixed;right:22px;bottom:22px;z-index:55;height:46px;padding:0 20px;display:grid;place-items:center;font-size:13px;font-weight:650;font-stretch:90%;text-transform:uppercase;letter-spacing:.05em;background:var(--teal);color:var(--ink);clip-path:polygon(9px 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px),0 9px);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s}
 .float-cta.show{opacity:1;transform:none;pointer-events:auto}
+.float-cta.on-teal{background:#0b0c10;color:#f2f3f5}
 .float-cta svg{width:20px;height:20px}
 
 /* Stages */
@@ -172,9 +173,11 @@ main{position:relative;z-index:1}
 .band-copy h3{font-size:clamp(24px,2.3vw,34px);line-height:1.12;margin-bottom:18px}
 .band-copy p{font-size:17px;color:#0b2d33;margin-bottom:22px}
 .band-copy small{font-size:13px;color:#0b3a42}
+.il{opacity:var(--o,1);transition:opacity .12s linear}
 
 /* BREAKDOWN (pinned) */
 .inside{height:420vh}
+.inside .pin,.day .pin{background:#0b0c10;will-change:clip-path}
 .pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 .inside .stage{position:absolute;inset:0}
 .bd-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
@@ -290,11 +293,11 @@ dialog::backdrop{background:rgba(5,6,8,.72)}
 .clinics{padding:150px 0 140px}
 .ck-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:40px;align-items:end;margin-bottom:90px}
 .ck-head h2{font-size:clamp(40px,5.4vw,92px)}
-.ck-stats{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr);border-top:1px solid var(--line2);margin-bottom:100px}
-.ck-stat{padding:34px 34px 0 0;display:grid;gap:14px;align-content:start}
+.ck-stats{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr);border-top:1px solid var(--line2);margin-bottom:100px}
+.ck-stat{padding:34px 34px 0 0;display:grid;gap:18px;align-content:start;container-type:inline-size;min-width:0}
 .ck-stat + .ck-stat{padding-left:34px;border-left:1px solid var(--line)}
-.ck-stat:first-child b{font-size:clamp(84px,12vw,200px)}
-.ck-stat b{font-size:clamp(44px,4.6vw,76px);font-weight:820;font-stretch:118%;line-height:.85;letter-spacing:-.04em}
+.ck-stat b{display:block;white-space:nowrap;font-variant-numeric:tabular-nums;font-size:min(30cqi,84px);font-weight:820;font-stretch:118%;line-height:.85;letter-spacing:-.04em}
+.ck-stat:first-child b{font-size:min(27cqi,190px)}
 .ck-stat b i{font-style:normal;font-size:.42em;color:var(--teal-lt);margin-left:.06em;letter-spacing:0}
 .ck-stat span{color:var(--fg2);max-width:30ch;line-height:1.5}
 .ck-src{grid-column:1/-1;margin-top:30px;font-size:12.5px;color:var(--fg3)}
@@ -630,7 +633,7 @@ footer{padding:110px 0 36px}
   <div class="wrap band-grid">
     <div class="band-num" aria-hidden="true"><span data-count="8">8</span><i>/</i>10</div>
     <div class="band-copy fade">
-      <h3>We called 10 clinics in Regina to book an appointment. 8 never picked up.</h3>
+      <h3 data-illum>We called 10 clinics in Regina to book an appointment. 8 never picked up.</h3>
       <p>Every one of those calls was a patient who went somewhere else. Evingo is built so the phone gets answered — day, night and weekends.</p>
       <small>Calls placed by the Evingo founders to Regina clinics, 2026.</small>
     </div>
@@ -783,13 +786,13 @@ footer{padding:110px 0 36px}
   <div class="wrap">
     <div class="ck-head">
       <h2 class="split">Built for Saskatchewan clinics. <span class="dim">Fits what you already use.</span></h2>
-      <p class="lead fade">Evingo doesn't ask your clinic to change phone companies or records systems. It's designed to plug into the phone line you have and the scheduling software you already run.</p>
+      <p class="lead fade" data-illum>Evingo doesn't ask your clinic to change phone companies or records systems. It's designed to plug into the phone line you have and the scheduling software you already run.</p>
     </div>
 
     <div class="ck-stats fade">
-      <div class="ck-stat"><b>10.7<i>h</i></b><span>a week of admin work per Saskatchewan physician, tied for the most in Canada.</span></div>
-      <div class="ck-stat"><b>58<i>%</i></b><span>of those admin hours in Saskatchewan were judged unnecessary.</span></div>
-      <div class="ck-stat"><b>260</b><span>full-time physicians' worth of time that cutting that work could free up across the province.</span></div>
+      <div class="ck-stat"><b><span class="cnt" data-to="10.7" data-dec="1">10.7</span><i>h</i></b><span>a week of admin work per Saskatchewan physician, tied for the most in Canada.</span></div>
+      <div class="ck-stat"><b><span class="cnt" data-to="58">58</span><i>%</i></b><span>of those admin hours in Saskatchewan were judged unnecessary.</span></div>
+      <div class="ck-stat"><b><span class="cnt" data-to="260">260</span></b><span>full-time physicians' worth of time that cutting that work could free up across the province.</span></div>
       <p class="ck-src">Source: Canadian Medical Association &amp; Canadian Federation of Independent Business, <cite>Losing Doctors to Desk Work</cite>, January 2026.</p>
     </div>
 
@@ -946,7 +949,7 @@ footer{padding:110px 0 36px}
   <div class="wrap about-grid">
     <h2 class="split">Technology should work for you, <span class="dim">not the other way around.</span></h2>
     <div class="fade">
-      <p>Evingo is built around a simple idea: businesses should have access to powerful AI without giving up control of their technology and customer information.</p>
+      <p data-illum>Evingo is built around a simple idea: businesses should have access to powerful AI without giving up control of their technology and customer information.</p>
       <p>We're bringing together intelligent automation, dedicated hardware, and local computing to rethink how businesses handle everyday operations.</p>
       <p class="where">Built in Regina, Saskatchewan.</p>
     </div>
@@ -1345,7 +1348,7 @@ function navTheme(){
   const y=32; let cur=null;
   for (const s of themed){ const r=s.getBoundingClientRect(); if (r.top<=y && r.bottom>y && s.id!=="top") cur=s; }
   if (!cur) cur=$("#top");
-  nav.classList.toggle("on-paper", cur.dataset.theme!=="ink"); nav.classList.toggle("on-teal", cur.dataset.theme==="teal"); nav.classList.toggle("solid", scrollY>innerHeight*0.6);
+  nav.classList.toggle("on-paper", cur.dataset.theme!=="ink"); nav.classList.toggle("on-teal", cur.dataset.theme==="teal"); floatCta.classList.toggle("on-teal", cur.dataset.theme==="teal"); nav.classList.toggle("solid", scrollY>innerHeight*0.6);
   const id=cur.id; $$(".nav-links a").forEach(a=>a.setAttribute("aria-current", a.getAttribute("href")==="#"+id));
   const wl=$("#waitlist").getBoundingClientRect();
   const st=$("#studio").getBoundingClientRect(), inStudio=innerWidth<700 && st.top<innerHeight && st.bottom>0;
@@ -1564,7 +1567,28 @@ const CONV=reduceMotion?[]:$$("h2 .dim,.kit-head h3 .dim").filter(d=>!d.closest(
 function converge(){ const vh=innerHeight, max=Math.min(140,innerWidth*.1);
   for(const d of CONV){ const r=d.parentElement.getBoundingClientRect(); if(r.bottom<-50||r.top>vh+50) continue;
     const p=clamp((vh-r.top)/(vh*.7)), k=1-Math.pow(1-p,3); d.style.transform="translate3d("+((1-k)*max).toFixed(1)+"px,0,0)"; } }
-function onScroll(){ navTheme(); readTargets(); converge(); flow(); if(!smRaf) smRaf=requestAnimationFrame(smLoop); }
+/* ---------- signature: dark scenes expand from a panel to the full screen ---------- */
+const SCREENS=reduceMotion?[]:$$("#unit .pin,#day .pin");
+function screens(){ const vh=innerHeight;
+  for(const pin of SCREENS){ const top=pin.parentElement.getBoundingClientRect().top;
+    if(top>vh||top<-vh){ if(pin._k!==1&&top<0){ pin._k=1; pin.style.clipPath="none"; } continue; }
+    let k=clamp(1-top/(vh*.9)); k=1-Math.pow(1-k,3);
+    if(Math.abs(k-(pin._k||0))<.001) continue; pin._k=k;
+    const iy=(1-k)*12, ix=(1-k)*(innerWidth<700?4:9), r=(1-k)*28;
+    pin.style.clipPath=k>=.999?"none":"inset("+iy.toFixed(2)+"% "+ix.toFixed(2)+"% "+iy.toFixed(2)+"% "+ix.toFixed(2)+"% round "+r.toFixed(1)+"px)"; } }
+/* ---------- word illumination, tied to reading position ---------- */
+const ILLUM=$$("[data-illum]").map(el=>{ const words=[]; const walk=n=>[...n.childNodes].forEach(c=>{ if(c.nodeType===3){ const f=document.createDocumentFragment(); c.textContent.split(/(\s+)/).forEach(t=>{ if(!t) return; if(/^\s+$/.test(t)){ f.append(t); return; } const sp=document.createElement("span"); sp.className="il"; sp.textContent=t; words.push(sp); f.append(sp); }); c.replaceWith(f); } else if(c.nodeType===1) walk(c); }); walk(el); return {el,words}; });
+function illum(){ const vh=innerHeight;
+  for(const it of ILLUM){ if(reduceMotion){ continue; } const r=it.el.getBoundingClientRect(); if(r.bottom<-40||r.top>vh+40) continue;
+    const p=clamp((vh*.86-r.top)/(r.height+vh*.38)), n=it.words.length, lo=.2;
+    for(let i=0;i<n;i++){ const t=clamp(p*n*1.15-i); const o=(lo+(1-lo)*t).toFixed(2); if(it.words[i]._o!==o){ it.words[i]._o=o; it.words[i].style.setProperty("--o",o); } } } }
+/* ---------- stats count with scroll, and count back ---------- */
+const CNT=$$(".cnt").map(el=>({el,to:+el.dataset.to,dec:+(el.dataset.dec||0)}));
+function counts(){ const vh=innerHeight;
+  for(const c of CNT){ const r=c.el.getBoundingClientRect(); if(r.bottom<-60||r.top>vh+60) continue;
+    let k=reduceMotion?1:clamp((vh*.95-r.top)/(vh*.45)); k=1-Math.pow(1-k,3);
+    const v=(c.to*k).toFixed(c.dec); if(c._v!==v){ c._v=v; c.el.textContent=v; } } }
+function onScroll(){ navTheme(); readTargets(); converge(); flow(); screens(); illum(); counts(); if(!smRaf) smRaf=requestAnimationFrame(smLoop); }
 if (window.Lenis && !reduceMotion){
   try{ lenis=new Lenis({lerp:.095,smoothWheel:true,wheelMultiplier:.95}); lenis.on("scroll",onScroll); window.__lenis=lenis; lenis.scrollTo(0,{immediate:true});
     const tick=t=>{ lenis.raf(t); requestAnimationFrame(tick); }; requestAnimationFrame(tick);
