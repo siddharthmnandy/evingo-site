@@ -1545,7 +1545,7 @@ const heroSec=$("#top"), heroStageEl=$("#heroStage"), heroWord=$("#heroWord"), h
 function heroProgress(h){
   if (h>=1 && heroStageEl._h===1) return; heroStageEl._h=h;
   /* once the hero is fully covered, stop painting and rendering it: it's pinned behind the whole page */
-  const covered=h>=.999; if(covered!==heroSec._cov){ heroSec._cov=covered; heroSec.style.visibility=covered?"hidden":""; if(hero) hero.setActive(!covered); }
+
   heroStageEl.style.transform="translateX(-50%) translateY("+(-h*12)+"%) scale("+(1-h*.18)+")";
   heroWord.style.transform="translateX(-50%) translateY("+(h*-6)+"%) scale("+(1+h*.32)+")"; heroWord.style.opacity=1-h*1.1;
   heroBottom.style.opacity=1-h*1.8; heroBottom.style.transform="translateY("+(h*-60)+"px)";
@@ -1588,7 +1588,10 @@ function counts(){ const vh=innerHeight;
   for(const c of CNT){ const r=c.el.getBoundingClientRect(); if(r.bottom<-60||r.top>vh+60) continue;
     let k=reduceMotion?1:clamp((vh*.95-r.top)/(vh*.45)); k=1-Math.pow(1-k,3);
     const v=(c.to*k).toFixed(c.dec); if(c._v!==v){ c._v=v; c.el.textContent=v; } } }
-function onScroll(){ navTheme(); readTargets(); converge(); flow(); screens(); illum(); counts(); if(!smRaf) smRaf=requestAnimationFrame(smLoop); }
+/* the pinned hero sits behind the whole page: once the next section fully covers it, stop drawing it */
+const introSec=$("#receptionist");
+function heroCover(){ const covered=introSec.getBoundingClientRect().top<=0; if(covered!==heroSec._cov){ heroSec._cov=covered; heroSec.style.visibility=covered?"hidden":""; if(hero) hero.setActive(!covered); } }
+function onScroll(){ heroCover(); navTheme(); readTargets(); converge(); flow(); screens(); illum(); counts(); if(!smRaf) smRaf=requestAnimationFrame(smLoop); }
 if (window.Lenis && !reduceMotion){
   try{ lenis=new Lenis({lerp:.095,smoothWheel:true,wheelMultiplier:.95}); lenis.on("scroll",onScroll); window.__lenis=lenis; lenis.scrollTo(0,{immediate:true});
     const tick=t=>{ lenis.raf(t); requestAnimationFrame(tick); }; requestAnimationFrame(tick);
