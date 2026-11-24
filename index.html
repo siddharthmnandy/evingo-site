@@ -44,9 +44,13 @@ section{position:relative;scroll-margin-top:var(--nav)}
 :focus-visible{outline:2px solid var(--teal);outline-offset:3px}
 
 /* Themes */
+#flowbg{position:fixed;inset:0;z-index:-1;background:#0b0c10;pointer-events:none}
+html.flow{background:#0b0c10}
+html.flow body{background:transparent}
+html.flow .flowsec{background:transparent!important}
 .ink{background:var(--ink);color:var(--paper);--fg:#f2f3f5;--fg2:#8d929b;--fg3:#80858f;--line:#1f232b;--line2:#2c313b;--chip:#14171d}
 .paper{background:var(--paper);color:var(--ink);--fg:#0b0c10;--fg2:#5a5f69;--fg3:#6a6f79;--line:#d9dce2;--line2:#c6cad2;--chip:#e9ebef}
-.paper.grain::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.paper.grain::before{display:none;content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* Type */
 h1,h2,h3{font-weight:500;font-stretch:108%;letter-spacing:-.03em;line-height:1.02}
@@ -150,7 +154,6 @@ main{position:relative;z-index:1}
 .duty-panel li::before{content:"";width:7px;height:7px;background:var(--teal);clip-path:polygon(0 0,45% 0,100% 50%,45% 100%,0 100%,55% 50%);transform:translateY(-1px)}
 .duty-panel .planned{color:var(--warn);font-size:12px;font-stretch:80%;text-transform:uppercase;letter-spacing:.05em;margin-left:6px}
 .beauty{position:relative;background:linear-gradient(180deg,#171a20 0%,#0b0c10 78%);min-height:600px;overflow:hidden;margin:0;display:flex}
-.beauty::after{content:'';position:absolute;left:0;right:0;top:72%;height:1px;background:#20242c}
 .beauty img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;display:block}
 .beauty .fallback{position:absolute;inset:16%;display:flex;align-items:center;justify-content:center}
 .beauty.has-img .fallback{display:none}
@@ -173,12 +176,11 @@ main{position:relative;z-index:1}
 /* BREAKDOWN (pinned) */
 .inside{height:420vh}
 .pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
-.inside .pin{background-image:linear-gradient(#15181e 1px,transparent 1px),linear-gradient(90deg,#15181e 1px,transparent 1px);background-size:72px 72px;background-position:center}
 .inside .stage{position:absolute;inset:0}
 .bd-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
 .bd-lines line{stroke:#4a4f59;stroke-width:1}
 .bd-lines g{transition:opacity .5s}
-.bd-lines rect{fill:#01a3b8}
+.bd-lines rect,.bd-lines circle{fill:#01a3b8}
 .bd-labels{position:absolute;inset:0;z-index:3;pointer-events:none}
 .bl{position:absolute;left:0;top:0;width:230px;opacity:0;transform:translateY(8px);transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1);display:grid;grid-template-columns:30px 1fr;gap:0 10px;padding:8px 10px;border:1px solid #2c313b;background:rgba(11,12,16,.9)}
 .bl.show{opacity:1;transform:none}
@@ -188,6 +190,7 @@ main{position:relative;z-index:1}
 .bd-intro{position:absolute;left:0;right:0;top:calc(var(--nav) + 34px);z-index:4;will-change:opacity}
 .bd-intro .wrap > div{max-width:520px}
 .inside h2{font-size:clamp(32px,3.7vw,58px);margin:16px 0 18px}
+.inside h2 .dim{display:inline}
 .inside .lead{font-size:16.5px}
 .bd-outro{position:absolute;left:0;right:0;top:calc(var(--nav) + 60px);z-index:4;opacity:0;pointer-events:none;transition:opacity .3s}
 .bd-outro.show{opacity:1;pointer-events:auto}
@@ -338,7 +341,7 @@ dialog::backdrop{background:rgba(5,6,8,.72)}
   .ck-law{grid-template-columns:1fr;gap:26px}
 }
 .pv-head{display:grid;gap:30px;margin-bottom:72px}
-.pv-head h2{max-width:13ch}
+.pv-head h2{max-width:16ch}
 .pv-cols{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
 .pv-col{padding:30px 40px 0 0}
 .pv-col + .pv-col{padding-left:40px;border-left:1px solid var(--line)}
@@ -353,8 +356,19 @@ dialog::backdrop{background:rgba(5,6,8,.72)}
 
 /* SETUP */
 .setup{padding:0 0 130px}
+.setup-h{max-width:17ch;margin-bottom:64px}
 .setup-box{border-top:1px solid var(--line);padding-top:60px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:60px;align-items:end}
 .tabs{display:flex;gap:6px;margin:26px 0 0}
+/* setup: the steps are the typography */
+.setup-box{align-items:center}
+.setup-box .tabs{display:grid;gap:4px;margin:0}
+.setup-box .pill{height:auto;padding:0;border:0;background:none;text-align:left;font-size:clamp(40px,5.2vw,88px);font-weight:780;font-stretch:122%;letter-spacing:-.012em;line-height:.98;color:transparent;-webkit-text-stroke:1.2px var(--fg2);transition:color .25s,-webkit-text-stroke-color .25s}
+.setup-box .pill:hover{-webkit-text-stroke-color:var(--fg)}
+.setup-box .pill[aria-selected="true"]{background:none;color:var(--fg);-webkit-text-stroke-color:var(--fg)}
+/* breakdown labels: editorial captions, not boxes */
+.bl{border:0!important;background:none!important;padding:0!important;grid-template-columns:1fr!important}
+.bl .num{display:none!important}
+.bl b{font-size:15px;font-weight:600}
 .tab-panel{display:grid;grid-template-columns:1fr 120px;gap:30px;align-items:center;border:1px solid var(--line);padding:34px;min-height:220px;background:var(--paper2);background:color-mix(in srgb,var(--paper2) 45%,transparent)}
 .tab-panel .n{font-size:13px;font-stretch:85%;color:var(--fg3);letter-spacing:.06em}
 .tab-panel h3{font-size:clamp(30px,3vw,42px);margin:6px 0 12px}
@@ -428,12 +442,14 @@ fieldset{border:0}
 
 /* ABOUT + FOOTER */
 .about{padding:140px 0 120px}
-.about-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:80px;align-items:end}
+.about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px 80px;align-items:end}
+.about-grid h2{grid-column:1/-1;max-width:17ch}
+.about-grid > div{grid-column:2}
 .about h2 .dim{color:var(--fg2)}
 .about p{color:var(--fg2);font-size:19px}
 .about p + p{margin-top:18px}
 .about .where{margin-top:30px;font-size:15px;color:var(--fg)}
-footer{padding:110px 0 36px;border-top:1px solid var(--line)}
+footer{padding:110px 0 36px}
 .closing{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
 .closing h2{font-size:clamp(44px,7.4vw,124px);max-width:12ch}
 .closing h2 .dim{color:var(--fg2)}
@@ -454,6 +470,7 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
 /* Responsive */
 @media (max-width:1060px){
   .intro-grid,.wl-grid,.about-grid,.setup-box{grid-template-columns:1fr;gap:44px}
+  .about-grid > div{grid-column:auto}
   .beauty{min-height:460px}
   .band-grid{gap:36px}
   .band-copy{grid-template-columns:1fr}
@@ -515,6 +532,8 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
   .tab-panel{grid-template-columns:1fr;padding:24px}
   .tab-panel svg{display:none}
   .tabs .pill{flex:1;padding:0 6px}
+  .setup-box .tabs{display:flex;gap:18px;flex-wrap:wrap}
+  .setup-box .pill{flex:none;font-size:34px}
   .status-row{grid-template-columns:1fr;gap:30px}
   .fgrid{grid-template-columns:1fr}
   .bd-intro{top:calc(var(--nav) + 14px)}
@@ -530,6 +549,7 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
 </head>
 <body>
 <a class="skip" href="#receptionist">Skip to content</a>
+<div id="flowbg" aria-hidden="true"></div>
 
 <header class="nav" id="nav">
   <div class="wrap">
@@ -624,7 +644,7 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
     <svg class="bd-lines" id="bdLines" aria-hidden="true"></svg>
     <div class="bd-labels" id="bdLabels" aria-hidden="true"></div>
     <div class="bd-intro" id="bdIntro"><div class="wrap"><div>
-      <h2>Powerful AI.<br>Right on your desk.</h2>
+      <h2>Powerful AI that sits <span class="dim">right on your desk.</span></h2>
       <p class="lead">Evingo is designed around a dedicated computer in your office, rather than relying entirely on remote cloud servers. Keep scrolling to take it apart.</p>
     </div></div></div>
     <div class="bd-outro" id="bdOutro"><div class="wrap">
@@ -837,9 +857,9 @@ footer{padding:110px 0 36px;border-top:1px solid var(--line)}
 <!-- SETUP + STATUS -->
 <section class="setup paper grain" id="setup" data-theme="paper">
   <div class="wrap">
+    <h2 class="setup-h">Set it up once, <span class="dim">and it picks up from there.</span></h2>
     <div class="setup-box">
       <div>
-        <h2 class="split">Set it up once, <span class="dim">and it picks up from there.</span></h2>
         <div class="tabs" role="tablist" aria-label="Setup steps">
           <button class="pill" role="tab" aria-selected="true" aria-controls="tabPanel" data-tab="0">Install</button>
           <button class="pill" role="tab" aria-selected="false" aria-controls="tabPanel" data-tab="1">Operate</button>
@@ -1184,8 +1204,8 @@ function buildUnit(MARK_D, TEAL_D){
     EX.forEach(([n,dy,dz,d])=>{ const k=ease(clamp((E-d)/.62)); const g=parts[n]; g.position.y=g.userData.home.y+dy*k; g.position.z=g.userData.home.z+dz*k; });
     const ks=ease(clamp((E-.2)/.62)), kt=ease(clamp((E-.26)/.62));
     const xs=clamp((ks-.15)/.6), xt=clamp((kt-.15)/.6);
-    shellMat.opacity=1-.86*xs; perfMat.opacity=slotMat.opacity=1-xs; shellMat.depthWrite=xs<.05; edges.material.opacity=.75*xs; rear.visible=xs<.6;
-    topMat.opacity=1-.6*xt; topMat.depthWrite=xt<.05; topEdges.material.opacity=.6*xt;
+    shellMat.opacity=1-.88*xs; perfMat.opacity=slotMat.opacity=1-xs; shellMat.depthWrite=xs<.05; edges.material.opacity=0; rear.visible=xs<.6;
+    topMat.opacity=1-.7*xt; topMat.depthWrite=xt<.05; topEdges.material.opacity=0;
     body.castShadow=xs<.3;
     fan.userData.rotor.rotation.y=E*Math.PI*3;
   }
@@ -1355,7 +1375,7 @@ const TABS=[
   ["03","Manage","Your staff can oversee appointments and business settings through a simple interface.",'<rect x="14" y="20" width="82" height="62" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 34h82" stroke="currentColor" stroke-width="2"/><path d="M26 48h26M26 60h38M26 72h18" stroke="currentColor" stroke-width="2"/><path d="M72 46h12v12H72z" fill="#01a3b8"/>']
 ];
 const tabPanel=$("#tabPanel");
-function showTab(i){ $$(".tabs .pill").forEach((b,k)=>b.setAttribute("aria-selected",k===i)); const t=TABS[i]; tabPanel.innerHTML='<div><span class="n">'+t[0]+' / 03</span><h3>'+t[1]+'</h3><p>'+t[2]+'</p></div><svg viewBox="0 0 110 110" aria-hidden="true">'+t[3]+'</svg>'; }
+function showTab(i){ $$(".tabs .pill").forEach((b,k)=>b.setAttribute("aria-selected",k===i)); const t=TABS[i]; tabPanel.innerHTML='<div><p>'+t[2]+'</p></div><svg viewBox="0 0 110 110" aria-hidden="true">'+t[3]+'</svg>'; }
 $$(".tabs .pill").forEach((b,k)=>b.addEventListener("click",()=>showTab(k))); showTab(0);
 
 /* ---------- Eva placements + example call dialog ---------- */
@@ -1411,19 +1431,23 @@ let bdP=-1, bdShown=0;
 const SMALL_BD=matchMedia("(max-width: 860px)").matches;
 const BD_SIDE={top:"R",shell:"R",fan:"R",power:"R",storage:"R",front:"L",cooler:"L",memory:"L",board:"L",base:"L"};
 const BD_ORDER={L:["cooler","front","memory","board","base"],R:["top","shell","fan","power","storage"]};
+let bdSides=null;
 function bdLayout(){
   if(!bd) return; const W=bdEl.clientWidth, H=bdEl.clientHeight, colW=230;
   const pad=Math.max(28,(W-1280)/2+32), top=Math.max(110,H*.13), bottom=H-170;
-  const cols={L:BD_ORDER.L.map(n=>BD.findIndex(b=>b[0]===n)),R:BD_ORDER.R.map(n=>BD.findIndex(b=>b[0]===n))};
+  const pts=BD.map(b=>bd.project(b[0],new V3(...b[1])));
+  if(bdShown===0) bdSides=null;
+  if(!bdSides){ const order=BD.map((b,i)=>i).sort((a,b)=>pts[a].x-pts[b].x), half=Math.ceil(BD.length/2);
+    const L=order.slice(0,half).sort((a,b)=>pts[a].y-pts[b].y), Rt=order.slice(half).sort((a,b)=>pts[a].y-pts[b].y); bdSides={L,R:Rt}; }
   let svg="";
-  ["L","R"].forEach(side=>{ const ids=cols[side], step=(bottom-top)/Math.max(1,ids.length-1);
+  ["L","R"].forEach(side=>{ const ids=bdSides[side], step=(bottom-top)/Math.max(1,ids.length-1);
     ids.forEach((i,k)=>{ const b=BD[i], lx= side==="L"?pad:W-pad-colW, ly=Math.round(top+k*step-26);
       b.el.style.left=lx+"px"; b.el.style.top=ly+"px";
-      const pt=bd.project(b[0],new V3(...b[1])), on=i<bdShown;
+      const pt=pts[i], on=i<bdShown;
       b.el.classList.toggle("show",on); b.mk.classList.toggle("show",on);
       b.mk.style.transform="translate("+pt.x.toFixed(1)+"px,"+pt.y.toFixed(1)+"px)";
-      if(on){ const ex= side==="L"?lx+colW:lx, ey=ly+26, mx= side==="L"? ex+24 : ex-24;
-        svg+='<polyline fill="none" stroke="#4a4f59" points="'+ex+','+ey+' '+mx+','+ey+' '+pt.x.toFixed(1)+','+pt.y.toFixed(1)+'"/><rect x="'+(pt.x-3.5).toFixed(1)+'" y="'+(pt.y-3.5).toFixed(1)+'" width="7" height="7"/>'; }
+      if(on){ const ex= side==="L"?lx+colW:lx, ey=ly+26;
+        svg+='<path fill="none" stroke="#3a3f48" d="M'+ex+' '+ey+' C'+(side==="L"?ex+60:ex-60)+' '+ey+' '+(side==="L"?pt.x-60:pt.x+60)+' '+pt.y.toFixed(1)+' '+pt.x.toFixed(1)+' '+pt.y.toFixed(1)+'"/><circle cx="'+pt.x.toFixed(1)+'" cy="'+pt.y.toFixed(1)+'" r="3.5"/>'; }
     });
   });
   bdLines.innerHTML=svg;
@@ -1432,10 +1456,10 @@ function bdProgress(p){
   if(Math.abs(p-bdP)<.00015) return; bdP=p;
   const open=ramp(p,.12,.5), close=ramp(p,.84,.97), E=open*(1-close);
   $("#bdIntro").style.opacity=1-ramp(p,.06,.14);
-  $("#bdOutro").classList.toggle("show",p>.9);
+  $("#bdOutro").classList.toggle("show",p>.91);
   $("#bdBar").style.width=(p*100).toFixed(1)+"%";
   $("#bdPhase").textContent= p<.12?"Assembled": p<.5?"Opening": p<.84?"Inside": p<.97?"Closing":"Assembled";
-  const lk=ramp(p,.46,.74)*(1-ramp(p,.8,.86)); bdShown=Math.round(lk*BD.length);
+  const lk=ramp(p,.46,.74)*(1-ramp(p,.8,.86)); const ns=Math.round(lk*BD.length); if(ns!==bdShown){ bdShown=ns; bdLayout(); }
   bdLegend.classList.toggle("show",bdShown>0);
   [...bdLegend.children].forEach((li,i)=>li.style.opacity=i<bdShown?1:.25);
   if(bd){
@@ -1448,6 +1472,17 @@ function bdProgress(p){
   }
 }
 const lerp=(a,b,t)=>a+(b-a)*t;
+/* ---------- one continuous canvas: background colour follows the story ---------- */
+const FLOW_COL={ink:[11,12,16],paper:[242,243,245],teal:[1,163,184]};
+const FLOW=$$("section[data-theme],footer[data-theme]").filter(s=>!s.classList.contains("hero")&&!s.classList.contains("intro"));
+FLOW.forEach(s=>s.classList.add("flowsec")); document.documentElement.classList.add("flow");
+const flowbg=$("#flowbg"); let flowLast="";
+function flow(){ const mid=innerHeight*.5, zone=innerHeight*.26; let col=FLOW_COL.ink;
+  for(let i=0;i<FLOW.length;i++){ const r=FLOW[i].getBoundingClientRect(); if(r.bottom<mid-zone/2) continue;
+    const a=FLOW_COL[FLOW[i].dataset.theme]||FLOW_COL.ink, nx=FLOW[i+1]; col=a;
+    if(nx){ const t0=(mid+zone/2-r.bottom)/zone; if(t0>0){ const b=FLOW_COL[nx.dataset.theme]||FLOW_COL.ink; let t=Math.min(1,t0); t=t*t*(3-2*t); col=a.map((v,k)=>v+(b[k]-v)*t); } }
+    break; }
+  const c="rgb("+col.map(v=>Math.round(v)).join(",")+")"; if(c!==flowLast){ flowLast=c; flowbg.style.backgroundColor=c; } }
 
 /* Explore studio */
 const VIEWS3={front:{theta:0,phi:1.33},three:{theta:.62,phi:1.24},side:{theta:Math.PI/2,phi:1.33},back:{theta:Math.PI,phi:1.33},top:{theta:.35,phi:.42}};
@@ -1529,7 +1564,7 @@ const CONV=reduceMotion?[]:$$("h2 .dim,.kit-head h3 .dim").filter(d=>!d.closest(
 function converge(){ const vh=innerHeight, max=Math.min(140,innerWidth*.1);
   for(const d of CONV){ const r=d.parentElement.getBoundingClientRect(); if(r.bottom<-50||r.top>vh+50) continue;
     const p=clamp((vh-r.top)/(vh*.7)), k=1-Math.pow(1-p,3); d.style.transform="translate3d("+((1-k)*max).toFixed(1)+"px,0,0)"; } }
-function onScroll(){ navTheme(); readTargets(); converge(); if(!smRaf) smRaf=requestAnimationFrame(smLoop); }
+function onScroll(){ navTheme(); readTargets(); converge(); flow(); if(!smRaf) smRaf=requestAnimationFrame(smLoop); }
 if (window.Lenis && !reduceMotion){
   try{ lenis=new Lenis({lerp:.095,smoothWheel:true,wheelMultiplier:.95}); lenis.on("scroll",onScroll); window.__lenis=lenis; lenis.scrollTo(0,{immediate:true});
     const tick=t=>{ lenis.raf(t); requestAnimationFrame(tick); }; requestAnimationFrame(tick);
